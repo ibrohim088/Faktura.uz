@@ -1,0 +1,82 @@
+{
+    "farm_invoices": [
+        {
+            "head": {
+                "file_name": "universal-pharm-invoice_305395454_312704477_2026-07-22_FU8108.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "'INTERACTIVE ROBOT SOLUTIONS' MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "312704477"
+                    }
+                }
+            },
+            "document": {
+                "document_version": "1.0.0",
+                "document_number": "22072026_1436-pharm",
+                "contract_number": "22072026_1436-pharm",
+                "document_date": "22.07.2026",
+                "contract_date": "22.07.2026",
+                "items": [
+                    {
+                        "item_number": "1",
+                        "dispense_type": 0,
+                        "description": "test-pharm-with-lgota_id",
+                        "volume": "35.00",
+                        "unit_price": "2,000.00",
+                        "subtotal": "20,000.00",
+                        "expiration_date": "22.07.2026",
+                        "cost_receipt": "2,000.00",
+                        "basicPrice": "500.00",
+                        "after_discount": "500.00",
+                        "discount": "300",
+                        "before_discount": "2,000.00",
+                        "measurement_unit": "сум",
+                        "measurement_unit_code": "1656868",
+                        "excise": {
+                            "excise_rate": 0,
+                            "excise_value": 0
+                        },
+                        "catalog": {
+                            "code": "10499001015000000"
+                        },
+                        "vat": {
+                            "vat_rate": "Без НДС",
+                            "vat_value": "Без НДС",
+                            "vat_value_uzs": "Без НДС",
+                            "subtotal_with_taxes": "Без НДС"
+                        },
+                        "lgota_id": "102387",
+                        "subtotal_with_taxes": "35700000.00"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "35700000.00",
+                    "column_subtotal_uzs": "35700000.00",
+                    "column_vat_value": "1,200.00",
+                    "column_vat_value_uzs": "1,200.00",
+                    "column_subtotal_with_taxes": "35700000.00",
+                    "column_subtotal_with_taxes_uzs": "35700000.00"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "двадцать тысяч сум и ноль цвета"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,156 @@
+{
+    "hybrid_invoices": [
+        {
+            "head": {
+                "file_name": "universal-hybrid_invoices-311242721_312590130_2022-01-13_FU_1.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "311242721",
+                        "company_name": "\"LINGUALEAP EDUCATION CENTER\" MAS`ULIYATI CHEKLANGAN JAMIYAT",
+                        "address": {
+                            "street": "г. Ташкент, Шайхантахурский район, ул. Зафаробод, Зафаробод МСГ, 7- Дом"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "ТОШКЕНТ Ш., \"ИПОТЕКА-БАНК\" АТИБ ТОШКЕНТ ШАХАР ФИЛИАЛИ",
+                            "bank_code": "00996"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "311242721"
+                    }
+                }
+            },
+            "document": {
+                "invoice_number": "1",
+                "invoice_date": "22.07.2026",
+                "contract_date": "22.07.2026",
+                "contract_number": "22072026_1636",
+                "delivery_type": 2,
+                "delivery_cost": "1500",
+                "total_distance": "10",
+                "total_delivery_cost": "15000",
+                "column_subtotal_weight_brutto": "10500",
+                "column_subtotal_weight_netto": "6000",
+                "consignor": {
+                    "inn_or_pinfl": "305395454",
+                    "name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ"
+                },
+                "consignee": {
+                    "inn_or_pinfl": "312590130",
+                    "name": "\"SILVERGATE\" MCHJ"
+                },
+                "freight_forwarder": {
+                    "inn_or_pinfl": "305395454",
+                    "name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ"
+                },
+                "carrier": {
+                    "inn_or_pinfl": "312590130",
+                    "name": "\"SILVERGATE\" MCHJ"
+                },
+                "client": {
+                    "inn_or_pinfl": "312590130",
+                    "name": "\"SILVERGATE\" MCHJ"
+                },
+                "transport_type": "1",
+                "roadway": {
+                    "other_car_owners": [
+                        {
+                            "inn_or_pinfl": "305395454"
+                        }
+                    ],
+                    "truck": {
+                        "reg_number": "01 001 OOO",
+                        "model": "SHACMAN SX4258NT324"
+                    },
+                    "trailer": {
+                        "reg_number": "01 001 OOO",
+                        "model": "SHACMAN SX4258NT324"
+                    },
+                    "carriages": [
+                        {
+                            "reg_number": "01 001 OOO",
+                            "model": "SHACMAN SX4258NT324"
+                        }
+                    ],
+                    "product_groups": [
+                        {
+                            "loading_point": {
+                                "district_code": 1,
+                                "district_name": "Мирабадский район",
+                                "address": "3 tor ko'cha",
+                                "region_id": 6,
+                                "region_name": "город Ташкент"
+                            },
+                            "unloading_point": {
+                                "district_code": 5,
+                                "district_name": "Алмазарский район",
+                                "address": "Namuna MFY, Sayxun shoh ko'chasi, 2b-uy",
+                                "region_id": 26,
+                                "region_name": "город Ташкент"
+                            },
+                            "product_info": {
+                                "total_delivery_sum": "235000.00",
+                                "total_vat_sum": "10500",
+                                "total_delivery_sum_with_vat": "6000",
+                                "products": [
+                                    {
+                                        "number": 1,
+                                        "name": "Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям",
+                                        "measurement_unit": "чел (пассажир) 1.0 человек",
+                                        "measurement_unit_code": "1202186",
+                                        "quantity": "10",
+                                        "price_per_item": "23500",
+                                        "excise": {
+                                            "excise_rate": 0.0,
+                                            "excise_value": 0.0
+                                        },
+                                        "delivery_cost": "15000.00",
+                                        "vat": {
+                                            "vat_rate": "Без НДС",
+                                            "vat_value": "Без НДС"
+                                        },
+                                        "subtotal_with_taxes": "250000.00",
+                                        "origin": 1,
+                                        "catalog": {
+                                            "code": "10103002001001001",
+                                            "name": "Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям"
+                                        }
+                                    },
+                                    {
+                                        "number": 2,
+                                        "lgota_id": "104321",
+                                        "name": "Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям",
+                                        "measurement_unit": "чел (пассажир) 1.0 человек",
+                                        "measurement_unit_code": "1202186",
+                                        "quantity": "10",
+                                        "price_per_item": "23500",
+                                        "excise": {
+                                            "excise_rate": 0.0,
+                                            "excise_value": 0.0
+                                        },
+                                        "delivery_cost": "15000.00",
+                                        "vat": {
+                                            "vat_rate": "Без НДС",
+                                            "vat_value": "Без НДС"
+                                        },
+                                        "subtotal_with_taxes": "250000.00",
+                                        "origin": 1,
+                                        "catalog": {
+                                            "code": "10103002001001001",
+                                            "name": "Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+        }
+    ]
+}

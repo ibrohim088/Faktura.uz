@@ -1,0 +1,89 @@
+{
+    "farm_invoices": [
+        {
+            "head": {
+                "file_name": "universal-farm-invoice_305395454_312713370_2026-07-17_FU8108.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "'INTERACTIVE ROBOT SOLUTIONS' MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "312713370"
+                    }
+                }
+            },
+            "document": {
+                "document_version": "1.0.0",
+                "document_number": "17072026_0911-farm",
+                "document_date": "17.07.2026",
+                "contract_number": "17072026_0911-farm",
+                "contract_date": "17.07.2026",
+                "items": [
+                    {
+                        "item_number": "1",
+                        "dispense_type": 0,
+                        "description": "эластичные перчаски",
+                        "volume": "10.00",
+                        "unit_price": "2,000.00",
+                        "subtotal": "20,000.00",
+                        "serial_number": "04015001002000000",
+                        "expiration_date": "17.07.2026",
+                        "cost_receipt": "2,000.00",
+                        "basicPrice": "500.00",
+                        "after_discount": "500.00",
+                        "discount": "300",
+                        "before_discount": "2,000.00",
+                        "measurement_unit": "пара (2шт)",
+                        "measurement_unit_code": "1340649",
+                        "excise": {
+                            "excise_rate": 0,
+                            "excise_value": 0
+                        },
+                        "catalog": {
+                            "code": "04015001002000000",
+                            "name": "Медицинские перчатки"
+                        },
+                        "vat": {
+                            "vat_rate": "6.00",
+                            "vat_value": "1200.00",
+                            "vat_value_uzs": "1200.00",
+                            "subtotal_with_taxes": "21200.00"
+                        },
+                        "product_marks": {
+                            "product_type": 0,
+                            "kiz": [
+                                ""
+                            ]
+                        },
+                        "subtotal_with_taxes": "21,200.00"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "20,000.00",
+                    "column_subtotal_uzs": "20,000.00",
+                    "column_vat_value": "1,200.00",
+                    "column_vat_value_uzs": "1,200.00",
+                    "column_subtotal_with_taxes": "21,200.00",
+                    "column_subtotal_with_taxes_uzs": "21,200.00"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "двадцать тысяч сум и ноль цвета"
+                }
+            }
+        }
+    ]
+}

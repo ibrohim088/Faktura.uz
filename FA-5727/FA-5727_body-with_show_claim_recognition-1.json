@@ -1,0 +1,143 @@
+curl --location 'http://testapi.faktura.uz/Api/Document/ImportDocumentRegister' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: test_access_token' \
+--data '{
+   {
+    "farm_invoices": [
+        {
+            "head": {
+                "file_name": "universal-pharm-invoice_302563857_312704477_2026-08-10_FU_TEST-00991.xml",
+                "sender": {
+                    "sender_info": {
+                        "INN": "302563857",
+                        "company_name": "\"SPACE ONLINE GENESIS\" MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "312704477"
+                    }
+                }
+            },
+            "document": {
+                "factura_type": "0",
+                "document_version": "1.0",
+                "document_number": "FA-5668_TESTING_NEW_FIELDS_IN_EXCEL_FORMAT-V1_v1",
+                "document_date": "12.08.2026",
+                "contract_number": "FA-5668_TESTING_NEW_FIELDS_IN_EXCEL_FORMAT-V1_v1",
+                "contract_date": "12.08.2026",
+                "show_claim_recognition": "1",
+                "items": [
+                    {
+                        "vat": {
+                            "vat_rate": "0",
+                            "vat_value": 0
+                        },
+                        "product_marks": {
+                            "product_type": "4",
+                            "kiz": [
+                                "010890800216758021WvYbCuBZvF00N",
+                                "010890800216758021c4GSRm2QbdmxC",
+                                "010890800216758021taFd4gsTvtF6l"
+                            ]
+                        },
+                        "item_number": 1,
+                        "dispense_type": 1,
+                        "description": "test",
+                        "volume": 50,
+                        "unit_price": 27500,
+                        "origin": 2,
+                        "subtotal": 1375000,
+                        "serial_number": "O24055",
+                        "barcode": "0123456789123",
+                        "maker": "Avantika Medex PVT",
+                        "expiration_date": "2027-02-01T12:00:00",
+                        "cost_receipt": 0,
+                        "basicPrice": 26349.61,
+                        "after_discount": 4.37,
+                        "discount": 4.37,
+                        "before_discount": 0,
+                        "measurement_unit_code": 1185237,
+                        "excise": {
+                            "excise_rate": 0,
+                            "excise_value": 0
+                        },
+                        "catalog": {
+                            "code": "03004392009005002",
+                            "name": "Иринотекан - L01XX19 ИРИНОТЕКАНА ГИДРОХЛОРИД (Accord Healthcare Ireland Ltd) Концентрат для приготовления раствора для инфузий 20 мг/мл 2мл флаконы"
+                        },
+                        "subtotal_with_taxes": 1540000
+                    },
+                    {
+                        "vat": {
+                            "vat_rate": "0",
+                            "vat_value": 0
+                        },
+                        "product_marks": {
+                            "product_type": "4",
+                            "kiz": [
+                                "010890800216758021WvYbCuBZvF00N"
+                            ]
+                        },
+                        "item_number": 2,
+                        "dispense_type": 2,
+                        "description": "test",
+                        "volume": 50,
+                        "unit_price": 27500,
+                        "origin": 2,
+                        "subtotal": 1375000,
+                        "serial_number": "O24055",
+                        "barcode": "0123456789123",
+                        "maker": "Avantika Medex PVT",
+                        "expiration_date": "2027-02-01T12:00:00",
+                        "cost_receipt": 0,
+                        "basicPrice": 26349.61,
+                        "after_discount": 4.37,
+                        "discount": 4.37,
+                        "before_discount": 0,
+                        "measurement_unit_code": 1185237,
+                        "excise": {
+                            "excise_rate": 0,
+                            "excise_value": 0
+                        },
+                        "catalog": {
+                            "code": "03004392009005002",
+                            "name": "Иринотекан - L01XX19 ИРИНОТЕКАНА ГИДРОХЛОРИД (Accord Healthcare Ireland Ltd) Концентрат для приготовления раствора для инфузий 20 мг/мл 2мл флаконы"
+                        },
+                        "subtotal_with_taxes": 1540000
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": 2665600,
+                    "column_vat_value": 285600,
+                    "total_discount": 2380000,
+                    "discount_rate": 3,
+                    "discount_amount": 0,
+                    "column_subtotal_with_taxes_total": 2665600,
+                    "column_discount_subtotal": 0,
+                    "column_discount_subtotal_with_taxes": 0,
+                    "column_discount_subtotal_vat_value": 0,
+                    "total_discount_vat_value": 285600,
+                    "column_subtotal_with_taxes": 2665600
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "Два миллиона триста восемьдесят тысяч 00 ",
+                    "column_subtotal_uzs_in_words": "Два миллиона триста восемьдесят тысяч сумов 00 тийин",
+                    "column_subtotal_with_taxes_in_words": "Два миллиона шестьсот шестьдесят пять тысяч шестьсот сумов 00 тийин",
+                    "column_subtotal_with_taxes_uzs_in_words": "Два миллиона шестьсот шестьдесят пять тысяч шестьсот сумов 00 тийин"
+                }
+            },
+            "expansion": ""
+        }
+    ]
+}
+}'

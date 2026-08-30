@@ -1,0 +1,116 @@
+{
+    "local_waybills": [
+        {
+            "head": {
+                "file_name": "waybill-local_305395454_312704477_2026-07-17_FU_1.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "'INTERACTIVE ROBOT SOLUTIONS' MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "312704477"
+                    }
+                }
+            },
+            "document": {
+                "waybill_date": "18.07.2026",
+                "contract_date": "18.07.2026",
+                "waybill_number": "17072026_test_local_waybills",
+                "contract_number": "17072026_test_local_waybills",
+                "delivery_type": 2,
+                "delivery_cost": 50000.00,
+                "total_distance": 30.00,
+                "total_delivery_cost": 1500000.00,
+                "consignor": {
+                    "inn_or_pinfl": "305395454",
+                    "name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ"
+                },
+                "consignee": {
+                    "inn_or_pinfl": "312704477",
+                    "name": "\"TRUCKS AND LOADS\" MCHJ"
+                },
+                "carrier": {
+                    "inn_or_pinfl": "312704477",
+                    "name": "\"TRUCKS AND LOADS\" MCHJ"
+                },
+                "responsible_person": {
+                    "inn_or_pinfl": "312704477",
+                    "name": "\"TRUCKS AND LOADS\" MCHJ"
+                },
+                "transport_type": 1,
+                "roadway": {
+                    "other_car_owners": [
+                        {
+                            "inn_or_pinfl": "312704477",
+                            "name": "\"TRUCKS AND LOADS\" MCHJ"
+                        }
+                    ],
+                    "driver": {
+                        "pinfl": "305395454"
+                    },
+                    "truck": {
+                        "reg_number": "01 001 AAA",
+                        "model": "Volvo Truck"
+                    },
+                    "product_groups": [
+                        {
+                            "loading_point": {
+                                "district_code": "1",
+                                "district_name": "Mirobod tumani",
+                                "latitude": "41.310696",
+                                "longitude": "69.280505",
+                                "address": "3 tor ko'cha",
+                                "region_id": "26",
+                                "region_name": "Tashkent city"
+                            },
+                            "unloading_point": {
+                                "district_code": 5,
+                                "district_name": "Shayxontoxur tumani",
+                                "latitude": 41.310696,
+                                "longitude": 69.280505,
+                                "address": "3 tor ko'cha",
+                                "region_id": 26,
+                                "region_name": "Tashkent city"
+                            },
+                            "product_info": {
+                                "total_delivery_sum": "50000000",
+                                "total_weight_brutto": "13500",
+                                "products": [
+                                    {
+                                        "number": "1",
+                                        "title": "Услуги по перевозке грузов железнодорожным транспортом по местным направлениям",
+                                        "measurement_unit": "тонна-километр",
+                                        "measurement_unit_code": "1209889",
+                                        "quantity": "13500",
+                                        "price_per_item": "100000",
+                                        "delivery_cost": "1500000",
+                                        "weight_brutto": "13500",
+                                        "weight_netto": "13500",
+                                        "catalog": {
+                                            "code": "10108002001000001",
+                                            "name": "Услуги по перевозке грузов железнодорожным транспортом по местным направлениям"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,87 @@
+// {{faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454
+
+{
+    "acts_and_invoices": [
+        {
+            "head": {
+                "file_name": "universal-act-invoice_305395454_309338569_2026-07-FU-0001.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "'INTERACTIVE ROBOT SOLUTIONS' MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "309338569"
+                    }
+                }
+            },
+            "document": {
+                "document_version": "1.0.0",
+                "document_number": "22072026_1302-Счет-фактура_акциз",
+                "document_date": "17.07.2026",
+                "contract_number": "17072026_0911-Счет-фактура_акциз",
+                "contract_date": "17.07.2026",
+                "items": [
+                    {
+                        "item_number": "1",
+                        "description": "эластичные перчаски",
+                        "volume": "10.00",
+                        "unit_price": "2,000.00",
+                        "subtotal": "20,000.00",
+                        "cost_receipt": "2,000.00",
+                        "basicPrice": "500.00",
+                        "after_discount": "500.00",
+                        "discount": "300",
+                        "before_discount": "2,000.00",
+                        "measurement_unit": "тонна-километр",
+                        "measurement_unit_code": "1209879",
+                        "excise": {
+                            "excise_rate": 0,
+                            "excise_value": 0
+                        },
+                        "catalog": {
+                            "code": "10102001001000002",
+                            "name": "Услуги по перевозке грузов водным транспортом в пункте за пределами территории государства"
+                        },
+                        "vat": {
+                            "vat_rate": "Без НДС",
+                            "vat_value": "Без НДС",
+                        },
+                        "product_marks": {
+                            "product_type": 0,
+                            "kiz": [
+                                ""
+                            ]
+                        },
+                        "lgota_id": "103310",
+                        "subtotal_with_taxes": "0"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "20,000.00",
+                    "column_subtotal_uzs": "20,000.00",
+                    "column_vat_value": "1,200.00",
+                    "column_vat_value_uzs": "1,200.00",
+                    "column_subtotal_with_taxes": "21,200.00",
+                    "column_subtotal_with_taxes_uzs": "21,200.00"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "двадцать тысяч сум и ноль цвета"
+                }
+            }
+        }
+    ]
+}

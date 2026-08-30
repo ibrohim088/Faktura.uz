@@ -1,0 +1,91 @@
+{
+    "invoices": [
+        {
+            "head": {
+                "file_name": "universal-vat-invoice_305395454_312704477_2026-07-22_FU_0000-000608.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "'INTERACTIVE ROBOT SOLUTIONS' MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "phone": "(77) 088 65 05",
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    },
+                    "branch_name": "00001 - Test_Filial",
+                    "branch_code": "00001"
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "312704477",
+                        "company_name": "\"TRUCKS AND LOADS\" MCHJ",
+                        "company_vat_code": "326060323386",
+                        "address": {
+                            "street": "Katta Chilonzor-3 MFY, Chilonzor ko'chasi, 82v-uy"
+                        },
+                        "bank_details": {
+                            "account_number": "20208000107378827001",
+                            "bank_name": "Toshkent sh. \"O`zsanoatqurilishbanki\" ATB           Bosh ofisi",
+                            "bank_code": "01158"
+                        }
+                    }
+                }
+            },
+            "document": {
+                "document_number": "22072026_1208",
+                "document_date": "22.07.2026",
+                "contract_date": "22.07.2026",
+                "contract_number": "test_1132",
+                "currency_code": "",
+                "items": [
+                    {
+                        "factura_type": 0,
+                        "description": "use other lgota id (102387)",
+                        "volume": "12.00",
+                        "subtotal": "648000.00",
+                        "subtotal_with_taxes": 0,
+                        "item_number": "1",
+                        "measurement_unit": "чел (пассажир) 1.0 человек",
+                        "measurement_unit_code": "1202186",
+                        "unit_price": "54000.00",
+                        "excise": {
+                            "excise_rate": 0.0,
+                            "excise_value": 0.0
+                        },
+                        "catalog": {
+                            "code": "09027001018000000",
+                            "name": "Газо - или дымоанализаторы"
+                        },
+                        "vat": {
+                            "vat_rate": "Без НДС",
+                            "vat_value": "Без НДС"
+                        },
+                        "lgota_id": "103311"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "6.480.000.00",
+                    "column_subtotal_uzs": "6480000.00",
+                    "column_vat_value": "Без НДС",
+                    "column_vat_value_uzs": "Без НДС",
+                    "column_subtotal_with_taxes": "6480000.00",
+                    "column_subtotal_with_taxes_uzs": "6480000.00"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "шесть миллионов четыресты восемьдесят сум, ноль тиин",
+                    "column_subtotal_uzs_in_words": "шесть миллионов четыресты восемьдесят сум, ноль тиин",
+                    "column_subtotal_with_taxes_in_words": "шесть миллионов четыресты восемьдесят сум, ноль тиин",
+                    "column_subtotal_with_taxes_uzs_in_words": "шесть миллионов четыресты восемьдесят сум, ноль тиин"
+                }
+            }
+        }
+    ]
+}

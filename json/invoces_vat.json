@@ -1,0 +1,100 @@
+{
+    "invoices": [
+        {
+            "head": {
+                "file_name": "universal-vat-invoice_305395454_312356239_2026-07-16FU_000002.json",
+                "program_version": "1.2.0",
+                "format_version": "1.2.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "'INTERACTIVE ROBOT SOLUTIONS' MCHJ",
+                        "address": {
+                            "city": "ГОРОД ТАШКЕНТ",
+                            "city_district": "ЯШНАБАДСКИЙ РАЙОН"
+                        },
+                        "phone": "(77) 088 65 05",
+                        "bank_details": {
+                            "account_number": "20208000100858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00996"
+                        }
+                    },
+                    "approver_and_signers": {
+                        "signer_director": {
+                            "last_name": "Farrux",
+                            "first_name": "Murodov"
+                        },
+                        "signer_warehouse": {
+                            "last_name": "Farrux",
+                            "first_name": "Murodov"
+                        }
+                    },
+                    "branch_name": "00001 - Test_Filial",
+                    "branch_code": "00001"
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "312356239",
+                        "company_name": "'FINCOM INVEST MIKROMOLIYA TASHKILOTI' MCHJ",
+                        "company_vat_code": "326070299516",
+                        "address": {
+                            "street": "Katta Chilonzor-3 MFY, Chilonzor ko'chasi, 82v-uy"
+                        },
+                        "bank_details": {
+                            "account_number": "20216000807304122001",
+                            "bank_name": "Toshkent sh. \"O`zsanoatqurilishbanki\" ATB           Bosh ofisi",
+                            "bank_code": "01196"
+                        }
+                    }
+                }
+            },
+            "document": {
+                "document_number": "16072026_1132",
+                "document_date": "16.07.2026",
+                "contract_date": "16.07.2026",
+                "contract_number": "test_1132",
+                "currency_code": "",
+                "items": [
+                    {
+                        "factura_type": 0,
+                        "description": "test_1132",
+                        "volume": "60.00",
+                        "subtotal": "240000.00",
+                        "item_number": "1",
+                        "measurement_unit": "шт.",
+                        "measurement_unit_code": "1461229",
+                        "unit_price": "240000.00",
+                        "excise": {
+                            "excise_rate": 0.0,
+                            "excise_value": 0.0
+                        },
+                        "catalog": {
+                            "code": "09027001018000000",
+                            "name": "Газо - или дымоанализаторы"
+                        },
+                        "vat": {
+                            "vat_rate": "6.00",
+                            "vat_value": "14400.00"
+                        },
+                        "subtotal_with_taxes": "254400.00"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "240000.00",
+                    "column_subtotal_uzs": "240000.00",
+                    "column_vat_value": "14400.00",
+                    "column_vat_value_uzs": "14400.00",
+                    "column_subtotal_with_taxes": "254400.00",
+                    "column_subtotal_with_taxes_uzs": "254400.00"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "двести сорок тысячь, 00 тийин",
+                    "column_subtotal_uzs_in_words": "двести сорок тысячь, 00 тийин",
+                    "column_subtotal_with_taxes_in_words": "двести пятьдесят четыре сум, 00 тийин",
+                    "column_subtotal_with_taxes_uzs_in_words": "двести пятьдесят четыре сум, 00 тийин"
+                }
+            }
+        }
+    ]
+}

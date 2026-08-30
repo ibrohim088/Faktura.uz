@@ -1,0 +1,67 @@
+{
+    "power_of_attorney": [
+        {
+            "head": {
+                "file_name": "power-of-attorney-roaming_302563857_489043363_15.06.2026.pdf",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "company_code": "00025",
+                        "INN": "302563857",
+                        "company_name": "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \"INTERACTIVE ROBOT SOLUTIONS\"",
+                        "address": {
+                            "region": "",
+                            "street": "100207, г. Ташкент, ул. Темирчи, 1"
+                        },
+                        "bank_details": {
+                            "account_number": "20214000404427479001",
+                            "bank_name": "\"ASIA ALLIANCE BANK\" АТ БАНКИ",
+                            "bank_code": "01095",
+                            "activity_code": ""
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "489043363"
+                    }
+                }
+            },
+            "document": {
+                "document_version": "fa-5733-block_2_created_with_api",
+                "document_number": "fa-5733-block_2_created_with_api",
+                "document_date": "13.08.2026",
+                "contract_number": "fa-5733-block_2_created_with_api_contract",
+                "contract_date": "10.08.2026",
+                "deliverer": "ARIPOV BAXTIYER ABDULAZIZOVICH",
+                "deliverer_inn": "489043363",
+                "document_valid_date": "13.08.2026",
+                "document_values_for": "fa-5733-block_2_created_with_api",
+
+                "items": [
+                    {
+                        "item_number": "1",
+                        "title": "10403003002000003",
+                        "measurement_unit": "1000 куб. метр",
+                        "quantity": "12",
+                        "catalog": {
+                            "code": "10403003002000003",
+                            "name": "Процентные доходы по счетам в других банках (Счет-40400) Процентные доходы по депозитам в других банках (льготные доходы)"
+                        }
+                    },
+                    {
+                        "item_number": "2",
+                        "title": "10105001001000001",
+                        "measurement_unit": "кв. дециметр",
+                        "quantity": "12",
+                        "catalog": {
+                            "code": "10105001001000001",
+                            "name": "Почтовая услуга в пункте за пределами территории государства"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

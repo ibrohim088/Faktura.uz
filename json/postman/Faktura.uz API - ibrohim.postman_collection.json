@@ -1,0 +1,3531 @@
+{
+  "info": {
+    "_postman_id": "8cf69453-d431-4d48-9e72-746df203d832",
+    "name": "Faktura.uz API - ibrohim",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39847099",
+    "_collection_link": "https://go.postman.co/collection/39847099-8cf69453-d431-4d48-9e72-746df203d832?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "0. Auth",
+      "item": [
+        {
+          "name": "Для авторизации",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Javobni JSON sifatida olish\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "// access_token mavjudligini tekshirish\r",
+                  "if (response.access_token) {\r",
+                  "    pm.environment.set(\"app_access_token\", response.access_token);\r",
+                  "    console.log(\"✅ Access token saqlandi:\", response.access_token);\r",
+                  "\r",
+                  "    // Token muddatini hisoblab saqlash\r",
+                  "    if (response.expires_in) {\r",
+                  "        const expiresAt = Date.now() + (response.expires_in * 1000);\r",
+                  "        pm.environment.set(\"app_token_expires_at\", expiresAt);\r",
+                  "        console.log(\"⏰ Token muddati tugaydi:\", new Date(expiresAt).toLocaleString());\r",
+                  "    }\r",
+                  "} else {\r",
+                  "    console.error(\"❌ access_token topilmadi. Javob:\", JSON.stringify(response));\r",
+                  "}\r",
+                  "\r",
+                  "// refresh_token mavjud bo'lsa, uni ham saqlash\r",
+                  "if (response.refresh_token) {\r",
+                  "    pm.environment.set(\"app_refresh_token\", response.refresh_token);\r",
+                  "    console.log(\"♻️ Refresh token saqlandi:\", response.refresh_token);\r",
+                  "} else {\r",
+                  "    console.warn(\"⚠️ Javobda refresh_token topilmadi (server uni umuman qaytarmasligi mumkin)\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "998770886505",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "123456",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "InteractiveRobot",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "xXdkM9d4HcYq7uoNnycVgiQtgk8hH5GYczOpDyWi7FLRzZvPWc2GBfvaLuBn",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://account.faktura.uz/token",
+              "protocol": "https",
+              "host": [
+                "account",
+                "faktura",
+                "uz"
+              ],
+              "path": [
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Для авторизации TEST",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Javobni JSON sifatida olish\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "// access_token mavjudligini tekshirish\r",
+                  "if (response.access_token) {\r",
+                  "    pm.environment.set(\"test_access_token\", response.access_token);\r",
+                  "    console.log(\"✅ Access token saqlandi:\", response.access_token);\r",
+                  "\r",
+                  "    // Token muddatini hisoblab saqlash\r",
+                  "    if (response.expires_in) {\r",
+                  "        const expiresAt = Date.now() + (response.expires_in * 1000);\r",
+                  "        pm.environment.set(\"test_token_expires_at\", expiresAt);\r",
+                  "        console.log(\"⏰ Token muddati tugaydi:\", new Date(expiresAt).toLocaleString());\r",
+                  "    }\r",
+                  "} else {\r",
+                  "    console.error(\"❌ access_token topilmadi. Javob:\", JSON.stringify(response));\r",
+                  "}\r",
+                  "\r",
+                  "// refresh_token mavjud bo'lsa, uni ham saqlash\r",
+                  "if (response.refresh_token) {\r",
+                  "    pm.environment.set(\"test_refresh_token\", response.refresh_token);\r",
+                  "    console.log(\"♻️ Refresh token saqlandi:\", response.refresh_token);\r",
+                  "} else {\r",
+                  "    console.warn(\"⚠️ Javobda refresh_token topilmadi (server uni umuman qaytarmasligi mumkin)\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "998992225923",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "123",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "TESTAPI",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "oOthDX3RaZSqI0r04x0SV2nf7t7unVNofbDW8ZGvdAtspgInjaplksSMlZ1B",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://testaccount.faktura.uz/token",
+              "protocol": "https",
+              "host": [
+                "testaccount",
+                "faktura",
+                "uz"
+              ],
+              "path": [
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Для авторизации Staging",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Javobni JSON sifatida olish\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "// access_token mavjudligini tekshirish\r",
+                  "if (response.access_token) {\r",
+                  "    pm.environment.set(\"stagingapi_access_token\", response.access_token);\r",
+                  "    console.log(\"✅ Access token saqlandi:\", response.access_token);\r",
+                  "\r",
+                  "    // Token muddatini hisoblab saqlash\r",
+                  "    if (response.expires_in) {\r",
+                  "        const expiresAt = Date.now() + (response.expires_in * 1000);\r",
+                  "        pm.environment.set(\"stagingapi_token_expires_at\", expiresAt);\r",
+                  "        console.log(\"⏰ Token muddati tugaydi:\", new Date(expiresAt).toLocaleString());\r",
+                  "    }\r",
+                  "} else {\r",
+                  "    console.error(\"❌ access_token topilmadi. Javob:\", JSON.stringify(response));\r",
+                  "}\r",
+                  "\r",
+                  "// refresh_token mavjud bo'lsa, uni ham saqlash\r",
+                  "if (response.refresh_token) {\r",
+                  "    pm.environment.set(\"stagingapi_refresh_token\", response.refresh_token);\r",
+                  "    console.log(\"♻️ Refresh token saqlandi:\", response.refresh_token);\r",
+                  "} else {\r",
+                  "    console.warn(\"⚠️ Javobda refresh_token topilmadi (server uni umuman qaytarmasligi mumkin)\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "info@faktura.uz",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "123",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "STAGINAAPP",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "FNPoEWCUozcXONFgwwxHsCLGnZtI5SyaH5Bm1GGeZiSVn5lZ69ETa1wOftd3",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://stagingaccount.faktura.uz/token",
+              "protocol": "https",
+              "host": [
+                "stagingaccount",
+                "faktura",
+                "uz"
+              ],
+              "path": [
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "1. Работа с организациями",
+      "item": [
+        {
+          "name": "GetCompanyBasicDetails",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/GetCompanyBasicDetails",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetCompanyBasicDetails"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "IsNdsPayer",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0gid}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/IsNdsPayer/489043363",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "IsNdsPayer",
+                "489043363"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetNdsVatCode",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_0gid}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/GetNdsVatCode/311242721",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetNdsVatCode",
+                "311242721"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetEmployees",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/GetEmployees?companyInn=489043363",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetEmployees"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "489043363"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetCompanyRoles",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/GetCompanyRoles?companyInn=489043363",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetCompanyRoles"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "489043363"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetCompanyLabels",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/GetCompanyLabels",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetCompanyLabels"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "489043363",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetCompanyBranchs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/GetCompanyBranchs/489043363",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetCompanyBranchs",
+                "489043363"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ProductCatalogs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/ProductCatalogs?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "ProductCatalogs"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "lang",
+                  "value": "ru",
+                  "disabled": true
+                },
+                {
+                  "key": "searchText",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ProductCatalogs/Search",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/ProductCatalogs/Search?lang=ru&searchText=03004564006011001",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "ProductCatalogs",
+                "Search"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "ru"
+                },
+                {
+                  "key": "searchText",
+                  "value": "03004564006011001"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ProductCatalogs/GetInfo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/ProductCatalogs/Getinfo?companyInn=305395454&lang=ru&code=10103002001001001",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "ProductCatalogs",
+                "Getinfo"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "lang",
+                  "value": "ru"
+                },
+                {
+                  "key": "code",
+                  "value": "10103002001001001"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Lgotas",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/Lgotas?lang=ru&companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "Lgotas"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "ru"
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TaxGap",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/TaxGap?companyInn=489043363&lang=ru&date=2026-07-15",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "TaxGap"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "489043363"
+                },
+                {
+                  "key": "lang",
+                  "value": "ru"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-07-15",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ProductCatalogs/Check",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/ProductCatalogs/Check",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "ProductCatalogs",
+                "Check"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ProductCatalogs/SetOrigin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Code\": \"08418004001000000\",\r\n    \"Origin\": 0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/ProductCatalogs/SetOrigin?companyInn=489043363",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "ProductCatalogs",
+                "SetOrigin"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "489043363"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AddProductCatalog",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Code\": \"03004564006011001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Company/ProductCatalogs/SetOrigin?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "ProductCatalogs",
+                "SetOrigin"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Работа с подразделениями",
+      "item": [
+        {
+          "name": "Unit/GetCompanyUnits",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Unit/GetCompanyUnits?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Unit",
+                "GetCompanyUnits"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unit/GetById",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Unit/GetById/20534?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Unit",
+                "GetById",
+                "20534"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Работа с пользователями",
+      "item": [
+        {
+          "name": "Получение информации о пользователе",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/User",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "User"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Работа с ролями",
+      "item": [
+        {
+          "name": "Role",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Role?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Role"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Role/{id}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Role/260415",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Role",
+                "260415"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Role/{id}Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Id\": 260415,\r\n    \"Name\": \"Test\",\r\n    \"Permissions\": [\r\n        1,\r\n        3,\r\n        4,\r\n        5,\r\n        8\r\n    ],\r\n    \"IsAdmin\": false,\r\n    \"IsDefault\": false,\r\n    \"IsDeleted\": false,\r\n    \"DeletedOn\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Role/260415",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Role",
+                "260415"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Role/{id}Post",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Name\": \"New-Test-ibo\",\r\n    \"Permissions\": [\r\n        1,\r\n        3,\r\n        4,\r\n        5,\r\n        8\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Role/260415?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Role",
+                "260415"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Role/{id}Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Role/266301",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Role",
+                "266301"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. Работа с документами",
+      "item": [
+        {
+          "name": "Document/GetDocumentTypes",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetDocumentTypes?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDocumentTypes"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetDocumentCreationTypes",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetDocumentCreationTypes",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDocumentCreationTypes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetDocumentStatuses",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetDocumentStatuses",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDocumentStatuses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetDetails/{documentUniqueId}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetDetails/51360041f8d54819bc1c6460056dc993?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDetails",
+                "51360041f8d54819bc1c6460056dc993"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetDocuments",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetDocuments?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDocuments"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "labels",
+                  "value": "API Documents",
+                  "disabled": true
+                },
+                {
+                  "key": "isSent",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "contractorInn",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "fileName",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "registryFileName",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "registryId",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "statuses",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "types",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "createdFrom",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "createdTo",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "unitId",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "byUser",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "inAgreement",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "isInbox",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "isThirdSide",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "updatedFrom",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "updatedTo",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "invoiceDateFrom",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "invoiceDateTocontractDateFrom",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "contractDateTo",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "contractNumber",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "invoiceNumber",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "facturaType",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "isToBranch",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "isShowOnlyErrors",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetPreview/{documentUniqueId}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetPreview/51360041f8d54819bc1c6460056dc993?companyInn=305395454&previewType=pdf",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetPreview",
+                "51360041f8d54819bc1c6460056dc993"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "previewType",
+                  "value": "pdf"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetDocumentHistory/{documentUniqueId}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetDocumentHistory/51360041f8d54819bc1c6460056dc993?companyInn=305395454&previewType=pdf",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDocumentHistory",
+                "51360041f8d54819bc1c6460056dc993"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "previewType",
+                  "value": "pdf"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DownloadArchive/{UniqueId}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/DownloadArchive/32a3460db89547b6ac326e844a2ac1a3?companyInn=305395454&requestModel.uniqueId=32a3460db89547b6ac326e844a2ac1a3",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "DownloadArchive",
+                "32a3460db89547b6ac326e844a2ac1a3"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "requestModel.uniqueId",
+                  "value": "32a3460db89547b6ac326e844a2ac1a3",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetDocumentByClientDocumentUid",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{app_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{app.faktura.uz}}/Api/Document/GetDocumentByClientDocumentUid/?clientId=&companyInn=305395454",
+              "host": [
+                "{{app.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetDocumentByClientDocumentUid",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": ""
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/GetMeasurements - Получение единиц измерения",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetMeasurements",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetMeasurements"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/UpdateInvoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"head\": {\r\n        \"file_name\": \"universal-vat-invoice_305395454_312624940_2026-07-17FU_000002.json\",\r\n        \"program_version\": \"1.2.0\",\r\n        \"format_version\": \"1.2.0\",\r\n        \"sender\": {\r\n            \"sender_info\": {\r\n                \"INN\": \"305395454\",\r\n                \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                \"address\": {\r\n                    \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                    \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                },\r\n                \"phone\": \"(77) 088 65 05\",\r\n                \"bank_details\": {\r\n                    \"account_number\": \"20208000100858439001\",\r\n                    \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                    \"bank_code\": \"00996\"\r\n                }\r\n            },\r\n            \"approver_and_signers\": {\r\n                \"signer_director\": {\r\n                    \"last_name\": \"Farrux\",\r\n                    \"first_name\": \"Murodov\"\r\n                },\r\n                \"signer_warehouse\": {\r\n                    \"last_name\": \"Farrux\",\r\n                    \"first_name\": \"Murodov\"\r\n                }\r\n            },\r\n            \"branch_name\": \"00001 - Test_Filial\",\r\n            \"branch_code\": \"00001\"\r\n        },\r\n        \"receiver\": {\r\n            \"receiver_info\": {\r\n                \"INN\": \"312624940\",\r\n                \"company_name\": \"'ACAU' MCHJ XK\",\r\n                \"company_vat_code\": \"326030334228\",\r\n                \"address\": {\r\n                    \"street\": \"Minor MFY, Amir Temur shoh ko'chasi, 95а-uy\"\r\n                },\r\n                \"bank_details\": {\r\n                    \"account_number\": \"20208000107363387001\",\r\n                    \"bank_name\": \"Toshkent sh. \\\"O`zsanoatqurilishbanki\\\" ATB           Bosh ofisi\",\r\n                    \"bank_code\": \"00450\"\r\n                }\r\n            }\r\n        }\r\n    },\r\n    \"document\": {\r\n        \"document_number\": \"16072026_1321\",\r\n        \"document_date\": \"17.07.2026\",\r\n        \"contract_date\": \"17.07.2026\",\r\n        \"contract_number\": \"test_1321\",\r\n        \"items\": [\r\n            {\r\n                \"factura_type\": 0,\r\n                \"description\": \"Сухой носышенные кокосовое стружка\",\r\n                \"volume\": \"10.00\",\r\n                \"subtotal\": \"25000.00\",\r\n                \"item_number\": \"1\",\r\n                \"measurement_unit\": \"килограмм\",\r\n                \"measurement_unit_code\": \"1394249\",\r\n                \"unit_price\": \"25000.00\",\r\n                \"excise\": {\r\n                    \"excise_rate\": 0.0,\r\n                    \"excise_value\": 0.0\r\n                },\r\n                \"catalog\": {\r\n                    \"code\": \"02008001021000000\",\r\n                    \"name\": \"Газо - или дымоанализаторы\"\r\n                },\r\n                \"vat\": {\r\n                    \"vat_rate\": \"12.00\",\r\n                    \"vat_value\": \"3000.00\"\r\n                },\r\n                \"subtotal_with_taxes\": \"28000.00\"\r\n            }\r\n        ],\r\n        \"column_summary_values\": {\r\n            \"column_subtotal\": \"25000.00\",\r\n            \"column_subtotal_uzs\": \"25000.00\",\r\n            \"column_vat_value\": \"3000.00\",\r\n            \"column_vat_value_uzs\": \"3000.00\",\r\n            \"column_subtotal_with_taxes\": \"28000.00\",\r\n            \"column_subtotal_with_taxes_uzs\": \"28000.00\"\r\n        },\r\n        \"column_summary_values_in_words\": {\r\n            \"column_subtotal_in_words\": \"пятьсот тысяч сум, 00 тийин\",\r\n            \"column_subtotal_uzs_in_words\": \"пятьсот тысяч сум, 00 тийин\",\r\n            \"column_subtotal_with_taxes_in_words\": \"пятьсот тритсад тысяч сум, 00 тийин\",\r\n            \"column_subtotal_with_taxes_uzs_in_words\": \"пятьсот тритсад тысяч сум, 00 тийин\"\r\n        }\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/UpdateInvoice?companyInn=305395454&documentUniqueId=51360041f8d54819bc1c6460056dc993",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "UpdateInvoice"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "documentUniqueId",
+                  "value": "51360041f8d54819bc1c6460056dc993"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/ImportDocumentRegister - invoices",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-vat-invoice_305395454_312356239_2026-07-16FU_000002.json\",\r\n                \"program_version\": \"1.2.0\",\r\n                \"format_version\": \"1.2.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"phone\": \"(77) 088 65 05\",\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    },\r\n                    \"approver_and_signers\": {\r\n                        \"signer_director\": {\r\n                            \"last_name\": \"Farrux\",\r\n                            \"first_name\": \"Murodov\"\r\n                        },\r\n                        \"signer_warehouse\": {\r\n                            \"last_name\": \"Farrux\",\r\n                            \"first_name\": \"Murodov\"\r\n                        }\r\n                    },\r\n                    \"branch_name\": \"00001 - Test_Filial\",\r\n                    \"branch_code\": \"00001\"\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"312356239\",\r\n                        \"company_name\": \"'FINCOM INVEST MIKROMOLIYA TASHKILOTI' MCHJ\",\r\n                        \"company_vat_code\": \"326070299516\",\r\n                        \"address\": {\r\n                            \"street\": \"Katta Chilonzor-3 MFY, Chilonzor ko'chasi, 82v-uy\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20216000807304122001\",\r\n                            \"bank_name\": \"Toshkent sh. \\\"O`zsanoatqurilishbanki\\\" ATB           Bosh ofisi\",\r\n                            \"bank_code\": \"01196\"\r\n                        }\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_number\": \"16072026_1132\",\r\n                \"document_date\": \"16.07.2026\",\r\n                \"contract_date\": \"16.07.2026\",\r\n                \"contract_number\": \"test_1132\",\r\n                \"currency_code\": \"\",\r\n                \"items\": [\r\n                    {\r\n                        \"factura_type\": 0,\r\n                        \"description\": \"test_1132\",\r\n                        \"volume\": \"60.00\",\r\n                        \"subtotal\": \"240000.00\",\r\n                        \"item_number\": \"1\",\r\n                        \"measurement_unit\": \"шт.\",\r\n                        \"measurement_unit_code\": \"1461229\",\r\n                        \"unit_price\": \"240000.00\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0.0,\r\n                            \"excise_value\": 0.0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"09027001018000000\",\r\n                            \"name\": \"Газо - или дымоанализаторы\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"6.00\",\r\n                            \"vat_value\": \"14400.00\"\r\n                        },\r\n                        \"subtotal_with_taxes\": \"254400.00\"\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"240000.00\",\r\n                    \"column_subtotal_uzs\": \"240000.00\",\r\n                    \"column_vat_value\": \"14400.00\",\r\n                    \"column_vat_value_uzs\": \"14400.00\",\r\n                    \"column_subtotal_with_taxes\": \"254400.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"254400.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"двести сорок тысячь, 00 тийин\",\r\n                    \"column_subtotal_uzs_in_words\": \"двести сорок тысячь, 00 тийин\",\r\n                    \"column_subtotal_with_taxes_in_words\": \"двести пятьдесят четыре сум, 00 тийин\",\r\n                    \"column_subtotal_with_taxes_uzs_in_words\": \"двести пятьдесят четыре сум, 00 тийин\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/ImportDocumentRegister - pharm_invoices",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"farm_invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-pharm-invoice_305395454_312713370_2026-07-17_FU8108.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"312713370\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_version\": \"1.0.0\",\r\n                \"document_number\": \"17072026_0911-farm\",\r\n                \"document_date\": \"17.07.2026\",\r\n                \"contract_number\": \"17072026_0911-farm\",\r\n                \"contract_date\": \"17.07.2026\",\r\n                \"items\": [\r\n                    {\r\n                        \"item_number\": \"1\",\r\n                        \"dispense_type\": 0,\r\n                        \"description\": \"эластичные перчаски\",\r\n                        \"volume\": \"10.00\",\r\n                        \"unit_price\": \"2,000.00\",\r\n                        \"subtotal\": \"20,000.00\",\r\n                        \"serial_number\": \"04015001002000000\",\r\n                        \"expiration_date\": \"17.07.2026\",\r\n                        \"cost_receipt\": \"2,000.00\",\r\n                        \"basicPrice\": \"500.00\",\r\n                        \"after_discount\": \"500.00\",\r\n                        \"discount\": \"300\",\r\n                        \"before_discount\": \"2,000.00\",\r\n                        \"measurement_unit\": \"пара (2шт)\",\r\n                        \"measurement_unit_code\": \"1340649\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"04015001002000000\",\r\n                            \"name\": \"Медицинские перчатки\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"6.00\",\r\n                            \"vat_value\": \"1200.00\",\r\n                            \"vat_value_uzs\": \"1200.00\",\r\n                            \"subtotal_with_taxes\": \"21200.00\"\r\n                        },\r\n                        \"product_marks\": {\r\n                            \"product_type\": 0,\r\n                            \"kiz\": [\r\n                                \"\"\r\n                            ]\r\n                        },\r\n                        \"subtotal_with_taxes\": \"21,200.00\"\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"20,000.00\",\r\n                    \"column_subtotal_uzs\": \"20,000.00\",\r\n                    \"column_vat_value\": \"1,200.00\",\r\n                    \"column_vat_value_uzs\": \"1,200.00\",\r\n                    \"column_subtotal_with_taxes\": \"21,200.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"21,200.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"двадцать тысяч сум и ноль цвета\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "documentUniqueId",
+                  "value": "9ad06a49d696403692dc44d586b59e89",
+                  "disabled": true
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/UpdateFarmInvoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"head\": {\r\n        \"file_name\": \"universal-pharm-invoice_305395454_312713370_2026-07-17_FU8108.json\",\r\n        \"program_version\": \"1.0.0\",\r\n        \"format_version\": \"1.0.0\",\r\n        \"sender\": {\r\n            \"sender_info\": {\r\n                \"INN\": \"305395454\",\r\n                \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                \"address\": {\r\n                    \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                    \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                },\r\n                \"bank_details\": {\r\n                    \"account_number\": \"20208000100858439001\",\r\n                    \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                    \"bank_code\": \"00996\"\r\n                }\r\n            }\r\n        },\r\n        \"receiver\": {\r\n            \"receiver_info\": {\r\n                \"INN\": \"312713370\"\r\n            }\r\n        }\r\n    },\r\n    \"document\": {\r\n        \"document_version\": \"1.0.0\",\r\n        \"document_number\": \"17072026_0911-farm\",\r\n        \"document_date\": \"17.07.2026\",\r\n        \"contract_number\": \"17072026_0911-farm\",\r\n        \"contract_date\": \"17.07.2026\",\r\n        \"items\": [\r\n            {\r\n                \"item_number\": \"1\",\r\n                \"dispense_type\": 0,\r\n                \"description\": \"эластичные перчаски\",\r\n                \"volume\": \"10.00\",\r\n                \"unit_price\": \"2,000.00\",\r\n                \"subtotal\": \"20,000.00\",\r\n                \"serial_number\": \"04015001002000000\",\r\n                \"expiration_date\": \"17.07.2026\",\r\n                \"cost_receipt\": \"2,000.00\",\r\n                \"basicPrice\": \"500.00\",\r\n                \"after_discount\": \"500.00\",\r\n                \"discount\": \"300\",\r\n                \"before_discount\": \"2,000.00\",\r\n                \"measurement_unit\": \"пара (2шт)\",\r\n                \"measurement_unit_code\": \"1340649\",\r\n                \"excise\": {\r\n                    \"excise_rate\": 0,\r\n                    \"excise_value\": 0\r\n                },\r\n                \"catalog\": {\r\n                    \"code\": \"04015001002000000\",\r\n                    \"name\": \"Медицинские перчатки\"\r\n                },\r\n                \"vat\": {\r\n                    \"vat_rate\": \"6.00\",\r\n                    \"vat_value\": \"1200.00\",\r\n                    \"vat_value_uzs\": \"1200.00\",\r\n                    \"subtotal_with_taxes\": \"21200.00\"\r\n                },\r\n                \"product_marks\": {\r\n                    \"product_type\": 0,\r\n                    \"kiz\": [\r\n                        \"\"\r\n                    ]\r\n                },\r\n                \"subtotal_with_taxes\": \"21,200.00\"\r\n            }\r\n        ],\r\n        \"column_summary_values\": {\r\n            \"column_subtotal\": \"20,000.00\",\r\n            \"column_subtotal_uzs\": \"20,000.00\",\r\n            \"column_vat_value\": \"1,200.00\",\r\n            \"column_vat_value_uzs\": \"1,200.00\",\r\n            \"column_subtotal_with_taxes\": \"21,200.00\",\r\n            \"column_subtotal_with_taxes_uzs\": \"21,200.00\"\r\n        },\r\n        \"column_summary_values_in_words\": {\r\n            \"column_subtotal_in_words\": \"двадцать тысяч сум и ноль цвета\"\r\n        }\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/UpdateFarmInvoice?companyInn=305395454&documentUniqueId=fc4d7fc232d94adab9d9223afac810b2",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "UpdateFarmInvoice"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "documentUniqueId",
+                  "value": "fc4d7fc232d94adab9d9223afac810b2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/ImportDocumentRegister - acts roaming",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"acts\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"act_305395454_201631823_2026-07-17_FU_1/10.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_code\": \"\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"201631823\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_version\": \"1.0.0\",\r\n                \"document_number\": \"17072026_0911-acts\",\r\n                \"document_date\": \"17.07.2026\",\r\n                \"contract_number\": \"17072026_0911-acts\",\r\n                \"contract_date\": \"17.07.2026\",\r\n                \"document_description\": \"Мы, нижеподписавшиеся, 'INTERACTIVE ROBOT SOLUTIONS' MCHJ (Test_Filial - 00001)  именуемое в дальнейшем Исполнитель, с одной стороны и 'KAY KAY INTERNATIONAL' MCHJ XK (Ofis - 00001) , именуемое в дальнейшем Заказчик, с другой стороны составили настоящий Акт о том, что работы выполнены в соответствии с условиями заказчика в полном объеме.\",\r\n                \"items\": [\r\n                    {\r\n                        \"vat\": {\r\n                            \"vat_rate\": 6,\r\n                            \"vat_value\": 150000.00,\r\n                            \"vat_value_uzs\": 150000.00,\r\n                            \"subtotal_with_taxes\": 2650000\r\n                        },\r\n                        \"product_marks\": {\r\n                            \"product_type\": \"\",\r\n                            \"kiz\": [\r\n                                \"\"\r\n                            ]\r\n                        },\r\n                        \"item_number\": \"1\",\r\n                        \"dispense_type\": 0,\r\n                        \"description\": \"test-acts-roaming\",\r\n                        \"volume\": 10,\r\n                        \"unit_price\": 250000,\r\n                        \"subtotal\": 2500000.00,\r\n                        \"measurement_unit\": \"день\",\r\n                        \"measurement_unit_code\": \"1504757\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": \"\",\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"11307011001000000\",\r\n                            \"name\": \"Строитель-мантажник\"\r\n                        },\r\n                        \"subtotal_with_taxes\": 2650000\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": 2500000.00,\r\n                    \"column_subtotal_uzs\": 2500000.00,\r\n                    \"column_subtotal_with_taxes\": 2650000.00,\r\n                    \"column_subtotal_with_taxes_uzs\": 2650000.00\r\n                },\r\n                \"column_subtotal_with_taxes_uzs_in_words\": \"два миллиона шестьсот пятьдесят сум и ноль цент\"\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "documentUniqueId",
+                  "value": "fc4d7fc232d94adab9d9223afac810b2",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/UpdateAct",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"head\": {\r\n        \"file_name\": \"acts-roaming_305395454_201631823_2026-07-17_FU_1/10.json\",\r\n        \"program_version\": \"1.0.0\",\r\n        \"format_version\": \"1.0.0\",\r\n        \"sender\": {\r\n            \"sender_info\": {\r\n                \"INN\": \"305395454\",\r\n                \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                \"address\": {\r\n                    \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                    \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                },\r\n                \"bank_details\": {\r\n                    \"account_number\": \"20208000100858439001\",\r\n                    \"bank_code\": \"\"\r\n                }\r\n            }\r\n        },\r\n        \"receiver\": {\r\n            \"receiver_info\": {\r\n                \"INN\": \"201631823\"\r\n            }\r\n        }\r\n    },\r\n    \"document\": {\r\n        \"document_version\": \"1.0.0\",\r\n        \"document_number\": \"17072026_0911-acts\",\r\n        \"document_date\": \"17.07.2026\",\r\n        \"contract_number\": \"17072026_0911-acts\",\r\n        \"contract_date\": \"17.07.2026\",\r\n        \"document_description\": \"test\",\r\n        \"items\": [\r\n            {\r\n                \"vat\": {\r\n                    \"vat_rate\": 6,\r\n                    \"vat_value\": 150000.00,\r\n                    \"vat_value_uzs\": 150000.00,\r\n                    \"subtotal_with_taxes\": 2650000\r\n                },\r\n                \"product_marks\": {\r\n                    \"product_type\": \"\",\r\n                    \"kiz\": [\r\n                        \"\"\r\n                    ]\r\n                },\r\n                \"item_number\": \"1\",\r\n                \"dispense_type\": 0,\r\n                \"description\": \"test-acts-roaming\",\r\n                \"volume\": 10,\r\n                \"unit_price\": 250000,\r\n                \"subtotal\": 2500000.00,\r\n                \"measurement_unit\": \"день\",\r\n                \"measurement_unit_code\": \"1504757\",\r\n                \"excise\": {\r\n                    \"excise_rate\": \"\",\r\n                    \"excise_value\": 0\r\n                },\r\n                \"catalog\": {\r\n                    \"code\": \"11307011001000000\",\r\n                    \"name\": \"Строитель-мантажник\"\r\n                },\r\n                \"subtotal_with_taxes\": 2650000\r\n            }\r\n        ],\r\n        \"column_summary_values\": {\r\n            \"column_subtotal\": 2500000.00,\r\n            \"column_subtotal_uzs\": 2500000.00,\r\n            \"column_subtotal_with_taxes\": 2650000.00,\r\n            \"column_subtotal_with_taxes_uzs\": 2650000.00\r\n        },\r\n        \"column_subtotal_with_taxes_uzs_in_words\": \"два миллиона шестьсот пятьдесят сум и ноль цент\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/UpdateAct?companyInn=305395454&documentUniqueId=138bc883f6c040c09f4ff983e2c6143a",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "UpdateAct"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "documentUniqueId",
+                  "value": "138bc883f6c040c09f4ff983e2c6143a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ImportDocument - Загрузка произвольного документа(PDF)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Base64Content\": \"{{base64}}\",\r\n    \"OwnerInn\": \"305395454\",\r\n    \"ContractorInn\": \"201631823\",\r\n    \"FileName\": \"acts-roaming.pdf\",\r\n    \"Comment\": \"Test-downloading_docx\",\r\n    \"Title\": \"first test\",\r\n    \"SendToContractor\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/ImportDocument?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "ImportDocument"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/ImportDocumentRegister - Товарно-транспортные накладные (TTH)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"local_waybills\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"waybill-local_305395454_312704477_2026-07-17_FU_1.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"312704477\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"waybill_date\": \"18.07.2026\",\r\n                \"contract_date\": \"18.07.2026\",\r\n                \"waybill_number\": \"17072026_test_local_waybills\",\r\n                \"contract_number\": \"17072026_test_local_waybills\",\r\n                \"delivery_type\": 2,\r\n                \"delivery_cost\": 50000.00,\r\n                \"total_distance\": 30.00,\r\n                \"total_delivery_cost\": 1500000.00,\r\n                \"consignor\": {\r\n                    \"inn_or_pinfl\": \"305395454\",\r\n                    \"name\": \"\\\"INTERACTIVE ROBOT SOLUTIONS\\\" MCHJ\"\r\n                },\r\n                \"consignee\": {\r\n                    \"inn_or_pinfl\": \"312704477\",\r\n                    \"name\": \"\\\"TRUCKS AND LOADS\\\" MCHJ\"\r\n                },\r\n                \"carrier\": {\r\n                    \"inn_or_pinfl\": \"312704477\",\r\n                    \"name\": \"\\\"TRUCKS AND LOADS\\\" MCHJ\"\r\n                },\r\n                \"responsible_person\": {\r\n                    \"inn_or_pinfl\": \"312704477\",\r\n                    \"name\": \"\\\"TRUCKS AND LOADS\\\" MCHJ\"\r\n                },\r\n                \"transport_type\": 1,\r\n                \"roadway\": {\r\n                    \"other_car_owners\": [\r\n                        {\r\n                            \"inn_or_pinfl\": \"312704477\",\r\n                            \"name\": \"\\\"TRUCKS AND LOADS\\\" MCHJ\"\r\n                        }\r\n                    ],\r\n                    \"driver\": {\r\n                        \"pinfl\": \"305395454\"\r\n                    },\r\n                    \"truck\": {\r\n                        \"reg_number\": \"01 001 AAA\",\r\n                        \"model\": \"Volvo Truck\"\r\n                    },\r\n                    \"product_groups\": [\r\n                        {\r\n                            \"loading_point\": {\r\n                                \"district_code\": \"1\",\r\n                                \"district_name\": \"Mirobod tumani\",\r\n                                \"latitude\": \"41.310696\",\r\n                                \"longitude\": \"69.280505\",\r\n                                \"address\": \"3 tor ko'cha\",\r\n                                \"region_id\": \"26\",\r\n                                \"region_name\": \"Tashkent city\"\r\n                            },\r\n                            \"unloading_point\": {\r\n                                \"district_code\": 5,\r\n                                \"district_name\": \"Shayxontoxur tumani\",\r\n                                \"latitude\": 41.310696,\r\n                                \"longitude\": 69.280505,\r\n                                \"address\": \"3 tor ko'cha\",\r\n                                \"region_id\": 26,\r\n                                \"region_name\": \"Tashkent city\"\r\n                            },\r\n                            \"product_info\": {\r\n                                \"total_delivery_sum\": \"50000000\",\r\n                                \"total_weight_brutto\": \"13500\",\r\n                                \"products\": [\r\n                                    {\r\n                                        \"number\": \"1\",\r\n                                        \"title\": \"Услуги по перевозке грузов железнодорожным транспортом по местным направлениям\",\r\n                                        \"measurement_unit\": \"тонна-километр\",\r\n                                        \"measurement_unit_code\": \"1209889\",\r\n                                        \"quantity\": \"13500\",\r\n                                        \"price_per_item\": \"100000\",\r\n                                        \"delivery_cost\": \"1500000\",\r\n                                        \"weight_brutto\": \"13500\",\r\n                                        \"weight_netto\": \"13500\",\r\n                                        \"catalog\": {\r\n                                            \"code\": \"10108002001000001\",\r\n                                            \"name\": \"Услуги по перевозке грузов железнодорожным транспортом по местным направлениям\"\r\n                                        }\r\n                                    }\r\n                                ]\r\n                            }\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. Task (Проверьте создание документов через API, UI  со льготами.)",
+      "item": [
+        {
+          "name": "счет-фактура с НДС",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-vat-invoice_302563857_306552883_2024-09-13FU_000002.xml\",\r\n                \"program_version\": \"1.1.0\",\r\n                \"format_version\": \"1.1.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"302563857\",\r\n                        \"company_name\": \"UzRVB\",\r\n                        \"address\": {\r\n                            \"street\": \"Toshkent sh., Sh.Rashidov sh/k, 4\"\r\n                        },\r\n                        \"phone\": \"(71) 238-68-37\",\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"21596000200447893010\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00014\"\r\n                        },\r\n                        \"company_vat_code\": \"326030018138\"\r\n                    },\r\n                    \"approver_and_signers\": {\r\n                        \"signer_director\": {\r\n                            \"last_name\": \"Усманов\",\r\n                            \"first_name\": \"Рашид\",\r\n                            \"middle_name\": \"Рустамович\"\r\n                        },\r\n                        \"signer_warehouse\": {\r\n                            \"last_name\": \"Якубова\",\r\n                            \"first_name\": \"Саида\",\r\n                            \"middle_name\": \"Анваржоновна\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"489043363\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_number\": \"7869/09\",\r\n                \"document_date\": \"13.09.2024\",\r\n                \"contract_number\": \"4/07\",\r\n                \"contract_date\": \"2019-10-10\",\r\n                \"currency_code\": \"860\",\r\n                \"items\": [\r\n                    {\r\n                        \"factura_type\": 0,\r\n                        \"description\": \"Программные продукты - case 1\",\r\n                        \"volume\": \"1\",\r\n                        \"subtotal\": \"2 000 000,00\",\r\n                        \"item_number\": \"1\",\r\n                        \"measurement_unit\": \"шт.\",\r\n                        \"measurement_unit_code\": \"1514323\",\r\n                        \"unit_price\": \"2 000 000,00\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0.0,\r\n                            \"excise_value\": 0.0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"00810999005000000\",\r\n                            \"name\": \"Программные продукты\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"\",\r\n                            \"vat_value\": \"\"\r\n                        },\r\n                        \"subtotal_with_taxes\": \"2240000.0\",\r\n                        \"lgota_id\": \"102890\" // Buyer Lgot\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"2000000.00\",\r\n                    \"column_subtotal_uzs\": \"2000000.00\",\r\n                    \"column_vat_value\": \"240000.00\",\r\n                    \"column_vat_value_uzs\": \"240000.00\",\r\n                    \"column_subtotal_with_taxes\": \"2240000.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"2240000.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"два миллиона сўм, 00 тийин\",\r\n                    \"column_subtotal_uzs_in_words\": \"два миллиона сўм, 00 тийин\",\r\n                    \"column_subtotal_with_taxes_in_words\": \"два миллиона двести сорок тысяч сўм, 00 тийин\",\r\n                    \"column_subtotal_with_taxes_uzs_in_words\": \"два миллиона двести сорок тысяч сўм, 00 тийин\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{app.faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{app.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "documentUniqueId",
+                  "value": "9ad06a49d696403692dc44d586b59e89",
+                  "disabled": true
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "счет-фактура Акциз",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"acts_and_invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-act-invoice_305395454_309338569_2026-07-FU-0001.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"309338569\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_version\": \"1.0.0\",\r\n                \"document_number\": \"22072026_1302-Счет-фактура_акциз\",\r\n                \"document_date\": \"17.07.2026\",\r\n                \"contract_number\": \"17072026_0911-Счет-фактура_акциз\",\r\n                \"contract_date\": \"17.07.2026\",\r\n                \"items\": [\r\n                    {\r\n                        \"item_number\": \"1\",\r\n                        \"description\": \"test not give lgota id !!!\",\r\n                        \"volume\": \"10.00\",\r\n                        \"unit_price\": \"2,000.00\",\r\n                        \"subtotal\": \"20,000.00\",\r\n                        \"cost_receipt\": \"2,000.00\",\r\n                        \"basicPrice\": \"500.00\",\r\n                        \"after_discount\": \"500.00\",\r\n                        \"discount\": \"300\",\r\n                        \"before_discount\": \"2,000.00\",\r\n                        \"measurement_unit\": \"тонна-километр\",\r\n                        \"measurement_unit_code\": \"1209879\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"10102001001000002\",\r\n                            \"name\": \"Услуги по перевозке грузов водным транспортом в пункте за пределами территории государства\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"Без НДС\",\r\n                            \"vat_value\": \"Без НДС\",\r\n                        },\r\n                        \"product_marks\": {\r\n                            \"product_type\": 0,\r\n                            \"kiz\": [\r\n                                \"\"\r\n                            ]\r\n                        },\r\n                        // \"lgota_id\": \"103310\",\r\n                        \"subtotal_with_taxes\": \"0\"\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"20,000.00\",\r\n                    \"column_subtotal_uzs\": \"20,000.00\",\r\n                    \"column_vat_value\": \"1,200.00\",\r\n                    \"column_vat_value_uzs\": \"1,200.00\",\r\n                    \"column_subtotal_with_taxes\": \"21,200.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"21,200.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"двадцать тысяч сум и ноль цвета\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{app.faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{app.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "счет-фактура ФАРМ",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{test_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"farm_invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-pharm-invoice_302563857_308425864_2026-08-12_FU8108.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"302563857\",\r\n                        \"company_name\": \"UzRVB\",\r\n                        \"address\": {\r\n                            \"street\": \"Toshkent sh., Sh.Rashidov sh/k, 4\"\r\n                        },\r\n                        \"phone\": \"(71) 238-68-37\",\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"21596000200447893010\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00014\"\r\n                        },\r\n                        \"company_vat_code\": \"326030018138\"\r\n                    },\r\n                    \"approver_and_signers\": {\r\n                        \"signer_director\": {\r\n                            \"last_name\": \"Усманов\",\r\n                            \"first_name\": \"Рашид\",\r\n                            \"middle_name\": \"Рустамович\"\r\n                        },\r\n                        \"signer_accountant\": {\r\n                            \"last_name\": \"Якубова\",\r\n                            \"first_name\": \"Саида\",\r\n                            \"middle_name\": \"Анваржоновна\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"308425864\"\r\n                    },\r\n                    \"\"\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_version\": \"1.0.0\",\r\n                \"document_number\": \"22072026_1436-pharm\",\r\n                \"contract_number\": \"22072026_1436-pharm\",\r\n                \"document_date\": \"22.07.2026\",\r\n                \"contract_date\": \"22.07.2026\",\r\n                \"items\": [\r\n                    {\r\n                        \"item_number\": \"1\",\r\n                        \"dispense_type\": 0,\r\n                        \"description\": \"test-pharm-with-lgota_id\",\r\n                        \"volume\": \"35.00\",\r\n                        \"unit_price\": \"2,000.00\",\r\n                        \"subtotal\": \"20,000.00\",\r\n                        \"expiration_date\": \"22.07.2026\",\r\n                        \"cost_receipt\": \"2,000.00\",\r\n                        \"basicPrice\": \"500.00\",\r\n                        \"after_discount\": \"500.00\",\r\n                        \"discount\": \"300\",\r\n                        \"before_discount\": \"2,000.00\",\r\n                        \"measurement_unit\": \"сум\",\r\n                        \"measurement_unit_code\": \"1656868\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"10499001015000000\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"Без НДС\",\r\n                            \"vat_value\": \"Без НДС\",\r\n                            \"vat_value_uzs\": \"Без НДС\",\r\n                            \"subtotal_with_taxes\": \"Без НДС\"\r\n                        },\r\n                        \"lgota_id\": \"102387\",\r\n                        \"subtotal_with_taxes\": \"35700000.00\"\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"35700000.00\",\r\n                    \"column_subtotal_uzs\": \"35700000.00\",\r\n                    \"column_vat_value\": \"1,200.00\",\r\n                    \"column_vat_value_uzs\": \"1,200.00\",\r\n                    \"column_subtotal_with_taxes\": \"35700000.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"35700000.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"двадцать тысяч сум и ноль цвета\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test.faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{test.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Акт и счет-фактура",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"acts_and_invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-acts-and-invoice_305395454_312713370_2026-07-17_FU8108.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"312713370\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_version\": \"1.0.0\",\r\n                \"document_number\": \"22072026_0911-acts_&_invoice\",\r\n                \"document_date\": \"22.07.2026\",\r\n                \"contract_number\": \"22072026_0911-acts_&_invoice\",\r\n                \"contract_date\": \"22.07.2026\",\r\n                \"items\": [\r\n                    {\r\n                        \"item_number\": \"1\",\r\n                        \"dispense_type\": 0,\r\n                        \"description\": \"test\",\r\n                        \"volume\": \"20.00\",\r\n                        \"unit_price\": \"20,000.00\",\r\n                        \"subtotal\": \"20,000.00\",\r\n                        \"expiration_date\": \"22.07.2026\",\r\n                        \"measurement_unit\": \"чел (пассажир) 1.0 человек\",\r\n                        \"measurement_unit_code\": \"1202186\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"10103002001001001\",\r\n                            \"name\": \"Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"Без НДС\",\r\n                            \"vat_value\": \"Без НДС\",\r\n                            \"vat_value_uzs\": \"Без НДС\",\r\n                            \"subtotal_with_taxes\": \"Без НДС\"\r\n                        },\r\n                        \"lgota_id\": \"103311\",\r\n                        \"subtotal_with_taxes\": \"500000.00\"\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"500000.00\",\r\n                    \"column_subtotal_uzs\": \"500000.000\",\r\n                    \"column_vat_value\": \"Без НДС\",\r\n                    \"column_vat_value_uzs\": \"Без НДС\",\r\n                    \"column_subtotal_with_taxes\": \"500000.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"500000.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"двадцать тысяч сум и ноль цвета\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "documentUniqueId",
+                  "value": "9ad06a49d696403692dc44d586b59e89",
+                  "disabled": true
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "гибридная счет-фактура",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{test_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"hybrid_invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-hybrid_invoices-302563857_308425864_2022-01-13_FU_1.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"302563857\",\r\n                        \"company_name\": \"UzRVB\",\r\n                        \"address\": {\r\n                            \"street\": \"Toshkent sh., Sh.Rashidov sh/k, 4\"\r\n                        },\r\n                        \"phone\": \"(71) 238-68-37\",\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"21596000200447893010\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00014\"\r\n                        },\r\n                        \"company_vat_code\": \"326030018138\"\r\n                    },\r\n                    \"approver_and_signers\": {\r\n                        \"signer_director\": {\r\n                            \"last_name\": \"Усманов\",\r\n                            \"first_name\": \"Рашид\",\r\n                            \"middle_name\": \"Рустамович\"\r\n                        },\r\n                        \"signer_accountant\": {\r\n                            \"last_name\": \"Якубова\",\r\n                            \"first_name\": \"Саида\",\r\n                            \"middle_name\": \"Анваржоновна\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"308425864\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"invoice_number\": \"1\",\r\n                \"invoice_date\": \"22.07.2026\",\r\n                \"contract_date\": \"22.07.2026\",\r\n                \"contract_number\": \"22072026_1636\",\r\n                \"delivery_type\": 2,\r\n                \"delivery_cost\": \"1500\",\r\n                \"total_distance\": \"10\",\r\n                \"total_delivery_cost\": \"15000\",\r\n                \"column_subtotal_weight_brutto\": \"10500\",\r\n                \"column_subtotal_weight_netto\": \"6000\",\r\n                \"consignor\": {\r\n                    \"inn_or_pinfl\": \"305395454\",\r\n                    \"name\": \"\\\"INTERACTIVE ROBOT SOLUTIONS\\\" MCHJ\"\r\n                },\r\n                \"consignee\": {\r\n                    \"inn_or_pinfl\": \"312590130\",\r\n                    \"name\": \"\\\"SILVERGATE\\\" MCHJ\"\r\n                },\r\n                \"freight_forwarder\": {\r\n                    \"inn_or_pinfl\": \"305395454\",\r\n                    \"name\": \"\\\"INTERACTIVE ROBOT SOLUTIONS\\\" MCHJ\"\r\n                },\r\n                \"carrier\": {\r\n                    \"inn_or_pinfl\": \"312590130\",\r\n                    \"name\": \"\\\"SILVERGATE\\\" MCHJ\"\r\n                },\r\n                \"client\": {\r\n                    \"inn_or_pinfl\": \"312590130\",\r\n                    \"name\": \"\\\"SILVERGATE\\\" MCHJ\"\r\n                },\r\n                \"transport_type\": \"1\",\r\n                \"roadway\": {\r\n                    \"other_car_owners\": [\r\n                        {\r\n                            \"inn_or_pinfl\": \"305395454\"\r\n                        }\r\n                    ],\r\n                    \"truck\": {\r\n                        \"reg_number\": \"01 001 OOO\",\r\n                        \"model\": \"SHACMAN SX4258NT324\"\r\n                    },\r\n                    \"trailer\": {\r\n                        \"reg_number\": \"01 001 OOO\",\r\n                        \"model\": \"SHACMAN SX4258NT324\"\r\n                    },\r\n                    \"carriages\": [\r\n                        {\r\n                            \"reg_number\": \"01 001 OOO\",\r\n                            \"model\": \"SHACMAN SX4258NT324\"\r\n                        }\r\n                    ],\r\n                    \"product_groups\": [\r\n                        {\r\n                            \"loading_point\": {\r\n                                \"district_code\": 1,\r\n                                \"district_name\": \"Мирабадский район\",\r\n                                \"address\": \"3 tor ko'cha\",\r\n                                \"region_id\": 6,\r\n                                \"region_name\": \"город Ташкент\"\r\n                            },\r\n                            \"unloading_point\": {\r\n                                \"district_code\": 5,\r\n                                \"district_name\": \"Алмазарский район\",\r\n                                \"address\": \"Namuna MFY, Sayxun shoh ko'chasi, 2b-uy\",\r\n                                \"region_id\": 26,\r\n                                \"region_name\": \"город Ташкент\"\r\n                            },\r\n                            \"product_info\": {\r\n                                \"total_delivery_sum\": \"235000.00\",\r\n                                \"total_vat_sum\": \"10500\",\r\n                                \"total_delivery_sum_with_vat\": \"6000\",\r\n                                \"products\": [\r\n                                    {\r\n                                        \"number\": 1,\r\n                                        \"name\": \"Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям\",\r\n                                        \"measurement_unit\": \"чел (пассажир) 1.0 человек\",\r\n                                        \"measurement_unit_code\": \"1202186\",\r\n                                        \"quantity\": \"10\",\r\n                                        \"price_per_item\": \"23500\",\r\n                                        \"excise\": {\r\n                                            \"excise_rate\": 0.0,\r\n                                            \"excise_value\": 0.0\r\n                                        },\r\n                                        \"delivery_cost\": \"15000.00\",\r\n                                        \"vat\": {\r\n                                            \"vat_rate\": \"Без НДС\",\r\n                                            \"vat_value\": \"Без НДС\"\r\n                                        },\r\n                                        \"subtotal_with_taxes\": \"250000.00\",\r\n                                        \"origin\": 1,\r\n                                        \"catalog\": {\r\n                                            \"code\": \"10103002001001001\",\r\n                                            \"name\": \"Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям\"\r\n                                        }\r\n                                    },\r\n                                    {\r\n                                        \"number\": 2,\r\n                                        \"lgota_id\": \"104321\",\r\n                                        \"name\": \"Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям\",\r\n                                        \"measurement_unit\": \"чел (пассажир) 1.0 человек\",\r\n                                        \"measurement_unit_code\": \"1202186\",\r\n                                        \"quantity\": \"10\",\r\n                                        \"price_per_item\": \"23500\",\r\n                                        \"excise\": {\r\n                                            \"excise_rate\": 0.0,\r\n                                            \"excise_value\": 0.0\r\n                                        },\r\n                                        \"delivery_cost\": \"15000.00\",\r\n                                        \"vat\": {\r\n                                            \"vat_rate\": \"Без НДС\",\r\n                                            \"vat_value\": \"Без НДС\"\r\n                                        },\r\n                                        \"subtotal_with_taxes\": \"250000.00\",\r\n                                        \"origin\": 1,\r\n                                        \"catalog\": {\r\n                                            \"code\": \"10103002001001001\",\r\n                                            \"name\": \"Услуги по перевозке пассажиров воздушным транспортом на самолете (авиаперевозки) по международным направлениям\"\r\n                                        }\r\n                                    }\r\n                                ]\r\n                            }\r\n                        }\r\n                    ]\r\n                }\r\n            },\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test.faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{test.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "documentUniqueId",
+                  "value": "9ad06a49d696403692dc44d586b59e89",
+                  "disabled": true
+                },
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. Работа с документами асинхронным образом",
+      "item": [
+        {
+          "name": "Получение документов по клиентскому id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/GetByClientDocumentUids",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "GetByClientDocumentUids"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "disabled": true
+                },
+                {
+                  "key": "ClientDocumentUids",
+                  "value": "305395454",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Document/CreateDocuments",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-vat-invoice_305395454_312704477_2026-07-22_FU_0000-000608.json\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"'INTERACTIVE ROBOT SOLUTIONS' MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"phone\": \"(77) 088 65 05\",\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    },\r\n                    \"branch_name\": \"00001 - Test_Filial\",\r\n                    \"branch_code\": \"00001\"\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"312704477\",\r\n                        \"company_name\": \"\\\"TRUCKS AND LOADS\\\" MCHJ\",\r\n                        \"company_vat_code\": \"326060323386\",\r\n                        \"address\": {\r\n                            \"street\": \"Katta Chilonzor-3 MFY, Chilonzor ko'chasi, 82v-uy\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000107378827001\",\r\n                            \"bank_name\": \"Toshkent sh. \\\"O`zsanoatqurilishbanki\\\" ATB           Bosh ofisi\",\r\n                            \"bank_code\": \"01158\"\r\n                        }\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_number\": \"22072026_1208\",\r\n                \"document_date\": \"22.07.2026\",\r\n                \"contract_date\": \"22.07.2026\",\r\n                \"contract_number\": \"test_1132\",\r\n                \"currency_code\": \"\",\r\n                \"items\": [\r\n                    {\r\n                        \"factura_type\": 0,\r\n                        \"description\": \"use other lgota id (102387)\",\r\n                        \"volume\": \"12.00\",\r\n                        \"subtotal\": \"648000.00\",\r\n                        \"subtotal_with_taxes\": 0,\r\n                        \"item_number\": \"1\",\r\n                        \"measurement_unit\": \"чел (пассажир) 1.0 человек\",\r\n                        \"measurement_unit_code\": \"1202186\",\r\n                        \"unit_price\": \"54000.00\",\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0.0,\r\n                            \"excise_value\": 0.0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"09027001018000000\",\r\n                            \"name\": \"Газо - или дымоанализаторы\"\r\n                        },\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"Без НДС\",\r\n                            \"vat_value\": \"Без НДС\"\r\n                        },\r\n                        \"lgota_id\": \"103311\"\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": \"6.480.000.00\",\r\n                    \"column_subtotal_uzs\": \"6480000.00\",\r\n                    \"column_vat_value\": \"Без НДС\",\r\n                    \"column_vat_value_uzs\": \"Без НДС\",\r\n                    \"column_subtotal_with_taxes\": \"6480000.00\",\r\n                    \"column_subtotal_with_taxes_uzs\": \"6480000.00\"\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"шесть миллионов четыресты восемьдесят сум, ноль тиин\",\r\n                    \"column_subtotal_uzs_in_words\": \"шесть миллионов четыресты восемьдесят сум, ноль тиин\",\r\n                    \"column_subtotal_with_taxes_in_words\": \"шесть миллионов четыресты восемьдесят сум, ноль тиин\",\r\n                    \"column_subtotal_with_taxes_uzs_in_words\": \"шесть миллионов четыресты восемьдесят сум, ноль тиин\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Document/CreateDocuments?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "CreateDocuments"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "7. Связывание документов",
+      "item": [
+        {
+          "name": "/api/DocumentReference - Связывание документов друг с другом",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"DocumentUids\": [\r\n        \"9e0babf8e1074c4ba2816d5ebec4cf12\"\r\n    ],\r\n    // \"ParentUniqueId\": \"10c279c15f6b4c568e8cd57790f3a53e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/DocumentReference?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "DocumentReference"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "8. Работа с лотами",
+      "item": [
+        {
+          "name": "lot/GetLotTypes",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/lot/GetLotTypes",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "lot",
+                "GetLotTypes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "lot/GetLotPrefix",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/api/lot/GetLotPrefix?contractorInn=200303899&lot=YX-P-261191380036525",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "api",
+                "lot",
+                "GetLotPrefix"
+              ],
+              "query": [
+                {
+                  "key": "contractorInn",
+                  "value": "200303899"
+                },
+                {
+                  "key": "lot",
+                  "value": "YX-P-261191380036525"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "9. Работа с подписью",
+      "item": [
+        {
+          "name": "Хешкоды документов - Sign/GetDocumentsHashCodes",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Documents\": \"9e0babf8e1074c4ba2816d5ebec4cf12\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/api/Sign/GetDocumentsHashCodes",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "api",
+                "Sign",
+                "GetDocumentsHashCodes"
+              ],
+              "query": [
+                {
+                  "key": "Documents",
+                  "value": "9e0babf8e1074c4ba2816d5ebec4cf12",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "10.Работа с коллбеками",
+      "item": [
+        {
+          "name": "api/WatchDocument/Get/{documentUid}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/WatchDocument/Get/9e0babf8e1074c4ba2816d5ebec4cf12",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "WatchDocument",
+                "Get",
+                "9e0babf8e1074c4ba2816d5ebec4cf12"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "api/WatchDocument/Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/WatchDocument/Create?DocumentUid=9e0babf8e1074c4ba2816d5ebec4cf12",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "WatchDocument",
+                "Create"
+              ],
+              "query": [
+                {
+                  "key": "DocumentUid",
+                  "value": "9e0babf8e1074c4ba2816d5ebec4cf12",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "11. Работа с гибридной почтой",
+      "item": [
+        {
+          "name": "Получение регионов(областей) - Api/HybridDocument/GetRegions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetRegions",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetRegions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение районов - Api/HybridDocument/GetRegionsResponse",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetRegionsResponse?id=1",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetRegionsResponse"
+              ],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение статусов - Api/HybridDocument/GetStatuses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetStatuses",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetStatuses"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение гибридной почты по указанному uid - Api/HybridDocument/GetDetails",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetDetails?uid=73e62ab8622a4c9f9da26c606728dbda&companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetDetails"
+              ],
+              "query": [
+                {
+                  "key": "uid",
+                  "value": "73e62ab8622a4c9f9da26c606728dbda"
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение списка гибридных почт - Api/HybridDocument/GetList",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetList?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetList"
+              ],
+              "query": [
+                {
+                  "key": "uid",
+                  "value": "73e62ab8622a4c9f9da26c606728dbda",
+                  "disabled": true
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение хеш-кода гибридной почты - Api/HybridDocument/GetDocumentHashCode",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetDocumentHashCode?uid=73e62ab8622a4c9f9da26c606728dbda&companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetDocumentHashCode"
+              ],
+              "query": [
+                {
+                  "key": "uid",
+                  "value": "73e62ab8622a4c9f9da26c606728dbda"
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение печатной формы - Api/HybridDocument/GetPreview/{uniqueId}",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/GetPreview/73e62ab8622a4c9f9da26c606728dbda?companyInn=305395454&uniqueId&withCheck=false",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "GetPreview",
+                "73e62ab8622a4c9f9da26c606728dbda"
+              ],
+              "query": [
+                {
+                  "key": "uid",
+                  "value": "73e62ab8622a4c9f9da26c606728dbda",
+                  "disabled": true
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "uniqueId",
+                  "value": null
+                },
+                {
+                  "key": "withCheck",
+                  "value": "false",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Создание гибридной почты - HybridDocument/Post",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"CompanyInn\": \"305395454\",\r\n    \"Region\": 1,\r\n    \"Area\": 8,\r\n    \"FullName\": \"Contract № 2\",\r\n    \"Address\": \"Город Ташкент Юнусабадский район дом test-1\",\r\n    \"SenderName\": \"Test1\",\r\n    \"SenderAddress\": \"Город Ташкент Тест район дом 42\",\r\n    \"Base64Content\": \"{{base64}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/Post?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "Post"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Отправка гибридной почты с электронной подписью - HybridDocument/Send",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Uid\": \"73e62ab8622a4c9f9da26c606728dbda\",\r\n    \"SignedContent\": \"\",\r\n    \"CertificateSerial\": \"\",\r\n    \"Comment\": \"test\",\r\n    \"NeedToSend\": \"true\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/Send?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "Send"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Удаление гибридной почты - HybridDocument/Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/HybridDocument/Delete?companyInn=305395454&uid=f903e3f655cd441db70481fb2ebd0fa8",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "HybridDocument",
+                "Delete"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "uid",
+                  "value": "f903e3f655cd441db70481fb2ebd0fa8"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "15. Дополнительные методы",
+      "item": [
+        {
+          "name": "Получение данных договоров аренды - RentContracts/Get",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/RentContracts/Get?inn=305395454&contractorInn=312356239",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "RentContracts",
+                "Get"
+              ],
+              "query": [
+                {
+                  "key": "inn",
+                  "value": "305395454",
+                  "type": "text"
+                },
+                {
+                  "key": "contractorInn",
+                  "value": "312356239",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Проверка является ли организация инвестиционной - InvestmentObject/CheckInvestmentCompany",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/InvestmentObject/CheckInvestmentCompany?companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "InvestmentObject",
+                "CheckInvestmentCompany"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение информации об инвестиционной организации - InvestmentObject/GetDetails",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/InvestmentObject/GetDetails?companyInn=305395454&contractorInn=312356239&objectId&contractorAcccount",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "InvestmentObject",
+                "GetDetails"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                },
+                {
+                  "key": "contractorInn",
+                  "value": "312356239",
+                  "type": "text"
+                },
+                {
+                  "key": "objectId",
+                  "value": null,
+                  "type": "text"
+                },
+                {
+                  "key": "contractorAcccount",
+                  "value": null,
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение всех ИКПУ кодов - api/GetAllProductCatalogs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/GetAllProductCatalogs?limit=1&skip=10",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "GetAllProductCatalogs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "1"
+                },
+                {
+                  "key": "skip",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение регионов (для ТТН) - Waybill/Regions",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Waybill/Regions?lang=uz",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Waybill",
+                "Regions"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "uz"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение районов (для ТТН) - Waybill/Districts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Waybill/Districts?lang=uz&regionId=26",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Waybill",
+                "Districts"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "uz"
+                },
+                {
+                  "key": "regionId",
+                  "value": "26",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение данных железнодорожной накладной (для ТТН) - Waybill/RailwayDetails",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Waybill/RailwayDetails?lang=uz&railwayDocId=1070448&companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Waybill",
+                "RailwayDetails"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "uz"
+                },
+                {
+                  "key": "regionId",
+                  "value": "26",
+                  "disabled": true
+                },
+                {
+                  "key": "railwayDocId",
+                  "value": "1070448",
+                  "type": "text"
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Получение данных автотранспорта (для ТТН) - Waybill/Transports/v2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"TinOrPinfls\": [\r\n        \"304289562\",\r\n        \"303094941\"\r\n    ],\r\n    \"RegNumbers\": [\r\n        \"01 733 PLA\",\r\n        \"01 5750 BA\",\r\n        \"01 575 BAA\"\r\n    ],\r\n    \"Date\": \"2026-07-13T11:25:00.000Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{faktura.uz}}/Api/Waybill/Transports/v2?lang=uz&railwayDocId=1070448&companyInn=305395454",
+              "host": [
+                "{{faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Waybill",
+                "Transports",
+                "v2"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "uz"
+                },
+                {
+                  "key": "railwayDocId",
+                  "value": "1070448"
+                },
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "FA-5733",
+      "item": [
+        {
+          "name": "Доверенность (Роуминг)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{test_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"power_of_attorney\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"power-of-attorney-roaming_302563857_489043363_15.06.2026.pdf\",\r\n                \"program_version\": \"1.0.0\",\r\n                \"format_version\": \"1.0.0\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"company_code\": \"00025\",\r\n                        \"INN\": \"302563857\",\r\n                        \"company_name\": \"ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \\\"INTERACTIVE ROBOT SOLUTIONS\\\"\",\r\n                        \"address\": {\r\n                            \"region\": \"\",\r\n                            \"street\": \"100207, г. Ташкент, ул. Темирчи, 1\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20214000404427479001\",\r\n                            \"bank_name\": \"\\\"ASIA ALLIANCE BANK\\\" АТ БАНКИ\",\r\n                            \"bank_code\": \"01095\",\r\n                            \"activity_code\": \"\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"489043363\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"document_version\": \"fa-5733-block_2_created_with_api\",\r\n                \"document_number\": \"fa-5733-block_2_created_with_api\",\r\n                \"document_date\": \"13.08.2026\",\r\n                \"contract_number\": \"fa-5733-block_2_created_with_api_contract\",\r\n                \"contract_date\": \"10.08.2026\",\r\n                \"deliverer\": \"ARIPOV BAXTIYER ABDULAZIZOVICH\",\r\n                \"deliverer_inn\": \"489043363\",\r\n                \"document_valid_date\": \"13.08.2026\",\r\n                \"document_values_for\": \"fa-5733-block_2_created_with_api\",\r\n\r\n                \"items\": [\r\n                    {\r\n                        \"item_number\": \"1\",\r\n                        \"title\": \"10403003002000003\",\r\n                        \"measurement_unit\": \"1000 куб. метр\",\r\n                        \"quantity\": \"12\",\r\n                        \"catalog\": {\r\n                            \"code\": \"10403003002000003\",\r\n                            \"name\": \"Процентные доходы по счетам в других банках (Счет-40400) Процентные доходы по депозитам в других банках (льготные доходы)\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"item_number\": \"2\",\r\n                        \"title\": \"10105001001000001\",\r\n                        \"measurement_unit\": \"кв. дециметр\",\r\n                        \"quantity\": \"12\",\r\n                        \"catalog\": {\r\n                            \"code\": \"10105001001000001\",\r\n                            \"name\": \"Почтовая услуга в пункте за пределами территории государства\"\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{stagingapi.faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{stagingapi.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Доверенность (Роуминг) - Редоктировать",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{test_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"head\": {\r\n        \"file_name\": \"power-of-attorney-roaming_302563857_489043363_19.06.2026.pdf\",\r\n        \"program_version\": \"1.0.0\",\r\n        \"format_version\": \"1.0.0\",\r\n        \"sender\": {\r\n            \"sender_info\": {\r\n                \"company_code\": \"00025\",\r\n                \"INN\": \"302563857\",\r\n                \"company_name\": \"ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ \\\"INTERACTIVE ROBOT SOLUTIONS\\\"\",\r\n                \"address\": {\r\n                    \"region\": \"\",\r\n                    \"street\": \"100207, г. Ташкент, ул. Темирчи, 1\"\r\n                },\r\n                \"bank_details\": {\r\n                    \"account_number\": \"20214000404427479001\",\r\n                    \"bank_name\": \"\\\"ASIA ALLIANCE BANK\\\" АТ БАНКИ\",\r\n                    \"bank_code\": \"01095\",\r\n                    \"activity_code\": \"\"\r\n                }\r\n            }\r\n        },\r\n        \"receiver\": {\r\n            \"receiver_info\": {\r\n                \"INN\": \"489043363\"\r\n            }\r\n        }\r\n    },\r\n    \"document\": {\r\n        \"document_version\": \"fa-5733-block_2_created_with_api\",\r\n        \"document_number\": \"fa-5733-block_2_created_with_api\",\r\n        \"document_date\": \"19.08.2026\",\r\n        \"contract_number\": \"fa-5733-block_2_created_with_api_contract\",\r\n        \"contract_date\": \"19.08.2026\",\r\n        \"deliverer\": \"ARIPOV BAXTIYER ABDULAZIZOVICH\",\r\n        \"deliverer_inn\": \"489043363\",\r\n        \"document_valid_date\": \"19.08.2026\",\r\n        \"document_values_for\": \"fa-5733-block_2_created_with_api\",\r\n        \"items\": [\r\n            {\r\n                \"item_number\": \"1\",\r\n                \"title\": \"10403003002000003\",\r\n                \"measurement_unit\": \"1000 куб. метр\",\r\n                \"quantity\": \"12\",\r\n                \"catalog\": {\r\n                    \"code\": \"10403003002000003\",\r\n                    \"name\": \"Процентные доходы по счетам в других банках (Счет-40400) Процентные доходы по депозитам в других банках (льготные доходы)\"\r\n                }\r\n            },\r\n            {\r\n                \"item_number\": \"2\",\r\n                \"title\": \"10105001001000001\",\r\n                \"measurement_unit\": \"кв. дециметр\",\r\n                \"quantity\": \"12\",\r\n                \"catalog\": {\r\n                    \"code\": \"10105001001000001\",\r\n                    \"name\": \"Почтовая услуга в пункте за пределами территории государства\"\r\n                }\r\n            }\r\n        ]\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{stagingapi.faktura.uz}}/Api/Document/UpdateaPowerOfAttorney?documentUniqueId=3e9eb62d195a42eca260010cc055d986&companyInn=302563857",
+              "host": [
+                "{{stagingapi.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "UpdateaPowerOfAttorney"
+              ],
+              "query": [
+                {
+                  "key": "documentUniqueId",
+                  "value": "3e9eb62d195a42eca260010cc055d986"
+                },
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "FA-5727",
+      "item": [
+        {
+          "name": "Stag_Pharmacosmas",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{test_access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"farm_invoices\": [\r\n        {\r\n            \"head\": {\r\n                \"file_name\": \"universal-pharm-invoice_305395454_302563857_2026-08-20_FU_STAGING-00991.json\",\r\n                \"sender\": {\r\n                    \"sender_info\": {\r\n                        \"INN\": \"305395454\",\r\n                        \"company_name\": \"\\\"INTERACTIVE ROBOT SOLUTIONS\\\" MCHJ\",\r\n                        \"address\": {\r\n                            \"city\": \"ГОРОД ТАШКЕНТ\",\r\n                            \"city_district\": \"ЯШНАБАДСКИЙ РАЙОН\"\r\n                        },\r\n                        \"bank_details\": {\r\n                            \"account_number\": \"20208000100858439001\",\r\n                            \"bank_name\": \"O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM\",\r\n                            \"bank_code\": \"00996\"\r\n                        }\r\n                    }\r\n                },\r\n                \"receiver\": {\r\n                    \"receiver_info\": {\r\n                        \"INN\": \"302563857\"\r\n                    }\r\n                }\r\n            },\r\n            \"document\": {\r\n                \"factura_type\": \"0\",\r\n                \"document_version\": \"1.0\",\r\n                \"document_number\": \"FA-5668_API_NEW_FIELDS_IN_EXCEL_FORMAT-document_number\",\r\n                \"document_date\": \"20.08.2026\",\r\n                \"contract_number\": \"FA-5668_API_NEW_FIELDS_IN_EXCEL_FORMAT-contract_number\",\r\n                \"contract_date\": \"20.08.2026\",\r\n                \"show_claim_recognition\": \"1\",\r\n                \"items\": [\r\n                    {\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"0\",\r\n                            \"vat_value\": 0\r\n                        },\r\n                        \"product_marks\": {\r\n                            \"product_type\": \"4\",\r\n                            \"kiz\": []\r\n                        },\r\n                        \"item_number\": 1,\r\n                        \"dispense_type\": 1,\r\n                        \"description\": \"Услуги по проектированию программного обеспечения для информационных и управленческих систем и любых платформ, реализация их отдельных этапов, разработке, внедрению и/или реализации (продаже)\",\r\n                        \"volume\": 1,\r\n                        \"unit_price\": 1,\r\n                        \"origin\": 2,\r\n                        \"subtotal\": 1,\r\n                        \"serial_number\": \"O24055\",\r\n                        \"barcode\": \"0123456789123\",\r\n                        \"maker\": \"Avantika Medex PVT\",\r\n                        \"expiration_date\": \"2027-02-01T12:00:00\",\r\n                        \"cost_receipt\": 0,\r\n                        \"basicPrice\": 1,\r\n                        \"after_discount\": 4.37,\r\n                        \"discount\": 4.37,\r\n                        \"before_discount\": 0,\r\n                        \"measurement_unit_code\": 1,\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"10305001001000000\",\r\n                            \"name\": \"Услуги по проектированию программного обеспечения для информационных и управленческих систем и любых платформ, реализация их отдельных этапов, разработке, внедрению и/или реализации (продаже)\"\r\n                        },\r\n                        \"subtotal_with_taxes\": 1\r\n                    },\r\n                    {\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"0\",\r\n                            \"vat_value\": 0\r\n                        },\r\n                        \"product_marks\": {\r\n                            \"product_type\": \"4\",\r\n                            \"kiz\": []\r\n                        },\r\n                        \"item_number\": 1,\r\n                        \"dispense_type\": 1,\r\n                        \"description\": \"Шиповник\",\r\n                        \"volume\": 1,\r\n                        \"unit_price\": 1,\r\n                        \"origin\": 2,\r\n                        \"subtotal\": 1,\r\n                        \"serial_number\": \"O24055\",\r\n                        \"barcode\": \"0123456789123\",\r\n                        \"maker\": \"Avantika Medex PVT\",\r\n                        \"expiration_date\": \"2027-02-1T12:00:00\",\r\n                        \"cost_receipt\": 0,\r\n                        \"basicPrice\": 1,\r\n                        \"after_discount\": 4.37,\r\n                        \"discount\": 4.37,\r\n                        \"before_discount\": 0,\r\n                        \"measurement_unit_code\": 1,\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"00810999005000000\",\r\n                            \"name\": \"Шиповник\"\r\n                        },\r\n                        \"subtotal_with_taxes\": 1\r\n                    },\r\n                    {\r\n                        \"vat\": {\r\n                            \"vat_rate\": \"0\",\r\n                            \"vat_value\": 0\r\n                        },\r\n                        \"product_marks\": {\r\n                            \"product_type\": \"4\",\r\n                            \"kiz\": []\r\n                        },\r\n                        \"item_number\": 1,\r\n                        \"dispense_type\": 1,\r\n                        \"description\": \"Фиточай FLORA UNIPROM Почечный\",\r\n                        \"volume\": 1,\r\n                        \"unit_price\": 1,\r\n                        \"origin\": 2,\r\n                        \"subtotal\": 1,\r\n                        \"serial_number\": \"O24055\",\r\n                        \"barcode\": \"0123456789123\",\r\n                        \"maker\": \"Avantika Medex PVT\",\r\n                        \"expiration_date\": \"2027-02-01T12:00:00\",\r\n                        \"cost_receipt\": 0,\r\n                        \"basicPrice\": 1,\r\n                        \"after_discount\": 4.37,\r\n                        \"discount\": 4.37,\r\n                        \"before_discount\": 0,\r\n                        \"measurement_unit_code\": 1,\r\n                        \"excise\": {\r\n                            \"excise_rate\": 0,\r\n                            \"excise_value\": 0\r\n                        },\r\n                        \"catalog\": {\r\n                            \"code\": \"02101002003040014\",\r\n                            \"name\": \"Фиточай FLORA UNIPROM Почечный\"\r\n                        },\r\n                        \"subtotal_with_taxes\": 1\r\n                    }\r\n                ],\r\n                \"column_summary_values\": {\r\n                    \"column_subtotal\": 1,\r\n                    \"column_vat_value\": 1,\r\n                    \"total_discount\": 1,\r\n                    \"discount_rate\": 1,\r\n                    \"discount_amount\": 1,\r\n                    \"column_subtotal_with_taxes_total\": 1,\r\n                    \"column_discount_subtotal\": 0,\r\n                    \"column_discount_subtotal_with_taxes\": 0,\r\n                    \"column_discount_subtotal_vat_value\": 0,\r\n                    \"total_discount_vat_value\": 1,\r\n                    \"column_subtotal_with_taxes\": 1\r\n                },\r\n                \"column_summary_values_in_words\": {\r\n                    \"column_subtotal_in_words\": \"Два миллиона триста восемьдесят тысяч 00 \"\r\n                }\r\n            },\r\n            \"expansion\": \"\"\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{test.faktura.uz}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{test.faktura.uz}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "GetRoamingJson",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{test_access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{test.faktura.uz}}/Api/Patch/GetRoamingJson?uid=d20dd5470f964c819cb5c2c98fce3af5",
+          "host": [
+            "{{test.faktura.uz}}"
+          ],
+          "path": [
+            "Api",
+            "Patch",
+            "GetRoamingJson"
+          ],
+          "query": [
+            {
+              "key": "uid",
+              "value": "d20dd5470f964c819cb5c2c98fce3af5"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_0gid",
+      "secret": true
+    },
+    {
+      "key": "basic_auth_10cr",
+      "secret": true
+    }
+  ]
+}
