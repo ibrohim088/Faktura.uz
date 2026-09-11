@@ -1,0 +1,20 @@
+AKT (universalstandardactinvoice) - Исходящие
+
+1. Одиночная синхронизация
+	
+
+2. Массовая синхронизация
+	
+ 
+305395454 & 302563857 == all not faktura client
+
+1. 69f9e2ccff7e38306c7dd64f
+2. 69f9e190ff7e3922244cf1b5
+3. 69f9ca1aff7e3922244cee21
+4. 69f82391ff7e380ab0540e0c
+5. 69f824e6b8613850ab2ec332
+6. 69f459cdff7e391970f19d71
+7. 69f35001ff7e3b33e03806ef
+8. 69f1b04cff7e3818ac0a4c5c
+9. 69f09c11ff7e3932f4405b10
+10. 69f09c02ff7e3812f0ada65f

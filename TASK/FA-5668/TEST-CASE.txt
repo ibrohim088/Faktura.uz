@@ -1,0 +1,33 @@
+FA-5668 NET TEST CASE FOR TASK
+
+```
+Test senario
+"INTERACTIVE ROBOT SOLUTIONS" dan yangi file yaratib (vatInvoice, taxInvoice, pharmInvoice, contractroaming), sign qilib "SPACE ONLINE GENESIS" ga jo'natish
+
+case-1 vatInvoice
+Space ga kelgan xujjatni на согласование chiqarib, bir nechta account dan qabul qilish.(Тип согласования: Параллельное согласование с блокирующим отказом)
+Natija: 3 ta ishtirokchidan bittasi otkaz qildi, 2 ishtirokchi rozi bo'lgani va 1 ishtirokchi norozi bo'lgani barchasi excelda to'g'ri ko'rsatildi.
+
+case-2 taxInvoice
+Space ga kelgan xujjatni на согласование chiqarib, bir nechta account dan qabul qilish. 2 ishtiroki rozi bo'ladi, oxirgisi esa norozi. Тип согласования: Параллельное согласование
+Natija: Songi ishtirokchi otkaz qilgani sabab Статус: Отказал в согласовании turibdi. Barcha ishtirokchining Ответ qismi to'g'ri ko'rsatilgan.
+
+case-3 pharmIvoice
+Space ga kelgan xujjatni на согласование chiqarib, bir nechta account dan qabul qilish. Barcha uchala ishtirokchilar ham rozi bo'lishadi. Тип согласования: Параллельное согласование
+Natija: Статус: Подтвердил согласие va ishtirokchilar Ответ: Утвердил bo'ldi. Barchasi to'g'ri ishlamoqda
+
+case-4 Договор ГНК
+Space ga kelgan xujjatni на согласование chiqarib, bir nechta account dan qabul qilish. 1-ishtirokchi ro'zi bo'ldi, 2-ishtirokchi norozi bo'ldi, oxirgi ishtirokchi javob bermadi. Тип согласования: Параллельное согласование
+Natija: Songi ishtirokchi otkaz qilgani sabab Статус: Отказал в согласовании turibdi. 
+1-ishtirokchi: Ответ: Утвердил
+2-ishtirokchi: Ответ: В ожидании
+3-ishtirokchi: Ответ: Отказал
+```
+
+Case они не поменялись все тоже самое
+
+Было изминение Шаблона для Excel
+
+Что изменилось:
+	теперь корректно отображается «Договор Роуминг»;
+	изменили формат времени (Дата и время согласования, Дата и время отправки на согласование) — раньше было так (dd/mm/yyyy), теперь (dd/mm/yyyy час/минуты/миллисекунды).
