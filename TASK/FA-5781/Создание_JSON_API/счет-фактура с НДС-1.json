@@ -1,0 +1,172 @@
+{
+    "invoices": [{
+        "head": {
+            "file_name": "universal-vat-invoice_302563857_207231200_2024-09-13FU_000002.xml",
+            "program_version": "1.1.0",
+            "format_version": "1.1.0",
+            "sender": {
+                "sender_info": {
+                    "INN": "302563857",
+                    "company_name": "UzRVB",
+                    "address": {
+                        "street": "Toshkent sh., Sh.Rashidov sh/k, 4"
+                    },
+                    "phone": "(71) 238-68-37",
+                    "bank_details": {
+                        "account_number": "21596000200447893010",
+                        "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                        "bank_code": "00014"
+                    },
+                    "company_vat_code": "326030018138"
+                },
+                "approver_and_signers": {
+                    "signer_director": {
+                        "last_name": "Усманов",
+                        "first_name": "Рашид",
+                        "middle_name": "Рустамович"
+                    },
+                    "signer_warehouse": {
+                        "last_name": "Якубова",
+                        "first_name": "Саида",
+                        "middle_name": "Анваржоновна"
+                    }
+                }
+            },
+            "receiver": {
+                "receiver_info": {
+                    "INN": "207231200"
+                }
+            }
+        },
+        "document": {
+            "document_number": "FA-5781_TEST-API_1-202793075-10403003002000003-207231200-document_number",
+            "document_date": "17.09.2026",
+            "contract_number": "FA-5781_TEST-API_1-202793075-10403003002000003-207231200-contract_number",
+            "contract_date": "17.09.2026",
+            "currency_code": "860",
+            "items": [{
+                    "committent": {
+                        "inn": "202793075"
+                    },
+                    "factura_type": 0,
+                    "description": "FA-5781_TEST-API_1_202793075_10403003002000003_207231200-102890",
+                    "volume": "1",
+                    "subtotal": "1",
+                    "item_number": "1",
+                    "measurement_unit": "шт.",
+                    "measurement_unit_code": "1514323",
+                    "unit_price": "1",
+                    "excise": {
+                        "excise_rate": 0.0,
+                        "excise_value": 0.0
+                    },
+                    "catalog": {
+                        "code": "10403003002000003",
+                        "name": "Процентные доходы по счетам в других банках (Счет-40400) Процентные доходы по депозитам в других банках (льготные доходы)"
+                    },
+                    "vat": {
+                        "vat_rate": "",
+                        "vat_value": ""
+                    },
+                    "subtotal_with_taxes": "1",
+                    "lgota_id": "102890"
+                },
+                {
+                    "committent": {
+                        "inn": "202793075"
+                    },
+                    "factura_type": 0,
+                    "description": "FA-5781_TEST-API_2_202793075_10103003001001003_207231200-103309",
+                    "volume": "1",
+                    "subtotal": "1",
+                    "item_number": "1",
+                    "measurement_unit": "шт.",
+                    "measurement_unit_code": "1514323",
+                    "unit_price": "1",
+                    "excise": {
+                        "excise_rate": 0.0,
+                        "excise_value": 0.0
+                    },
+                    "catalog": {
+                        "code": "10103003001001003",
+                        "name": "Услуги по перевозке грузов воздушным транспортом на самолёте для товаров, экспортируемые за пределы территории государства"
+                    },
+                    "vat": {
+                        "vat_rate": "0",
+                        "vat_value": "0"
+                    },
+                    "subtotal_with_taxes": "1",
+                    "lgota_id": "103309"
+                },
+                {
+                    "committent": {
+                        "inn": "202793075"
+                    },
+                    "factura_type": 0,
+                    "description": "FA-5781_TEST-API_2_202793075_10105001001000001_207231200-102841",
+                    "volume": "1",
+                    "subtotal": "1",
+                    "item_number": "1",
+                    "measurement_unit": "шт.",
+                    "measurement_unit_code": "1514323",
+                    "unit_price": "1",
+                    "excise": {
+                        "excise_rate": 0.0,
+                        "excise_value": 0.0
+                    },
+                    "catalog": {
+                        "code": "10105001001000001",
+                        "name": "Почтовая услуга в пункте за пределами территории государства"
+                    },
+                    "vat": {
+                        "vat_rate": "",
+                        "vat_value": ""
+                    },
+                    "subtotal_with_taxes": "1",
+                    "lgota_id": "102841"
+                },
+                {
+                    "committent": {
+                        "inn": "202793075"
+                    },
+                    "factura_type": 0,
+                    "description": "FA-5781_TEST-API_2_202793075_10105001001000001_207231200-12%",
+                    "volume": "1",
+                    "subtotal": "1",
+                    "item_number": "1",
+                    "measurement_unit": "шт.",
+                    "measurement_unit_code": "1514323",
+                    "unit_price": "1",
+                    "excise": {
+                        "excise_rate": 0.0,
+                        "excise_value": 0.0
+                    },
+                    "catalog": {
+                        "code": "10403003002000003",
+                        "name": "Процентные доходы по счетам в других банках (Счет-40400) Процентные доходы по депозитам в других банках (льготные доходы)"
+                    },
+                    "vat": {
+                        "vat_rate": "12",
+                        "vat_value": "12"
+                    },
+                    "subtotal_with_taxes": "1",
+                    "lgota_id": ""
+                }
+            ],
+            "column_summary_values": {
+                "column_subtotal": "1",
+                "column_subtotal_uzs": "1",
+                "column_vat_value": "1",
+                "column_vat_value_uzs": "1",
+                "column_subtotal_with_taxes": "1",
+                "column_subtotal_with_taxes_uzs": "1"
+            },
+            "column_summary_values_in_words": {
+                "column_subtotal_in_words": "один сўм, 00 тийин",
+                "column_subtotal_uzs_in_words": "один сўм, 00 тийин",
+                "column_subtotal_with_taxes_in_words": "один сўм, 00 тийин",
+                "column_subtotal_with_taxes_uzs_in_words": "один сўм, 00 тийин"
+            }
+        }
+    }]
+}

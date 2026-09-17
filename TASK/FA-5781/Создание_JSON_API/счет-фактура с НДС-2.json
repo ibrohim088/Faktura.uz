@@ -1,0 +1,90 @@
+{
+    "invoices": [{
+        "head": {
+            "file_name": "universal-vat-invoice_302563857_302563857_2024-09-13FU_000002.xml",
+            "program_version": "1.1.0",
+            "format_version": "1.1.0",
+            "sender": {
+                "sender_info": {
+                    "INN": "305395454",
+                    "company_name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+                    "address": {
+                        "street": "Toshkent sh., Sh.Rashidov sh/k, 4"
+                    },
+                    "phone": "(71) 238-68-37",
+                    "bank_details": {
+                        "account_number": "20208000100858439001",
+                        "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                        "bank_code": "00996"
+                    },
+                    "company_vat_code": "326030018138"
+                },
+                "approver_and_signers": {
+                    "signer_director": {
+                        "last_name": "Murodov",
+                        "first_name": "Farrux",
+                        "middle_name": ""
+                    },
+                    "signer_warehouse": {
+                        "last_name": "Murodov",
+                        "first_name": "Farrux",
+                        "middle_name": ""
+                    }
+                }
+            },
+            "receiver": {
+                "receiver_info": {
+                    "INN": "302563857"
+                }
+            }
+        },
+        "document": {
+            "document_number": "FA-5781_TEST-API_2-489043363-00810999005000000-302563857-document_number",
+            "document_date": "17.09.2026",
+            "contract_number": "FA-5781_TEST-API_2-489043363-00810999005000000-302563857-contract_number",
+            "contract_date": "17.09.2026",
+            "currency_code": "860",
+            "items": [{
+                "committent": {
+                    "inn": "489043363"
+                },
+                "factura_type": 0,
+                "description": "FA-5781_TEST-API_2_489043363-00810999005000000-302563857-description-empty",
+                "volume": "1",
+                "subtotal": "1",
+                "item_number": "1",
+                "measurement_unit": "шт.",
+                "measurement_unit_code": "1514323",
+                "unit_price": "1",
+                "excise": {
+                    "excise_rate": 0.0,
+                    "excise_value": 0.0
+                },
+                "catalog": {
+                    "code": "00810999005000000",
+                    "name": "Шиповник"
+                },
+                "vat": {
+                    "vat_rate": "",
+                    "vat_value": ""
+                },
+                "subtotal_with_taxes": "1",
+                "lgota_id": ""
+            }],
+            "column_summary_values": {
+                "column_subtotal": "1",
+                "column_subtotal_uzs": "1",
+                "column_vat_value": "1",
+                "column_vat_value_uzs": "1",
+                "column_subtotal_with_taxes": "1",
+                "column_subtotal_with_taxes_uzs": "1"
+            },
+            "column_summary_values_in_words": {
+                "column_subtotal_in_words": "один сўм, 00 тийин",
+                "column_subtotal_uzs_in_words": "один сўм, 00 тийин",
+                "column_subtotal_with_taxes_in_words": "один сўм, 00 тийин",
+                "column_subtotal_with_taxes_uzs_in_words": "один сўм, 00 тийин"
+            }
+        }
+    }]
+}
