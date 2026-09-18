@@ -2,7 +2,7 @@ FA-5771 TEST-CASE ROAMD
 
 — Типы счетов-фактур -------------------------------------------------------------------------------------------------------------------------------------------
 
-1. Счёт-фактура (ПКМ №489) - 
+1. Счёт-фактура (ПКМ №489) - в процессе ()
 2. Счёт-фактура акциз (ПКМ №489) -
 3. Счёт-фактура фарм (ПКМ №489) -
 4. Акт и счёт-фактура (ПКМ №489) -
@@ -35,76 +35,69 @@ FA-5771 TEST-CASE ROAMD
 14. После того как проверены поля AgentTin и AgentPinfl, надо проверить корректность автозаполнения поля AgentFio.
 
 ========================================================================================================================
-РЕЗУЛЬТАТ ОТ ЗАДАЧИ
-========================================================================================================================
-
-
-
-
-========================================================================================================================
 ДОПОЛНИТЕЛЬНЫЕ БЛОК ДЛЯ ЗОДАЧИ 
 ========================================================================================================================
 
 НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ КОТОРЫЕ БЫЛИ СДЕЛАНЫ
 
 1. Счёт-фактура (ПКМ №489) - universalvatinvoice-TASK
-	• NUMBER_universalvatinvoice-INN/PNFL-400449609-32508792940016-EMPTY
+	• universalvatinvoice-INN/PNFL-400449609-32508792940016-EMPTY_CELL
 
 		ПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
-			৹ 1_universalvatinvoice-INN/PNFL-400449609
-			৹ 2_universalvatinvoice-INN/PNFL-32508792940016
+			৹ 1_universalvatinvoice-document-INN/PNFL-400449609
+			৹ 2_universalvatinvoice-document-INN/PNFL-32508792940016
 	
 		НЕПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ	
-			৹ 3_universalvatinvoice-INN/PNFL-EMPTY
-			৹ 4_universalvatinvoice-INN/PNFL-1234
+			৹ 3_universalvatinvoice-document-INN/PNFL-EMPTY_CELL
+			৹ 4_universalvatinvoice-document-INN/PNFL-123456789
 
 
 2. Счёт-фактура акциз (ПКМ №489) - universaltaxinvoice-TASK
-	• NUMBER_universaltaxinvoice-INN/PNFL-494057938-42506431520011-EMPTY
+	• universaltaxinvoice-INN/PNFL-494057938-42506431520011-EMPTY_CELL
 
 		ПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
-			৹ 1_universaltaxinvoice-INN/PNFL-494057938
-			৹ 2_universaltaxinvoice-INN/PNFL-42506431520011
+			৹ 1_universaltaxinvoice-document-INN/PNFL-494057938
+			৹ 2_universaltaxinvoice-document-INN/PNFL-42506431520011
 	
 		НЕПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ	
-			৹ 3_universaltaxinvoice-INN/PNFL-EMPTY
-			৹ 4_universaltaxinvoice-INN/PNFL-1234
+			৹ 3_universaltaxinvoice-document-INN/PNFL-EMPTY_CELL
+			৹ 4_universaltaxinvoice-document-INN/PNFL-123456789
 
 
 3. Счёт-фактура фарм (ПКМ №489) - universalpharminvoice-TASK
-	• NUMBER_universalpharminvoice-INN/PNFL-519639049-30709880310566-EMPTY
+	• universalpharminvoice-INN/PNFL-519639049-30709880310566-EMPTY_CELL
 
 		ПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
-			৹ 1_universalpharminvoice-INN/PNFL-519639049
-			৹ 2_universalpharminvoice-INN/PNFL-30709880310566
+			৹ 1_universalpharminvoice-document-INN/PNFL-519639049
+			৹ 2_universalpharminvoice-document-INN/PNFL-30709880310566
 	
 		НЕПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ	
-			৹ 3_universalpharminvoice-INN/PNFL-EMPTY
-			৹ 4_universalpharminvoice-INN/PNFL-1234
+			৹ 3_universalpharminvoice-document-INN/PNFL-EMPTY_CELL
+			৹ 4_universalpharminvoice-document-INN/PNFL-123456789
 
 
 4. Акт и счёт-фактура (ПКМ №489) - universalstandardactinvoice-TASK
-	• NUMBER_universalstandardactinvoice-INN/PNFL-561257774-32501952700088-EMPTY
+	• universalstandardactinvoice-INN/PNFL-561257774-32501952700088-EMPTY_CELL
 
 		ПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
-			৹ 1_universalstandardactinvoice-INN/PNFL-561257774
-			৹ 2_universalstandardactinvoice-INN/PNFL-32501952700088
+			৹ 1_universalstandardactinvoice-document-INN/PNFL-561257774
+			৹ 2_universalstandardactinvoice-document-INN/PNFL-32501952700088
 	
 		НЕПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ	
-			৹ 3_universalstandardactinvoice-INN/PNFL-EMPTY
-			৹ 4_universalstandardactinvoice-INN/PNFL-1234
+			৹ 3_universalstandardactinvoice-document-INN/PNFL-EMPTY_CELL
+			৹ 4_universalstandardactinvoice-document-INN/PNFL-123456789
 
 
 5. Акт и счёт-фактура акциз (ПКМ №489) - universaltaxactinvoice-TASK
-	• NUMBER_universaltaxactinvoice-INN/PNFL-570730601-30108996980032_EMPTY
+	• universaltaxactinvoice-INN/PNFL-570730601-30108996980032_EMPTY_CELL
 
 		ПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
-			৹ 1_universaltaxactinvoice-INN/PNFL-570730601
-			৹ 2_universaltaxactinvoice-INN/PNFL-30108996980032
+			৹ 1_universaltaxactinvoice-document-INN/PNFL-570730601
+			৹ 2_universaltaxactinvoice-document-INN/PNFL-30108996980032
 	
 		НЕПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ	
-			৹ 3_universaltaxactinvoice-INN/PNFL-EMPTY
-			৹ 4_universaltaxactinvoice-INN/PNFL-123456789
+			৹ 3_universaltaxactinvoice-document-INN/PNFL-EMPTY_CELL
+			৹ 4_universaltaxactinvoice-document-INN/PNFL-123456789
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -115,9 +108,20 @@ NUMBER => это порядковый номер, который будет от
 
 INN AND PNFL FOR TASK
 
+ПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
+
 400449609: 400449609 / 32508792940016
 494057938: 494057938 / 42506431520011
 519639049: 519639049 / 30709880310566
 561257774: 561257774 / 32501952700088
 570730601: 570730601 / 30108996980032
 
+НЕПРАВИЛЬНЫЕ НАИМЕНОВАНИЕ НАЗВАНИЕ ФАЙЛОВ
+
+EMPTY CELL
+123456789
+
+
+========================================================================================================================
+РЕЗУЛЬТАТ ОТ ЗАДАЧИ
+========================================================================================================================
