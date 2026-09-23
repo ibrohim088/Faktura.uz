@@ -1,0 +1,65 @@
+New Soliq Uz => Входящие
+
+UID - для того чтобы делать тест
+
+ModelType:
+	Счет фактура = 0
+		ContractorType:
+			Получатель = 1
+				305395454:
+					1) 645280464e6763461965f50c
+					2) 640b71ad3a338aaa0d40e218
+					3) 63e883f8480a2b52f3583172
+					4) 63bbc617ed75a25bbd5483e4
+					5) 63914b86cc5c402db3b07c08
+			
+			Комитент = 4
+		
+	Доверенность = 1
+		ContractorType:
+			Получатель = 1
+				Доверенность v1 - (Доверенность (Роуминг)):
+					305395454:
+						1) 652e3022490e2e0313e272b1 - несработал - "success": false, "message": "Failed",
+						2) 654dbfa5983a6b443171fe8f - несработал - "success": false, "message": "Failed",
+						3) 654dc5b9322871ea7a620146 - cработал - после повторного отправки стал false, Failed 
+						4) 654dc67a274fc6bc6581e490 - cработал - после повторного отправки стал false, Failed
+						5) 663a107f05330981bda88d29 - cработал - после повторного отправки стал false, Failed
+						6) 65ca0712144944694cde6515 - несработал - "success": false, "message": "Failed",
+
+				Доверенность v2 - (Доверенность (Роуминг) V2):
+					305395454:
+						1) 6aab59284d87d2b9305a5e36 - "success": false, "message": "NotFakturaClient",
+
+	Акт = 2
+		ContractorType:	
+			Получатель = 1:
+				305395454: 
+					1) 6926c74eff7e4011101c6dc1
+					2) 69258a8aff7e3a562c52aadf
+					3) 6305f2027215134fcf82c68a
+					4) 63172e7fb5257ae4aba9872e
+					5) 631c3c2ddc4a1afe1bb84b2d
+					6) 633d2da12f01296df6d5ad4a
+					7) 6348f904c050a6f0d832bc1e
+
+	ТТН = 3
+		ContractorType:
+			Получатель = 1:
+				TTH v1: ПУСТО
+				TTH v2: 
+					305395454: 
+						1) 698431897942f1ec0a550d8e
+
+	Акт сверки = 4: ПУСТО
+		ContractorType:
+			Получатель = 1
+				
+	Договор = 5
+		ContractorType:			
+			Получатель = 1:
+				305395454:
+					1) 68d3b0cca344fe7c7a983026
+					2) 633c048b5f0abf78dd7afb7f
+					3) 66f5724fe25f5e291cec56ae
+			
