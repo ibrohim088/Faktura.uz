@@ -1,0 +1,14 @@
+{
+    "SuccessCount": 0,
+    "ErrorCount": 1,
+    "SuccessItems": [],
+    "ErrorItems": [
+        {
+            "Name": "Unknown invoice content error. ",
+            "UniqueId": null,
+            "Message": "Пустое поле: Кол-во товара/работы/услуги, для этого поля максимальное количество знаков после точки: 4: 1,1234567891",
+            "Id": null,
+            "ResultCode": null
+        }
+    ]
+}

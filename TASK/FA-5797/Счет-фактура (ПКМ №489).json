@@ -1,0 +1,96 @@
+{
+    "invoices": [
+        {
+            "head": {
+                "file_name": "universal-vat-invoice_305395454_302563857_2026-09-28FU_000002.xml",
+                "program_version": "1.1.0",
+                "format_version": "1.1.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "UzRVB",
+                        "address": {
+                            "street": "Toshkent sh., Sh.Rashidov sh/k, 4"
+                        },
+                        "phone": "(71) 238-68-37",
+                        "bank_details": {
+                            "account_number": "21596000200447893010",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00014"
+                        },
+                        "branch_name": "Test_Filial",
+                        "branch_code": "1",
+                        "company_vat_code": "326030018138"
+                    },
+                    "approver_and_signers": {
+                        "signer_director": {
+                            "last_name": "",
+                            "first_name": "",
+                            "middle_name": ""
+                        },
+                        "signer_accountant": {
+                            "last_name": "",
+                            "first_name": "",
+                            "middle_name": ""
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "302563857"
+                    }
+                }
+            },
+            "document": {
+                "document_number": "FA-5795_TEST-API_4-document_number__Bo'lim-1 Filial-2_177848769",
+                "document_date": "17.09.2026",
+                "contract_number": "FA-5795_TEST-API_4-contract_number",
+                "contract_date": "17.09.2026",
+                "currency_code": "860",
+                "items": [
+                    {
+                        "committent": {
+                            "inn": "202793075"
+                        },
+                        "factura_type": 0,
+                        "description": "FA-5795_TEST-API-1",
+                        "volume": "1.12345678910",
+                        "subtotal": "1",
+                        "item_number": "1",
+                        "measurement_unit": "шт.",
+                        "measurement_unit_code": "1514323",
+                        "unit_price": "1",
+                        "excise": {
+                            "excise_rate": 0.0,
+                            "excise_value": 0.0
+                        },
+                        "catalog": {
+                            "code": "10403003002000003",
+                            "name": "Процентные доходы по счетам в других банках (Счет-40400) Процентные доходы по депозитам в других банках (льготные доходы)"
+                        },
+                        "vat": {
+                            "vat_rate": "",
+                            "vat_value": ""
+                        },
+                        "subtotal_with_taxes": "1",
+                        "lgota_id": "102890"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "1",
+                    "column_subtotal_uzs": "1",
+                    "column_vat_value": "1",
+                    "column_vat_value_uzs": "1",
+                    "column_subtotal_with_taxes": "1",
+                    "column_subtotal_with_taxes_uzs": "1"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "один сўм, 00 тийин",
+                    "column_subtotal_uzs_in_words": "один сўм, 00 тийин",
+                    "column_subtotal_with_taxes_in_words": "один сўм, 00 тийин",
+                    "column_subtotal_with_taxes_uzs_in_words": "один сўм, 00 тийин"
+                }
+            }
+        }
+    ]
+}
