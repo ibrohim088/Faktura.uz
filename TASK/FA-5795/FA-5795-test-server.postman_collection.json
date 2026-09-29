@@ -1,0 +1,1329 @@
+{
+  "info": {
+    "name": "FA-5795 roaming direktor/buxgalter (test server)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "FA-5795: \"Использовать реквизиты роуминга\" (DocumentRegistrySettings.ForceUseRoaming) - direktor va buxgalter roaming'dan.\n\nServer: test.faktura.uz / testapi.faktura.uz. Login: info@faktura.uz (302563857 va 305395454 ga kiradi).\nTartib: avval \"0. Tayyorgarlik\" (token + roaming ma'lumoti), keyin kerakli papka. Har papkaning sharti papka tavsifida.\nHar import so'rovi yaratilgan hujjatni Api/Document/GetDocumentsContent orqali o'qib director/accountant ni avtomatik tekshiradi; hujjat havolasi Console'ga chiqadi. Hujjatlar qoralama (draft) bo'lib yaratiladi, imzolanmaydi.\n\nQoida: yuborilgan approver_and_signers ustun; bo'sh maydon roaming'dan to'ldiriladi; roaming'da bo'sh buxgalter bo'sh qoladi.\nTest serverda hozir faqat bosh kompaniya qismi bor (MR !538/!541). Filial qismi (MR !542) merge qilinmagan - 4-papka shundan keyin.\nUI qismi (select'lar disabled, yaratish formalarida avtomatik to'ldirish) bu collection'da yo'q - brauzerda qo'lda."
+  },
+  "variable": [
+    {
+      "key": "account_url",
+      "value": "https://testaccount.faktura.uz"
+    },
+    {
+      "key": "api_url",
+      "value": "https://testapi.faktura.uz"
+    },
+    {
+      "key": "username",
+      "value": "info@faktura.uz"
+    },
+    {
+      "key": "password",
+      "value": "123"
+    },
+    {
+      "key": "client_id",
+      "value": "12379127389123"
+    },
+    {
+      "key": "client_secret",
+      "value": "1236812368123jkdhasjkdhkasdasd"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "lastUniqueId",
+      "value": ""
+    },
+    {
+      "key": "roamingDirector_302563857",
+      "value": ""
+    },
+    {
+      "key": "roamingAccountant_302563857",
+      "value": ""
+    },
+    {
+      "key": "roamingDirector_305395454",
+      "value": ""
+    },
+    {
+      "key": "roamingAccountant_305395454",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "0. Tayyorgarlik (har safar birinchi yuriting)",
+      "item": [
+        {
+          "name": "Token (testaccount)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('token olindi', () => pm.response.to.have.status(200));",
+                  "pm.collectionVariables.set('token', pm.response.json().access_token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password"
+                },
+                {
+                  "key": "username",
+                  "value": "{{username}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{account_url}}/Token",
+              "host": [
+                "{{account_url}}"
+              ],
+              "path": [
+                "Token"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Roaming (soliq) ma'lumoti 302563857",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('200', () => pm.response.to.have.status(200));",
+                  "const d = pm.response.json();",
+                  "pm.collectionVariables.set('roamingDirector_302563857', (d.DirectorName || '').trim());",
+                  "pm.collectionVariables.set('roamingAccountant_302563857', (d.Accountant || '').trim());",
+                  "console.log('302563857', 'roaming director =', d.DirectorName, '| accountant =', d.Accountant, '| filiallar =', JSON.stringify(d.Branches));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/Api/Company/GetCompanyBasicDetails?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetCompanyBasicDetails"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Roaming (soliq) ma'lumoti 305395454",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('200', () => pm.response.to.have.status(200));",
+                  "const d = pm.response.json();",
+                  "pm.collectionVariables.set('roamingDirector_305395454', (d.DirectorName || '').trim());",
+                  "pm.collectionVariables.set('roamingAccountant_305395454', (d.Accountant || '').trim());",
+                  "console.log('305395454', 'roaming director =', d.DirectorName, '| accountant =', d.Accountant, '| filiallar =', JSON.stringify(d.Branches));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/Api/Company/GetCompanyBasicDetails?companyInn=305395454",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Company",
+                "GetCompanyBasicDetails"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Bosh kompaniya: chekboks YOQIQ",
+      "description": "Sharti: 302563857 va 305395454 da Nastroyki -> Reestry, tashkilot bloki: \"Использовать реквизиты роуминга\" YOQIQ. Yuritishdan oldin ikkala kompaniyada tekshiring - boshqa testerlar sozlamani o'zgartirgan bo'lishi mumkin (chekboks o'chiq bo'lsa sozlamadagi direktor/buxgalter keladi va test FAIL bo'ladi - bu eski logika, bug emas). Chekboks yoqilganda direktor/buxgalter select'lari disabled bo'lishi kerak (UI'da ko'z bilan tekshiring).",
+      "item": [
+        {
+          "name": "B1 302563857 - hech narsa yuborilmagan -> direktor va buxgalter roaming'dan",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = (pm.collectionVariables.get('roamingDirector_302563857') || '');",
+                  "  const expAccountant = (pm.collectionVariables.get('roamingAccountant_302563857') || '');",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B1', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = roaming direktor (roamingDirector_302563857); accountant = roaming buxgalter (roamingAccountant_302563857). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-B1-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B1-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "B2 302563857 - direktor+buxgalter+omborchi yuborilgan -> yuborilgan qiymat qoladi",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"SENTDIRECTOR Postman Direktor\";",
+                  "  const expAccountant = \"SENTACCOUNTANT Postman Buxgalter\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B2', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = SENTDIRECTOR Postman Direktor; accountant = SENTACCOUNTANT Postman Buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-B2-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          },\n          \"approver_and_signers\": {\n            \"signer_director\": {\n              \"last_name\": \"SENTDIRECTOR\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Direktor\",\n              \"position\": \"Direktor\"\n            },\n            \"signer_accountant\": {\n              \"last_name\": \"SENTACCOUNTANT\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Buxgalter\",\n              \"position\": \"Bosh buxgalter\"\n            },\n            \"signer_warehouse\": {\n              \"last_name\": \"SENTWAREHOUSE\",\n              \"first_name\": \"Postman\",\n              \"inn\": \"123456789\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B2-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "B3 302563857 - faqat direktor yuborilgan -> direktor yuborilgan, buxgalter roaming'dan",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"SENTDIRECTOR Postman Direktor\";",
+                  "  const expAccountant = (pm.collectionVariables.get('roamingAccountant_302563857') || '');",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B3', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = SENTDIRECTOR Postman Direktor; accountant = roaming buxgalter (roamingAccountant_302563857). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-B3-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          },\n          \"approver_and_signers\": {\n            \"signer_director\": {\n              \"last_name\": \"SENTDIRECTOR\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Direktor\",\n              \"position\": \"Direktor\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B3-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "B4 302563857 - faqat buxgalter yuborilgan -> direktor roaming'dan, buxgalter yuborilgan",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = (pm.collectionVariables.get('roamingDirector_302563857') || '');",
+                  "  const expAccountant = \"SENTACCOUNTANT Postman Buxgalter\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B4', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = roaming direktor (roamingDirector_302563857); accountant = SENTACCOUNTANT Postman Buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-B4-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          },\n          \"approver_and_signers\": {\n            \"signer_accountant\": {\n              \"last_name\": \"SENTACCOUNTANT\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Buxgalter\",\n              \"position\": \"Bosh buxgalter\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B4-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "B5 305395454 - roaming'da buxgalter yo'q -> direktor roaming'dan, buxgalter BO'SH (sozlamadagidan olinmaydi)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = (pm.collectionVariables.get('roamingDirector_305395454') || '');",
+                  "  const expAccountant = \"\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=305395454&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B5', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = roaming direktor (roamingDirector_305395454); accountant = (bo'sh). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_305395454_489043363_20260928_FKT_FA5795-B5-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"305395454\",\n            \"company_name\": \"INTERACTIVE ROBOT SOLUTIONS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B5-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "B6 305395454 - roaming'da buxgalter yo'q, buxgalter yuborilgan -> yuborilgan buxgalter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = (pm.collectionVariables.get('roamingDirector_305395454') || '');",
+                  "  const expAccountant = \"SENTACCOUNTANT Postman Buxgalter\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=305395454&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B6', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = roaming direktor (roamingDirector_305395454); accountant = SENTACCOUNTANT Postman Buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_305395454_489043363_20260928_FKT_FA5795-B6-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"305395454\",\n            \"company_name\": \"INTERACTIVE ROBOT SOLUTIONS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          },\n          \"approver_and_signers\": {\n            \"signer_accountant\": {\n              \"last_name\": \"SENTACCOUNTANT\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Buxgalter\",\n              \"position\": \"Bosh buxgalter\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B6-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=305395454",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "305395454"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Bosh kompaniya: chekboks YOQIQ + \"Для исходящих\" YOQIQ",
+      "description": "Sharti: 302563857 da \"Использовать реквизиты роуминга\" YOQIQ, \"Для исходящих\" YOQIQ. Avval chekboksni vaqtincha o'chirib, direktor va buxgalter select'ida roaming'dagidan BOSHQA odamni tanlang va saqlang, keyin chekboksni qayta yoqing. Kutilgan: sozlamadagi direktor/buxgalter e'tiborga olinmaydi, roaming ustun; \"Отпустил\" (releaser) sozlamadan keladi.",
+      "item": [
+        {
+          "name": "B7 302563857 - hech narsa yuborilmagan -> sozlamadagi emas, roaming direktor/buxgalter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = (pm.collectionVariables.get('roamingDirector_302563857') || '');",
+                  "  const expAccountant = (pm.collectionVariables.get('roamingAccountant_302563857') || '');",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('B7', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = roaming direktor (roamingDirector_302563857); accountant = roaming buxgalter (roamingAccountant_302563857). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-B7-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-B7-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Chekboks O'CHIQ: eski logika o'zgarmagan (regressiya)",
+      "description": "Sharti: 302563857 da \"Использовать реквизиты роуминга\" O'CHIQ. Test tugagach chekboksni qayta YOQING (boshqa testerlar ham shu kompaniyada ishlaydi).",
+      "item": [
+        {
+          "name": "R1 302563857 - \"Для исходящих\" YOQIQ, sozlamada direktor/buxgalter tanlangan -> sozlamadagi direktor/buxgalter (ko'z bilan solishtiring)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = null;",
+                  "  const expAccountant = null;",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('R1', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = sozlamadagi direktor; accountant = sozlamadagi buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-R1-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-R1-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R2 302563857 - \"Для исходящих\" YOQIQ, direktor+buxgalter yuborilgan -> eski logika: sozlama ustun (ko'z bilan solishtiring)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = null;",
+                  "  const expAccountant = null;",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('R2', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = sozlamadagi direktor; accountant = sozlamadagi buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-R2-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          },\n          \"approver_and_signers\": {\n            \"signer_director\": {\n              \"last_name\": \"SENTDIRECTOR\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Direktor\",\n              \"position\": \"Direktor\"\n            },\n            \"signer_accountant\": {\n              \"last_name\": \"SENTACCOUNTANT\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Buxgalter\",\n              \"position\": \"Bosh buxgalter\"\n            },\n            \"signer_warehouse\": {\n              \"last_name\": \"SENTWAREHOUSE\",\n              \"first_name\": \"Postman\",\n              \"inn\": \"123456789\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-R2-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R3 302563857 - \"Для исходящих\" O'CHIQ -> eski logika: roaming direktor/buxgalter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = (pm.collectionVariables.get('roamingDirector_302563857') || '');",
+                  "  const expAccountant = (pm.collectionVariables.get('roamingAccountant_302563857') || '');",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('R3', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = roaming direktor (roamingDirector_302563857); accountant = roaming buxgalter (roamingAccountant_302563857). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-R3-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-R3-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "R4 302563857 - \"Для исходящих\" O'CHIQ, direktor+buxgalter yuborilgan -> yuborilgan qiymat",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"SENTDIRECTOR Postman Direktor\";",
+                  "  const expAccountant = \"SENTACCOUNTANT Postman Buxgalter\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('R4', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = SENTDIRECTOR Postman Direktor; accountant = SENTACCOUNTANT Postman Buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-R4-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            }\n          },\n          \"approver_and_signers\": {\n            \"signer_director\": {\n              \"last_name\": \"SENTDIRECTOR\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Direktor\",\n              \"position\": \"Direktor\"\n            },\n            \"signer_accountant\": {\n              \"last_name\": \"SENTACCOUNTANT\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Buxgalter\",\n              \"position\": \"Bosh buxgalter\"\n            },\n            \"signer_warehouse\": {\n              \"last_name\": \"SENTWAREHOUSE\",\n              \"first_name\": \"Postman\",\n              \"inn\": \"123456789\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-R4-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Filial - FAQAT MR !542 test serverga chiqqandan keyin",
+      "description": "DIQQAT: filial qismi (MR !542, dev_FA-5795_filial-roaming-assigners-v2) hali dev'ga merge qilinmagan - hozir test serverda bu papka eski xulqni ko'rsatadi, FAIL bo'lishi kutilgan. Sharti: Nastroyki -> Reestry -> filial modali: \"Space online genesis - Filial-1\" (kod 5) va kodi 00006 bo'lgan filialda \"Использовать реквизиты роуминга\" YOQIQ. Roaming (soliq) bo'yicha: filial 5 direktori MAXAMOV BAXRIDDIN ANATULIYEVICH, filial 6 direktori XOJAYEV DAVLAT SALAYEVICH, filiallarda buxgalter yo'q.",
+      "item": [
+        {
+          "name": "F1 302563857 - filial 5, hech narsa yuborilmagan -> filial direktori roaming'dan, buxgalter bo'sh",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"MAXAMOV BAXRIDDIN ANATULIYEVICH\";",
+                  "  const expAccountant = \"\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('F1', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = MAXAMOV BAXRIDDIN ANATULIYEVICH; accountant = (bo'sh). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-F1-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            },\n            \"branch_code\": \"5\"\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-F1-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "F2 302563857 - filial 5, direktor+buxgalter yuborilgan -> yuborilgan qiymat",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"SENTDIRECTOR Postman Direktor\";",
+                  "  const expAccountant = \"SENTACCOUNTANT Postman Buxgalter\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('F2', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = SENTDIRECTOR Postman Direktor; accountant = SENTACCOUNTANT Postman Buxgalter. Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-F2-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            },\n            \"branch_code\": \"5\"\n          },\n          \"approver_and_signers\": {\n            \"signer_director\": {\n              \"last_name\": \"SENTDIRECTOR\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Direktor\",\n              \"position\": \"Direktor\"\n            },\n            \"signer_accountant\": {\n              \"last_name\": \"SENTACCOUNTANT\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Buxgalter\",\n              \"position\": \"Bosh buxgalter\"\n            },\n            \"signer_warehouse\": {\n              \"last_name\": \"SENTWAREHOUSE\",\n              \"first_name\": \"Postman\",\n              \"inn\": \"123456789\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-F2-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "F3 302563857 - filial 5, faqat direktor yuborilgan -> direktor yuborilgan, buxgalter bo'sh",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"SENTDIRECTOR Postman Direktor\";",
+                  "  const expAccountant = \"\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('F3', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = SENTDIRECTOR Postman Direktor; accountant = (bo'sh). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-F3-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            },\n            \"branch_code\": \"5\"\n          },\n          \"approver_and_signers\": {\n            \"signer_director\": {\n              \"last_name\": \"SENTDIRECTOR\",\n              \"first_name\": \"Postman\",\n              \"middle_name\": \"Direktor\",\n              \"position\": \"Direktor\"\n            }\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-F3-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "F4 302563857 - filial kodi 00006 (roaming'da 6) -> bosh nollarsiz ham topiladi, direktor XOJAYEV",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const r = pm.response.json();",
+                  "pm.test('hujjat yaratildi', () => pm.expect(r.SuccessItems && r.SuccessItems.length).to.eql(1));",
+                  "if (r.SuccessItems && r.SuccessItems.length) {",
+                  "  const uid = r.SuccessItems[0].UniqueId;",
+                  "  pm.collectionVariables.set('lastUniqueId', uid);",
+                  "  const expDirector = \"XOJAYEV DAVLAT SALAYEVICH\";",
+                  "  const expAccountant = \"\";",
+                  "  pm.sendRequest({",
+                  "    url: pm.collectionVariables.get('api_url') + '/Api/Document/GetDocumentsContent?companyInn=302563857&isDeserialized=true',",
+                  "    method: 'POST',",
+                  "    header: { 'Authorization': 'Bearer ' + pm.collectionVariables.get('token'), 'Content-Type': 'application/json' },",
+                  "    body: { mode: 'raw', raw: JSON.stringify({ DocumentUniqueIds: [uid] }) }",
+                  "  }, (err, res) => {",
+                  "    const c = (res.json().Documents || [])[0].Content || {};",
+                  "    console.log('F4', 'director =', c.director, '| accountant =', c.accountant, '| releaser =', c.releaser, '| https://test.faktura.uz/ru/document/details/' + uid);",
+                  "    if (expDirector !== null) pm.test('direktor = ' + expDirector, () => pm.expect(c.director || '').to.eql(expDirector));",
+                  "    if (expAccountant !== null) pm.test('buxgalter = ' + (expAccountant || '(bo\\'sh)'), () => pm.expect(c.accountant || '').to.eql(expAccountant));",
+                  "    if (expDirector === null) pm.test('QO\\'LDA: director=' + c.director + ', accountant=' + c.accountant + ' - Nastroyki bilan solishtiring', () => pm.expect(c.director).to.be.a('string'));",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Kutilgan: director = XOJAYEV DAVLAT SALAYEVICH; accountant = (bo'sh). Natijani Console (Ctrl+Alt+C) va UI havolasida ko'ring.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoices\": [\n    {\n      \"id\": \"{{$guid}}\",\n      \"head\": {\n        \"file_name\": \"universal-vat-invoice_302563857_489043363_20260928_FKT_FA5795-F4-{{$timestamp}}.json\",\n        \"program_version\": \"1.0.0\",\n        \"format_version\": \"1.0.0\",\n        \"sender\": {\n          \"sender_info\": {\n            \"INN\": \"302563857\",\n            \"company_name\": \"SPACE ONLINE GENESIS\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Amir Temur\",\n              \"building\": \"1\"\n            },\n            \"OKED\": \"62010\",\n            \"bank_details\": {\n              \"account_number\": \"20208000000000000001\",\n              \"bank_name\": \"TEST BANK\",\n              \"bank_code\": \"00014\"\n            },\n            \"branch_code\": \"00006\"\n          }\n        },\n        \"receiver\": {\n          \"receiver_info\": {\n            \"INN\": \"489043363\",\n            \"company_name\": \"CONTRACTOR\",\n            \"address\": {\n              \"region\": \"Toshkent\",\n              \"city\": \"Toshkent\",\n              \"street\": \"Navoiy\",\n              \"building\": \"2\"\n            }\n          }\n        }\n      },\n      \"document\": {\n        \"document_number\": \"FA5795-F4-{{$timestamp}}\",\n        \"document_date\": \"28.09.2026\",\n        \"contract_number\": \"FA5795-C1\",\n        \"contract_date\": \"28.09.2026\",\n        \"currency_code\": \"860\",\n        \"items\": [\n          {\n            \"item_number\": \"1\",\n            \"description\": \"FA-5795 test xizmat\",\n            \"measurement_unit\": \"dona\",\n            \"measurement_unit_code\": \"796\",\n            \"volume\": \"1\",\n            \"unit_price\": \"1000\",\n            \"cost\": \"1000\",\n            \"subtotal\": \"1000\",\n            \"excise\": {\n              \"excise_rate\": \"0\",\n              \"excise_value\": \"0\"\n            },\n            \"vat\": {\n              \"vat_rate\": \"12\",\n              \"vat_value\": \"120\"\n            },\n            \"subtotal_with_vat\": \"1120\",\n            \"subtotal_with_taxes\": \"1120\",\n            \"catalog\": {\n              \"code\": \"10305001001000000\",\n              \"name\": \"test\"\n            }\n          }\n        ],\n        \"column_summary_values\": {\n          \"column_subtotal\": \"1000\",\n          \"column_vat_value\": \"120\",\n          \"column_subtotal_with_taxes\": \"1120\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{api_url}}/Api/Document/ImportDocumentRegister?companyInn=302563857",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "Api",
+                "Document",
+                "ImportDocumentRegister"
+              ],
+              "query": [
+                {
+                  "key": "companyInn",
+                  "value": "302563857"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
