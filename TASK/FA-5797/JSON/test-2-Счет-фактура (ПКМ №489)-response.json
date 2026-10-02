@@ -1,0 +1,14 @@
+{
+    "SuccessCount": 1,
+    "ErrorCount": 0,
+    "SuccessItems": [
+        {
+            "Name": "FA-5797_TEST-API_1-document_number__Bo'lim-2",
+            "UniqueId": "b96a37c5ea82434f8ab23d9ec584e8d1",
+            "Message": null,
+            "Id": null,
+            "ResultCode": null
+        }
+    ],
+    "ErrorItems": []
+}
