@@ -1,0 +1,58 @@
+UI - GET_ROAMING_JSON:
+	Счет-фактура с ндс:
+		65805ee61ae745b7a1e62e1db384ba6c - "DistrictId": null,
+
+	Счет-фактура фарм (ПКМ №489):
+		a54e45ab2cb1468bad486f60f470a056 - "DistrictId": null,
+
+	Счет-фактура акциз (ПКМ №489)
+		658dc0a9124f4ca3aff60bcc2bbd6e71 - "DistrictId": null,
+
+	Акт и счет-фактура (ПКМ №489):
+		2fe82e14ea9c4735b7efcae5cc9b7087 - "DistrictId": null,
+
+	Стандартный Акт:
+		f571059ea4f34528954c15fdebad2526 - такого поля нет,
+
+	Акт и счет-фактура акциз (ПКМ №489):
+		3e6da71ba9d64018b2b354ad530d0206 - "DistrictId": null,
+
+
+REESTR - GET_ROAMING_JSON:
+	Счет-фактура с ндс:
+		414e9a69f3994bd0a05dec0368931cc8 - "DistrictId": null,
+
+	Счет-фактура фарм (ПКМ №489):
+		cbbe8a0967dc47818da627e7b99c8d4a - "DistrictId": null,
+
+	Счет-фактура акциз (ПКМ №489)
+		 70cfa6699f694acda8468fa8bb38ffaf- "DistrictId": null,
+
+	Акт и счет-фактура (ПКМ №489):
+		9958fe9078784245980c8be31bec4a00 - "DistrictId": null,
+
+	Акт и счет-фактура акциз (ПКМ №489):
+		9a59e621bedd4dbb9d324699cfe70bec - "DistrictId": null,
+
+
+API - GET_ROAMING_JSON:
+	Счет-фактура с ндс:
+		5190383d18ba4ad8928bf68ad115b8f3 - "DistrictId": null,
+
+	Счет-фактура фарм (ПКМ №489):
+		bde1fd0bd5584e0db31a833c5021fba9 - "DistrictId": null,
+
+	Счет-фактура акциз (ПКМ №489)
+		5af267bc6d1e4efb970a5cfe01695284 - "DistrictId": null,
+
+	Акт и счет-фактура (ПКМ №489):
+		aafc70f10d824c0f9edd985c5c1ad4a5 - "DistrictId": null,
+
+	Акт и счет-фактура акциз (ПКМ №489):
+		- "DistrictId": null,
+
+
+
+
+
+

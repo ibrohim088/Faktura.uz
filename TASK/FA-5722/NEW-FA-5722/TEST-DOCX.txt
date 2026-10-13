@@ -1,0 +1,122 @@
+FA-5722 — ДОКУМЕНТЫ, КОТОРЫЕ НУЖНО СОЗДАТЬ ПРИ ТЕСТИРОВАНИИ
+Стенд: https://test.faktura.uz
+
+Каждый документ создаётся отдельно. Название в формате: TEST-FA-5722 + название документа.
+
+======================================================================================================================================
+
+СЧЁТ-ФАКТУРА: - 
+    1.  Счёт-фактура с НДС (ПКМ №489) - прошол этоп тестирование
+            url этапа тестирование:
+                https://test.faktura.uz/ru/document/details/0638f1d7eced4e999aadcfc418e5a065 - test-case-1
+                https://test.faktura.uz/ru/document/details/b5e21721c03c4be1b2eb1b78837279d5 - test-case-2
+                https://test.faktura.uz/ru/document/details/430b32d723624c008dd19551da787817 - test-case-3
+                https://test.faktura.uz/ru/document/details/92dc385b99564563bf115263536c7622 - test-case-4
+                https://test.faktura.uz/ru/document/details/a6211bd6ab364e5a888e442e408700da - test-case-5
+                https://test.faktura.uz/ru/document/details/b33ddf8d9b374c8e8fb1e66506d5b369 - test-case-6
+
+        Счёт-фактура с НДС (ПКМ №489) + Комиссионер - прошол этоп тестирование
+            url этапа тестирование:
+                https://test.faktura.uz/ru/document/details/b3c8fee4b3494b44ad1f44a30b032344 - test-case-7_1_2_3
+                https://test.faktura.uz/ru/document/details/eda0b563985945d883ba4613242ac933 - test-case-7_4_5_6 - v1
+                https://test.faktura.uz/ru/document/details/7270a9136a8f4473b4d32a0e2aab453f - test-case-7_4_5_6 - v2
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    2.  Счёт-фактура фарм (ПКМ №489) - прошол этопе тестирование
+            url этапа тестирование:
+                https://test.faktura.uz/ru/document/details/280eb15219cf434e9232d44215ad8ed7 - test-case-1, test-case-2, test-case-3, test-case-4, test-case-5, test-case-6
+                https://test.faktura.uz/ru/document/details/e55d24a254c74b478feb71decc9736c7 - test-case-9
+
+        Счёт-фактура фарм (ПКМ №489) + Комиссионер
+            url этапа тестирование:
+                https://test.faktura.uz/ru/document/details/280eb15219cf434e9232d44215ad8ed7 - test-case-7
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    3.  Счёт-фактура акциз (ПКМ №489): - нету preview шаблона и из-за этого не получилось сравнить и протестировать
+            url этапа тестирование:
+                https://test.faktura.uz/ru/document/details/25794be2e94444c48e3ba50ec4410158/?ct=0 - test-case-1-2-3-4-5-6-7-8
+                
+======================================================================================================================================
+
+АКТ:
+    4.  Акт и счёт-фактура (ПКМ №489) - проверил
+            url этапа тестирование: https://test.faktura.uz/ru/document/details/283c58acf8fa420ca324950c315b584f - test-1-2-3-4-5-7-8
+
+        Акт и счёт-фактура (ПКМ №489) + Комиссионер - проверил  
+                url этапа тестирование: https://test.faktura.uz/ru/document/details/c3da02184ed143b7813d473998bd03c1 - test-1-2-3-4-5-6-7
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    5.  Акт (Роуминг) - проверил
+        url этапа тестирование: https://app.faktura.uz/ru/document/details/1e4531db091a44dc90505566310b52b8 - prod
+        url этапа тестирование: https://test.faktura.uz/ru/document/details/32b073e77278419ca1f7af2519a38310- dev 
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    6. Акт и счёт-фактура акциз (ПКМ №489)
+        url dev server: https://test.faktura.uz/ru/document/details/58aab3cf6f434f35bc2353752d8e0fbf - test-case-1-2-3-4-5-6
+        url prod server: https://app.faktura.uz/ru/document/details/7ada0bc23da04df586c6fccb8e9c88f0 - prod-case-1-2-3-4-5-6
+            
+            Акт и счёт-фактура акциз (ПКМ №489) - ЭЦП
+                url dev server: https://test.faktura.uz/ru/document/details/58aab3cf6f434f35bc2353752d8e0fbf - test-case-7
+                url prod server: https://app.faktura.uz/ru/document/details/05da82ef2cdf474f99779e6968d93a69 - prod-case-7
+
+======================================================================================================================================
+
+ДОВЕРЕННОСТЬ:
+    7. Доверенность (Роуминг): - нужен шаблон
+        url dev server: https://test.faktura.uz/ru/document/details/4043ba35a8c84f61acf3cadb802d5a37 - test-case-1-2-3-4-5-6-7-8
+        url prod server: https://app.faktura.uz/ru/document/details/07e7f7d57b8b4f4d813ac7014e98ccce - test-case-8
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    8. Доверенность (Роуминг) V2
+        url dev server: https://test.faktura.uz/ru/document/details/0f8e4ce6ebaf4ce095a9455d8b38261c - test-case-1-2-3-4-5-6-7
+
+======================================================================================================================================
+
+ДОГОВОР:
+
+    9. Договор (ГНК)
+        test: https://test.faktura.uz/ru/document/details/061a5b407baa48afa2f793f1c6136724/?ct=0 - all case
+        prod: https://app.faktura.uz/ru/document/details/8c97f1558e6b485eaee9e83df7d86637?t=0 - all case
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    10. Договор аренды (юр. лицо)
+        test: https://test.faktura.uz/ru/document/details/6d301611093e413aa45a8fed341ec1b5 - all case
+        prod: https://app.faktura.uz/ru/document/details/06454656f78d44e09edc78350c8f4181 - all case
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    11. Договор аренды (физ. лицо)
+        test: https://test.faktura.uz/ru/document/details/f59c1b216448439c88a737c93ce41bab - all case
+        prod: https://app.faktura.uz/ru/document/details/d8eb847c5d5d441a8fa337c334bb4a94 - all case
+
+======================================================================================================================================
+
+ТТН:
+    12. ТТН (новая)
+        test: https://test.faktura.uz/ru/document/details/8a6b907fe96347f1b16795c447a8c73a - test-case-1-2-3-4-5-6-7-8
+        prod: https://app.faktura.uz/ru/document/details/fb12cf3f9c484d32bf6e8b1a4e47db43 - test-case-1-2-3-4-5-6-7-8
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    13. Накладная - нету поля где можна было передать код ипку есть фото, также это поля отсутвует и в APP
+
+======================================================================================================================================
+
+ГИБРИДНЫЕ:
+    14. Гибрид. фактура
+        test: https://test.faktura.uz/ru/document/details/d18e623fe5b4462b82782d1bf05c6e5b - test-case-1-2-3-4-5-6-7
+        prod: https://app.faktura.uz/ru/document/details/bb9b1d344e2f4ecda135ff33b3e4ffa0 - test-case-1-2-3-4-5-6-7
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+    15. Гибридная почта - когда я зошол в TEST то там внутри была оферта я подписал после открылась "https://test.faktura.uz/ru/hybriddocument/list" этот url
+        https://test.faktura.uz/ru/hybriddocument/add - не заню как работает
+        https://app.faktura.uz/ru/hybriddocument/add - но тут теже веши и они работают но есть проблема есть дать excel файл то он открывает его как pdf и pdf обрезает таблиты и половины нет
+======================================================================================================================================
+
+ИТОГО: 15 документов (из них 10 — с Комиссионером).
