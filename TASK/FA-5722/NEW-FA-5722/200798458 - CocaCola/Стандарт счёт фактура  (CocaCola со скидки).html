@@ -1,0 +1,562 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>Счет-фактура</title>
+    <style type="text/css">
+        /*----------------Invoice classes-------------------*/
+        p {
+            font-size: 13px;
+        }
+
+        .tb-numbers {
+            width: 600px;
+        }
+
+            .tb-numbers td {
+                padding: 4px 10px;
+            }
+
+            .tb-numbers label {
+                display: inline-block;
+                padding: 4px 0px 0px;
+                line-height: 20px;
+                font-size: 12px;
+            }
+
+            .tb-numbers input {
+                width: 100px;
+            }
+
+        .company-info {
+            width: 100%;
+            margin: 20px auto;
+        }
+
+            .company-info td {
+                padding: 5px 2px;
+                font-size: 13px;
+            }
+
+        .approver-info {
+            width: 100%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+            .approver-info td {
+                vertical-align: top;
+            }
+
+            .approver-info .director {
+                font-weight: bold;
+            }
+
+            .approver-info .title {
+                font-weight: bold;
+                font-size: 18px;
+                padding-bottom: 20px;
+            }
+
+            .approver-info .signature {
+                font-size: 11px;
+                padding-top: 40px;
+            }
+
+        .title-box {
+            padding: 10px;
+            background-color: #efefef;
+            border: 1px solid #777;
+            font-weight: bold;
+        }
+
+        .color-box {
+            border: 2px solid #ccc;
+        }
+
+        .actDate {
+            float: right;
+        }
+
+        .actDescription {
+            width: 100%;
+            padding-top: 30px;
+        }
+
+        .act-info p {
+            font-weight: bold;
+        }
+
+        .buyer-box {
+            border: 1px solid #777;
+			vertical-align:top;
+        }
+
+            .buyer-box table {
+                width: 100%;
+            }
+
+            .buyer-box .tb-info {
+                width: 310px;
+            }
+
+                .buyer-box .tb-info td {
+                    padding: 2px 5px;
+                }
+
+                    .buyer-box .tb-info td.lbl {
+                        text-align: right;
+                        font-weight: bold;
+                        width: 40%;
+                    }
+
+        .tb-invoice {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .tb-invoice td {
+                padding: 2px 4px;
+                border: 1px solid #777;
+                font-size: 11px;
+                text-align: center;
+            }
+
+                .tb-invoice td input {
+                    border: 0px;
+                    text-align: center;
+                }
+
+            .tb-invoice .head td {
+                background: #f3f3f3;
+                font-weight: bold;
+            }
+
+        .deleteRow {
+            color: Red;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tb-act {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            clear: both;
+            margin: 20px 0px 10px 0px;
+        }
+
+            .tb-act td {
+                padding: 2px 4px;
+                border: 1px solid #777;
+                font-size: 13px;
+                text-align: center;
+            }
+
+                .tb-act td input {
+                    border: 0px;
+                    text-align: center;
+                }
+
+            .tb-act .head td {
+                background: #f3f3f3;
+                font-weight: bold;
+            }
+
+            .tb-act td .deleteActRow {
+                color: Red;
+                font-size: 13px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+        .description {
+            font-size: 12px;
+            text-align: justify;
+            text-indent: 1.5em;
+            white-space: pre-wrap;
+        }
+
+        .tb-total {
+            width: 405px;
+            margin: 30px 0px 20px auto;
+        }
+
+            .tb-total td {
+                padding: 2px 5px;
+                font-size: 12px;
+            }
+
+                .tb-total td.lbl {
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                .tb-total td.val {
+                    border: 1px solid #ccc;
+                    min-width: 50px;
+                }
+
+                .tb-total td input {
+                    padding: 1px;
+                    font-size: 11px;
+                }
+
+        .act-link-addrow-container {
+            margin-bottom: 30px;
+        }
+
+        .link-addrow, .act-link-addrow {
+            text-decoration: none !important;
+            border-bottom: 1px dashed #777;
+            font-size: 13px;
+        }
+
+        .btn-box {
+            margin: 10px 0px;
+        }
+
+        .signer-box {
+            width: 400px;
+        }
+
+        .buyer-box .tb-info {
+            width: 400px;
+        }
+
+
+        .btn-box a {
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .podpis-box {
+            clear: both;
+            display: inline-block;
+            font-size: 11px;
+            margin: 20px auto 30px;
+            width: 100%;
+        }
+
+        .tb-podpis {
+            width: 100%;
+        }
+
+        .podpis-box .box1 {
+            float: left;
+            width: 48%;
+        }
+
+        /*SIGNATURES PLACE BEGIN*/
+
+        .signatures-box {
+            clear: both;
+            display: inline-block;
+            font-size: 11px;
+            margin: 20px auto 30px;
+            width: 100%;
+        }
+
+            .signatures-box .box1 {
+                float: left;
+                width: 35%;
+            }
+
+            .signatures-box .box2 {
+                float: right;
+                width: 35%;
+            }
+
+                .signatures-box .box1 table, .signatures-box .box2 table {
+                    width: 100%;
+                }
+
+            .signatures-box table td {
+                padding: 3px;
+                text-align: center;
+            }
+
+        /*SIGNATURES PLACE END*/
+
+        .podpis-box .box2 {
+            float: right;
+            width: 48%;
+        }
+
+            .podpis-box .box1 table, .podpis-box .box2 table {
+                width: 100%;
+            }
+
+        .podpis-box table td {
+            padding: 3px;
+            text-align: center;
+        }
+
+        .special-line {
+            border-bottom: 1px solid #000;
+            display: block;
+            line-height: 22px !important;
+            text-align: center;
+        }
+
+        .w120 {
+            width: 120px;
+        }
+
+        .w130 {
+            width: 130px;
+        }
+
+        .note {
+            font-size: 11px !important;
+        }
+
+        .l {
+            text-align: left !important;
+        }
+
+        .r {
+            text-align: right !important;
+        }
+
+        .c {
+            text-align: center !important;
+        }
+        
+        div#invoice {page-break-after: always;}
+
+        .logo {
+            float: left;
+            margin: 4px 0px;
+            padding-right: 5%;
+        }
+
+        .header {
+            top: 0px;
+            width: 100%;
+            height: 50px;
+        }
+        
+    </style>
+    <script>
+		window.attorneyNumber = { "attorneynumber": '%attorneyNumber%' };
+	    window.attorneyDate = { "attorneydate": '%attorneyDate%' };
+	    window.attorneyName = { "attorneyname": '%attorneyName%' };	
+   </script>
+</head>
+<body style="font-size:100%; padding:0px; margin:0px; font-family:Tahoma,Arial,sans-serif;">
+    <div class="invoice" id="invoice">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+            <div>
+                <h4 style="text-align:center; margin:10px 5px 5px;">
+                    Hisobvaraq-faktura  № <span class="text-decoration-line:underline;">%invoiceNumber%</span> от <span class="text-decoration-line:underline;">%invoiceDate% г.</span><br />
+                    Maxsulotning-jo'natilish hujjatlari № <span class="text-decoration-line:underline;">%invoiceContractNumber%</span> от <span class="text-decoration-line:underline;">%invoiceContractDate% г.</span>
+                </h4>
+            </div>
+
+            <div class="header">
+                <div class="logo">
+                    <img src="https://app.faktura.uz/content/images/cola-gosstandart-logo.png" width="120px">
+                </div>
+            </div>
+
+            <table class="company-info" collapse="2">
+                <tr>
+                    <td class="buyer-box">
+                        <div style="padding-top: inherit;">
+                            <table class="tb-info">
+                                <tr>
+                                    <td class="lbl">Ta'minlovchi:</td>
+                                    <td class="data" style="text-decoration-line: underline;">%ownerName%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Manzil:</td>
+                                    <td class="data" style="text-decoration-line: underline;">%ownerAddress%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">STIR (INN):</td>
+                                    <td class="data" style="text-decoration-line: underline;">%ownerInn%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">QQS to'lovchisining ro'yxatdan o'tish kodi:</td>
+                                    <td class="data" style="text-decoration-line: underline;">%ownerNdsCode%</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </td>
+                    <td class="buyer-box">
+                        <div>
+                            <table class="tb-info">
+                                <tr>
+                                    <td class="lbl">Xaridor:</td>
+                                    <td class="data" style="text-decoration-line: underline;">%contractorName%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Manzil:</td>
+                                    <td class="data" style="text-decoration-line: underline;">%contractorAddress%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">STIR (INN):</td>
+                                    <td class="data" style="text-decoration-line: underline;">%contractorInn%</td>
+                                </tr>                                
+                                <tr>
+                                    <td class="lbl">QQS to'lovchisining ro'yxatdan o'tish kodi:</td>
+                                    <td class="data" style="text-decoration-line: underline;">%contractorNdsCode%</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="tb-invoice">
+                <tr class="head">
+                    <td rowspan="2">Маhsul. <br> коdi</td>
+                    <td rowspan="2" style="min-width:200px;">MAHSULOT</td>
+                    <td rowspan="2" style="max-width: 40px;">O`lchov birligi</td>
+                    <td rowspan="2" style="max-width: 40px;">Miqdori</td>
+                    <td rowspan="2">Bahosi</td>
+                    <td rowspan="2">Qiymati</td>
+                    <td colspan="2">QQS</td>
+                    <td rowspan="2" style="max-width: 40px;">Umumiy <br> qiymati <br> (QQS bilan)</td>
+                </tr>
+                <tr class="head">
+                    <td style="max-width: 30px;">Stavka</td>
+                    <td>Qiymati</td>
+                </tr>
+                <tr class="data-row">
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                </tr>
+                $array_start_invoiceServices$
+                <tr class="data-row">
+                    <td>%code%</td>
+                    <td class="l" style="white-space: pre-wrap;">%title%</td>
+                    <td>%measurement%</td>
+                    <td style="text-align: right;">%quantity%</td>
+                    <td style="text-align: right;">%pricePerItem%</td>
+                    <td style="text-align: right;">%deliveryCost%</td>
+                    <td>%vatRate%</td>
+                    <td style="text-align: right;">%vatAmount%</td>
+                    <td style="text-align: right;">%deliveryCostWithTaxes%</td>
+                </tr>
+                $array_end$
+                <tr>
+                    <td colspan="3">
+                        <div class="total" style="text-align: left;"><b>Jami yuklangan</b></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%invoiceServicesDeliveryCostTotal%</b></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%invoiceServicesVatAmountTotal%</b></td>
+                    <td style="text-align: right;"><b>%invoiceServicesDeliveryCostWithTaxesTotal%</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="total" style="text-align: left;"><b>Chegirma</b></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%discountDeliveryCostTotal%</b></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%discountDeliveryCostTotalVatAmount%</b></td>
+                    <td style="text-align: right;"><b>%discountDeliveryCostWithTaxesTotal%</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="total" style="text-align: left;"><b>To'g'irlangan son</b></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%invoiceServicesDiscountDeliveryCostTotal%</b></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%invoiceServicesDiscountVatAmountTotal%</b></td>
+                    <td style="text-align: right;"><b>%invoiceServicesTotalPrice%</b></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="total" style="text-align: left;"><b>Jami</b></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%invoiceServicesDiscountDeliveryCostTotal%</b></td>
+                    <td></td>
+                    <td style="text-align: right;"><b>%invoiceServicesDiscountVatAmountTotal%</b></td>
+                    <td style="text-align: right;"><b>%invoiceServicesTotalPrice%</b></td>
+                </tr>
+            </table>
+
+            <div>
+                <p>So'zlar bilan: <b>%invoiceServicesTotalPriceInWords%</b></p>
+                <p>Jami to'lovga: <b>%invoiceServicesTotalPrice%</b></p>
+            </div>
+            
+
+            <div class="clear h100">&nbsp;</div>
+
+            <div class="podpis-box">
+                <table style="width:100%;">
+                        <tr>
+                            <td style="width: 13%;"><b>Rahbar:</b></td>
+                            <td style="width: 26%; vertical-align: bottom;"><span class="special-line">#ownerSignature#</span><span class="note">(imzo)</span></td>
+                            <td style="width: 16%; vertical-align: bottom;"><span class="special-line">%director%</span><span class="note">(I.F.Sh.)</span></td>
+    
+                            <td style="width: 4%"></td>
+    
+                            <td style="width: 13%;"><b>Olingan:</b></td>
+                            <td style="width: 19%; vertical-align: bottom;"><span class="special-line">#contractorSignature#</span><span class="note">(imzo)</span></td>
+                            <td style="width: 16%; vertical-align: bottom;">&nbsp;</td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="width: 13%;"><b>Bosh buxgalter:</b></td>
+                            <td style="width: 26%; vertical-align: bottom;"><span class="special-line"> </span><span class="note">(imzo)</span></td>
+                            <td style="width: 16%; vertical-align: bottom;"><span class="special-line">%accountant%</span><span class="note">(I.F.Sh.)</span></td>
+    
+                            <td style="width: 4%"></td>
+    
+                            <td style="width: 13%;"><b class="attorname">Ishonchnoma bo'yicha:</b></td>
+                            <td style="width: 19%; vertical-align: bottom;"><span class="special-line attorname">№ %attorneyNumber%</span></td>
+                            <td style="width: 16%; vertical-align: bottom;"><span class="special-line attorname">от %attorneyDate%г.</span></td>
+                        </tr>
+                        
+                        <tr>
+                            <td style="width: 13%;"><b>Mahsulot jo'natilgan:</b></td>
+                            <td style="width: 26%; vertical-align: bottom;"><span class="special-line">&nbsp;</span><span class="note">(Ta'minlovchi javobgar shaxsining imzosi)</span></td>
+                            <td style="width: 16%; vertical-align: bottom;"><span class="special-line">%releaser%</span><span class="note">(I.F.Sh.)</span></td>
+    
+                            <td style="width: 4%"></td>
+    
+                            <td style="width: 13%;"></td>
+                            <td colspan="2" style="width: 19%;"><span class="special-line attorname">%attorneyName%</span><span class="note attorname">(Oluvchining I.F.Sh.)</span></td>
+                            
+                        </tr>
+                </table>
+            </div>
+
+            <div class="clear"></div>
+
+            <script>
+                if(this.attorneyNumber.attorneynumber == "" && this.attorneyName.attorneyname == "" && this.attorneyDate.attorneydate == "") { 
+                    var tmp = document.getElementsByClassName("attorname"); 
+                    for(var i = 0; i<tmp.length;i++ )tmp[i].style.display="none";}
+            </script>
+        </form>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,841 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>Счет-фактура</title>
+    <style type="text/css">
+        /*----------------Invoice classes-------------------*/
+        
+        p {
+            font-size: 13px;
+        }
+        
+        .tb-numbers {
+            width: 600px;
+        }
+        
+        .tb-numbers td {
+            padding: 4px 10px;
+        }
+        
+        .tb-numbers label {
+            display: inline-block;
+            padding: 4px 0px 0px;
+            line-height: 20px;
+            font-size: 12px;
+        }
+        
+        .tb-numbers input {
+            width: 100px;
+        }
+        .company-info {
+            width: 100%;
+            margin: 20px auto;
+        }
+        
+        .company-info td {
+            padding: 5px 2px;
+            font-size: 13px;
+        }
+        
+        .approver-info {
+            width: 100%;
+            margin: 20px auto;
+            text-align: center
+        }
+        
+        .approver-info .director {
+            font-weight: bold;
+        }
+        
+        .approver-info .title {
+            font-weight: bold;
+            font-size: 18px;
+            padding-bottom: 20px;
+        }
+        
+        .approver-info .signature {
+            font-size: 11px;
+            padding-top: 40px;
+        }
+        
+        .actDate {
+            float: right
+        }
+        
+        .actDescription {
+            width: 100%;
+            padding-top: 30px
+        }
+        
+        .act-info p {
+            font-weight: bold;
+        }
+
+        .half-width {
+        	width: 50%;
+        }
+        
+        .buyer-box table {
+            width: 100%;
+        }
+        
+        .buyer-box .tb-info td {
+            padding: 2px 5px;
+        }
+        
+        .buyer-box .tb-info td.lbl {
+            text-align: right;
+            font-weight: bold;
+            width: fit-content;
+        }
+        
+        .tb-invoice {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .tb-invoice td {
+            padding: 2px 4px;
+            border: 1px solid #ccc;
+            font-size: 11px;
+            text-align: center;
+        }
+        
+        .tb-invoice td input {
+            border: 0px;
+            text-align: center;
+        }
+        
+        .tb-invoice .head td {
+            background: #f3f3f3;
+            font-weight: bold;
+        }
+        
+        .deleteRow {
+            color: Red;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .tb-act {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            clear: both;
+            margin: 20px 0px 10px 0px;
+        }
+        
+        .tb-act td {
+            padding: 2px 4px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        .tb-act td input {
+            border: 0px;
+            text-align: center;
+        }
+        
+        .tb-act .head td {
+            background: #f3f3f3;
+        }
+        
+        .tb-act td .deleteActRow {
+            color: Red;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .description {
+            font-size: 12px;
+            text-align: justify;
+            text-indent: 1.5em;
+            white-space: pre-wrap;
+        }
+        
+        .tb-total {
+            width: 405px;
+            margin: 30px 0px 20px auto;
+        }
+        
+        .tb-total td {
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+        
+        .tb-total td.lbl {
+            font-weight: bold;
+            text-align: right;
+        }
+        
+        .tb-total td.val {
+            border: 1px solid #ccc;
+            min-width: 50px;
+        }
+        
+        .tb-total td input {
+            padding: 1px;
+            font-size: 11px;
+        }
+        
+        .act-link-addrow-container {
+            margin-bottom: 30px;
+        }
+        
+        .link-addrow,
+        .act-link-addrow {
+            text-decoration: none !important;
+            border-bottom: 1px dashed #777;
+            font-size: 13px;
+        }
+        
+        .btn-box {
+            margin: 10px 0px;
+        }
+        
+        .signer-box {
+            width: 400px;
+        }
+        /* Zamiraka said to remove */
+        /* .buyer-box .tb-info {
+            width: 400px;
+        } */
+        
+        .btn-box a {
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .podpis-box {
+            clear: both;
+            display: inline-block;
+            font-size: 11px;
+            margin: 20px auto 30px;
+            width: 100%;
+        }
+        
+        .tb-podpis {
+            width: 100%;
+        }
+        
+        .podpis-box .box1 {
+            float: left;
+            width: 48%;
+        }
+        /*SIGNATURES PLACE BEGIN*/
+        
+        .signatures-box {
+            clear: both;
+            display: inline-block;
+            font-size: 11px;
+            margin: 20px auto 30px;
+            width: 100%;
+        }
+        
+        .signatures-box .box1 {
+            float: left;
+            width: 35%;
+        }
+        
+        .signatures-box .box2 {
+            float: right;
+            width: 35%;
+        }
+        
+        .signatures-box .box1 table,
+        .signatures-box .box2 table {
+            width: 100%;
+        }
+        
+        .signatures-box table td {
+            padding: 3px;
+            text-align: center;
+        }
+        /*SIGNATURES PLACE END*/
+        
+        .podpis-box .box2 {
+            float: right;
+            width: 48%;
+        }
+        
+        .podpis-box .box1 table,
+        .podpis-box .box2 table {
+            width: 100%;
+        }
+        
+        .podpis-box table td {
+            padding: 3px;
+            text-align: center;
+        }
+        
+        .special-line {
+            border-bottom: 1px solid #000;
+            display: block;
+            line-height: 22px !important;
+            text-align: center;
+        }
+        
+        .w120 {
+            width: 120px;
+        }
+        
+        .w130 {
+            width: 130px;
+        }
+        
+        .note {
+            font-size: 11px !important;
+        }
+        
+        .l {
+            text-align: left !important;
+        }
+        
+        .r {
+            text-align: right !important;
+        }
+        
+        .c {
+            text-align: center !important;
+        }
+
+        .doc-type {
+            border: 1px solid gray;
+            padding: 12px;
+            font-size: 11px;
+            float: left;
+        }
+		.doc-qrcode {			
+			margin:0px;
+			position:absolute;
+			right: 0px;
+        }
+        #single-side-type-text  {
+            text-align: center;
+            padding: 12px;
+            border: 1px solid gray;
+            width: 234px;
+        }
+        #single-side-import-text  {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid gray;
+            margin-left: 100px;        
+        }
+		.doc-footer {
+			width:100%;	
+			height: 38px;
+			position: absolute;
+			bottom: 0px;
+		}
+		.footer-logo {
+			float: left;
+			width: 40px;			
+		}
+		.footer-logo img {
+			height: 35px;
+		}
+		.footer-desc {
+			font-size: 11px;
+			color: #333;
+			padding: 5px;
+		}
+		
+		.doc-stamp {
+			width: 410px;
+			border: 1px solid #5577e6;
+			color: #5577e6;
+			font-size: 12px;
+			padding: 8px;
+			position: absolute;
+			top: 55px;
+			left: 1px;
+		}		
+		.doc-stamp-title {
+			text-align: center;
+		}
+		.doc-stamp-row {
+			padding-top: 4px;
+			clear: both;
+		}
+		.doc-stamp-col {
+			width: 50%;
+			float: left;
+		}
+		.clear {
+			clear: both;
+		}
+		.lot-id {
+			display: none;
+		}
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("https://app.faktura.uz/content/images/nestle_logo.png") no-repeat center center;
+            height: auto;
+            width: auto;
+        }
+
+        .imagelogo {
+            background: url(https://app.faktura.uz/content/images/nestle_logo.png) no-repeat center center;
+            height: auto;
+            width: auto;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .header {
+            top: 0px;
+            width: 100%;
+            height: 50px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            window.data = {
+                "attorneynumber": "%attorneyNumber%",
+                "attorneydate": "%attorneyDate%",
+                "attorneyname": "%attorneyName%",
+                "ownerBranchCode": "%ownerBranchCode%",
+                "contractorBranchCode": "%contractorBranchCode%",
+                "committentTin": "%hasCommittent%",
+                "singleSidedType": "%singleSidedType%",
+                "correctInvoiceNumber": "%correctInvoiceNumber%",
+                "correctInvoiceDate": "%correctInvoiceDate%",
+                "correctInvoiceUid": "%correctInvoiceUid%",
+                "facturaType": "%facturaType%",
+                "lotId": "%lotId%",
+				"isSign": "#isSign#",
+				"isBothCompanySigned": "#isBothCompanySigned#"
+            }
+
+            if (this.data.attorneynumber == "" && this.data.attorneyname == "" && this.data.attorneydate == "") {
+                var tmp = document.getElementsByClassName("attorname");
+                for (var i = 0; i < tmp.length; i++) tmp[i].style.display = "none";
+            }
+                //for comissioner
+            if (this.data.committentTin == "true" || this.data.committentTin == "True" || this.data.committentTin == true) {
+                //hide comissioner column
+                var tmp = document.getElementsByClassName("committent-show");
+                for (var i = 0; i < tmp.length; i++) tmp[i].style.display = "table-cell";
+
+                //show comissioner column
+                var tmp = document.getElementsByClassName("if-committent-hide");
+                for (var i = 0; i < tmp.length; i++) tmp[i].style.display = "none";
+
+            } else {
+                //show comissioner column
+                var tmp = document.getElementsByClassName("committent-show");
+                for (var i = 0; i < tmp.length; i++) tmp[i].style.display = "none";
+
+                //show comissioner column
+                var tmp = document.getElementsByClassName("if-committent-hide");
+                for (var i = 0; i < tmp.length; i++) tmp[i].style.display = "table-cell";
+            }
+
+            if (this.data.ownerBranchCode == "") {
+				document.getElementsByClassName("ownerBranchCode")[0].style.display = "none";
+				document.getElementsByClassName("ownerBranchCode")[1].style.display = "none";
+				document.getElementsByClassName("ownerBranchCode")[2].style.display = "none";
+                    
+            }
+            if (this.data.contractorBranchCode == "") {
+				document.getElementsByClassName("contractorBranchCode")[0].style.display = "none";
+					
+            }
+
+            if (this.data.singleSidedType == '3') {
+                document.getElementsByClassName("buyer-default")[0].style.display = "none";
+                document.getElementsByClassName("seller-default")[0].style.display = "none";
+            } else {
+                document.getElementsByClassName("buyer-empty")[0].style.display = "none";
+                document.getElementsByClassName("seller-for-import")[0].style.display = "none";
+            }
+
+            if (this.data.facturaType == 0) {
+                document.getElementById("doc-type-text").innerHTML = "Стандартный";
+            }  else if (this.data.facturaType == 1) {
+                document.getElementById("doc-type-text").innerHTML = "Дополнительный";
+            } else if (this.data.facturaType == 2) {
+                document.getElementById("doc-type-text").innerHTML = "Возмещение расходов";
+            } else if (this.data.facturaType == 3) {
+                document.getElementById("doc-type-text").innerHTML = "Без оплаты";
+            } else if (this.data.facturaType == 4) {
+                document.getElementById("doc-type-text").innerHTML = "Исправленный";
+            }
+
+            if (this.data.correctInvoiceNumber != "" && this.data.correctInvoiceDate != "" && this.data.correctInvoiceUid != "") {
+                document.getElementsByClassName("additional-or-correct")[0].style.display = "contents";
+            } else if (this.data.correctInvoiceNumber != "" && this.data.correctInvoiceDate != "") {
+                document.getElementById("correct-id").style.display = "none";
+            } else {
+                document.getElementsByClassName("additional-or-correct")[0].style.display = "none";
+            }
+
+            
+            if (this.data.singleSidedType == 1 || this.data.singleSidedType == 2 || this.data.singleSidedType == 4 || this.data.singleSidedType == 5) {
+                var tmp = document.getElementsByClassName("buyer-block-title");
+                for (var i = 0; i < tmp.length; i++) tmp[i].style.display = "none";
+            }
+            
+        
+            if (this.data.singleSidedType == 1) {
+                document.getElementById("single-side-type-text").innerHTML = "На физическое лицо";
+            } else if (this.data.singleSidedType == 2) {
+                document.getElementById("single-side-type-text").innerHTML = "На экспорт";
+            } else if (this.data.singleSidedType == 4) {
+                document.getElementById("single-side-type-text").innerHTML = "Реализация, связанная с гос. секретом";
+            } else if (this.data.singleSidedType == 5) {
+                document.getElementById("single-side-type-text").innerHTML = "Финансовые услуги";
+            } else {
+        		document.getElementById("single-side-type-text").style.display = "none";
+        	}
+            
+
+            if (this.data.singleSidedType == 3) {
+                document.getElementById("single-side-import-text").style.display = "content";
+            } else {
+                document.getElementById("single-side-import-text").style.display = "none";
+            }
+			if (this.data.isSign == "1") {
+				document.getElementById("doc-qrcode-img").style.display = "block";
+				document.getElementById("doc-footer").style.display = "block";				
+			} else {				
+				document.getElementById("doc-qrcode-img").style.display = "none";
+				document.getElementById("doc-footer").style.display = "none";
+			}
+			if (this.data.isBothCompanySigned == "1") {
+				document.getElementById("doc-stamp").style.display = "block";				
+			} else {				
+				document.getElementById("doc-stamp").style.display = "none";
+			}
+
+            if (this.data.lotId) {
+                document.getElementById("lot-id").style.display = "table-row";
+            }
+        };
+    </script>
+</head>
+<body style="font-size:100%; padding:0px; margin:0px; font-family:Tahoma,Arial,sans-serif;">
+    <div class="invoice" id="invoice">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            <div class="doc-type">
+                <b><span id="doc-type-text"></span></b>
+                <span class="additional-or-correct">
+                    <span>к ЭСФ № %correctInvoiceNumber% от %correctInvoiceDate%</span>
+                    <div id="correct-id">
+                        <b>ID</b>: %correctInvoiceUid%
+                    </div>
+                </span>
+            </div>
+            <div class="logo">
+                <img class="imagelogo" src="https://app.faktura.uz/content/images/nestle_logo.png" alt="logo">
+            </div>
+            <div class="doc-qrcode">
+				<img id="doc-qrcode-img" src="#qrcodeImagePath#" style="display:none;" />                
+            </div>
+
+
+            <div style="clear: both;">
+                <p style="text-align:center; margin:55px 5px 5px;font-size: 16px;">
+                    <b style="margin-top: 5px;">СЧЕТ-ФАКТУРА</b> <br>
+                    № %invoiceNumber% 
+                    от %invoiceDate%г. <br/> 
+                    к договору  № %invoiceContractNumber% 
+                    от %invoiceContractDate%г.
+                </p>
+            </div>
+
+            <table class="company-info">
+                <tr>
+                    <td class="buyer-default">
+                        <div class="buyer-box">
+                            <table class="tb-info">
+                                <tr>
+                                    <td class="lbl" style="white-space: nowrap;">Поставщик %agentTypeWithSlash%:</td>
+                                    <td class="data">%ownerName% <span class="ownerBranchCode">(%ownerBranchCode% - %ownerBranchName%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Адрес:</td>
+                                    <td class="data">%ownerAddress%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Идентификационный номер поставщика (ИНН):</td>
+                                    <td class="data">%ownerInn%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Регистрационный код плательщика НДС:</td>
+                                    <td class="data">%ownerNdsCode%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+
+                    <td class="buyer-empty">
+                        <div class="buyer-box">
+                            <table class="tb-info">
+                                <span id="single-side-import-text">
+                                    На импорт
+                                </span>
+                                <tr style="display: none;">
+                                    <td class="lbl" style="white-space: nowrap;">Поставщик %agentTypeWithSlash%:</td>
+                                    <td class="data">%ownerName% <span class="ownerBranchCode">(%ownerBranchCode% -
+                                            %ownerBranchName%)</span></td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="lbl">Адрес:</td>
+                                    <td class="data">%ownerAddress%</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="lbl">Идентификационный номер поставщика (ИНН):</td>
+                                    <td class="data">%ownerInn%</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="lbl">Регистрационный код плательщика НДС:</td>
+                                    <td class="data">%ownerNdsCode%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+
+
+
+                    <td class="seller-default">
+                        <div class="buyer-box">
+                            <div id="single-side-type-text"></div>
+                            <table class="tb-info">
+                                <tr>
+                                    <td class="lbl buyer-block-title">Покупатель:</td>
+                                    <td class="data">%contractorName% <span class="contractorBranchCode">(%contractorBranchCode% - %contractorBranchName%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl buyer-block-title">Адрес:</td>
+                                    <td class="data">%contractorAddress%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl buyer-block-title">Идентификационный номер покупателя (ИНН):</td>
+                                    <td class="data">%contractorInn%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl buyer-block-title">Регистрационный код плательщика НДС:</td>
+                                    <td class="data">%contractorNdsCode%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+
+
+                    <td class="seller-for-import">
+                        <div class="buyer-box">
+                            <table class="tb-info">
+                                <tr>
+                                    <td class="lbl" style="white-space: nowrap;">Покупатель %agentTypeWithSlash%:</td>
+                                    <td class="data">%ownerName% <span class="ownerBranchCode">(%ownerBranchCode% -
+                                            %ownerBranchName%)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Адрес:</td>
+                                    <td class="data">%ownerAddress%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Идентификационный номер поставщика (ИНН):</td>
+                                    <td class="data">%ownerInn%</td>
+                                </tr>
+                                <tr>
+                                    <td class="lbl">Регистрационный код плательщика НДС:</td>
+                                    <td class="data">%ownerNdsCode%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <h4 style="text-align:center; margin:10px 5px 5px;">
+                    Invoiсe/Счет-фактура-накладная  № <span class="text-decoration-line:underline;">%invoiceNumber%</span> от <span class="text-decoration-line:underline;">%invoiceDate% г.</span><br />
+                    к договору № <span class="text-decoration-line:underline;">%invoiceContractNumber%</span> от <span class="text-decoration-line:underline;">%invoiceContractDate% г.</span>
+                </h4>
+            </div>
+
+            <table class="tb-invoice">
+                <tr class="head">
+                    <td rowspan="2">Код</td>
+                    <td rowspan="2" style="min-width:200px;">Наименование товаров <br /> (работ, услуг)</td>
+                    <td rowspan="2">Ед. изм.</td>
+                    <td rowspan="2">Кол-во</td>
+                    <td rowspan="2">Цена</td>
+                    <td rowspan="2">Стоимость поставки</td>
+                    <td colspan="2">НДС</td>
+                    <td rowspan="2">Стоим. поставки с учетом НДС</td>
+                </tr>
+                <tr class="head">
+                    <td>cтавка %</td>
+                    <td>сумма</td>
+                </tr>
+                <tr class="data-row">
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                </tr>
+                $array_start_invoiceServices$
+                <tr class="data-row">
+                    <td>%code%</td>
+                    <td class="l" style="white-space: pre-wrap;">%title%</td>
+                    <td>%measurement%</td>
+                    <td>%quantity%</td>
+                    <td>%pricePerItem%</td>
+                    <td>%deliveryCost%</td>
+                    <td>%vatRate%</td>
+                    <td>%vatAmount%</td>
+                    <td>%deliveryCostWithTaxes%</td>
+                </tr>
+                $array_end$
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="total" style="text-align: left;"><b>Итого</b></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>%invoiceServicesDeliveryCostTotal%</b></td>
+                    <td></td>
+                    <td><b>%invoiceServicesVatAmountTotal%</b></td>
+                    <td><b>%invoiceServicesTotalPrice%</b></td>
+                </tr>
+            </table>
+
+            <div>
+                <p>Всего: <b>%invoiceServicesTotalPriceInWords%</b></p>
+                <p>Цена, стоимость поставки, сумма НДС, стоимость поставки с учетом НДС указаны в Узбекских сумах</p>
+            </div>
+            
+
+            <div class="clear h100">&nbsp;</div>
+
+            <div class="podpis-box">
+                <table style="width:100%;">
+                    <tr>
+						<td style="width: 13%;"><b>Старший специалист по работе с клиентами</b></td>
+						<td style="width: 19%; vertical-align: bottom;"><span class="special-line">#ownerSignature#</span><span class="note">(подпись)</span></td>
+						<td style="width: 16%; vertical-align: bottom;"><span class="special-line">%director%</span><span class="note">(Ф.И.О)</span></td>
+
+						<td style="width: 4%"></td>
+
+						<td style="width: 13%;"><b>Получил</b></td>
+						<td style="width: 19%; vertical-align: bottom;"><span class="special-line">#contractorSignature#</span><span class="note">(подпись получателя или уполномоченного представителя)</span></td>
+						<td style="width: 16%; vertical-align: bottom;">&nbsp;</td>
+					</tr>
+					
+					<tr>
+						<td style="width: 13%;"><b>Главный бухгалтер:</b></td>
+						<td style="width: 19%; vertical-align: bottom;"><span class="special-line"> </span><span class="note">(подпись)</span></td>
+						<td style="width: 16%; vertical-align: bottom;"><span class="special-line">%accountant%</span><span class="note">(Ф.И.О)</span></td>
+
+						<td style="width: 4%"></td>
+
+						<td style="width: 13%;"></td>
+						<td style="width: 19%; vertical-align: bottom;"></td>
+						<td style="width: 16%; vertical-align: bottom;"></td>
+                    </tr>
+					
+					<tr>
+						<td style="width: 13%;"><b>Товар  отпустил:</b></td>
+						<td style="width: 19%; vertical-align: bottom;"><span class="special-line"> </span><span class="note">(подпись ответственного лица от поставщика)</span></td>
+						<td style="width: 16%; vertical-align: bottom;"><span class="special-line">%releaser%</span><span class="note">(Ф.И.О)</span></td>
+
+						<td style="width: 4%"></td>
+
+						<td style="width: 13%;"></td>
+						<td colspan="2" style="width: 19%; vertical-align: bottom;"></td>
+						
+                    </tr>
+                    
+                    
+                    <tr>
+						<td style="width: 13%;">(претензий к транспортному средству не имею)</td>
+						<td style="width: 19%; vertical-align: bottom;"></td>
+						<td style="width: 16%; vertical-align: bottom;"></td>
+
+						<td style="width: 4%"></td>
+
+						<td style="width: 13%;"></td>
+						<td style="width: 19%; vertical-align: bottom;"></td>
+						<td style="width: 16%; vertical-align: bottom;"></td>
+                    </tr>
+
+                    <tr>
+						<td style="width: 13%;"><b></b></td>
+						<td style="width: 19%; vertical-align: bottom;"></td>
+						<td style="width: 16%; vertical-align: bottom;"></td>
+
+						<td style="width: 4%"></td>
+
+						<td style="width: 13%;">SP: Склад БАЙЕР - Бекабад</td>
+						<td style="width: 19%; vertical-align: bottom;">%warehouseDate%</td>
+						<td style="width: 16%; vertical-align: bottom;"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="clear"></div>
+
+
+        </form>
+    </div>
+
+	<div id="doc-footer" class="doc-footer" style="display:none;">
+		<div class="footer-logo">
+			<img src="https://app.faktura.uz/content/img/logo2.png" />
+		</div>
+		<div class="footer-desc">
+			<span>Передан через Faktura.uz</span> <span id="doc-sentdate">#documentSentDateTime#</span><br/>
+			<span>Документ ID:</span> <span id="doc-uid">#documentUid#</span>
+		</div>
+	</div>
+	<div id="doc-stamp" class="doc-stamp" style="display:none;">
+		<div class="doc-stamp-title">Документ подписан и передан через<br/> оператора ЭДО FAKTURA.UZ</div>
+		<div class="doc-stamp-body">
+			<div class="doc-stamp-row">
+				<div class="doc-stamp-col">
+					<b>Подписи отправителя:</b><br/>
+					<span>%ownerName%</span>
+				</div>
+				<div class="doc-stamp-col">
+					<b>Серийный номер сертификата:</b><br/>
+					<span>#ownerSignature#</span>
+				</div>
+			</div>
+			<div class="doc-stamp-row">
+				<div class="doc-stamp-col">
+					<b>Подписи получателя:</b><br/>
+					<span>%contractorName%</span>
+				</div>
+				<div class="doc-stamp-col">
+					<b>Серийный номер сертификата:</b><br/>
+					<span>#contractorSignature#</span>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+    </div>
+
+</body>
+</html>
