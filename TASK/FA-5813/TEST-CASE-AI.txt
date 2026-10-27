@@ -1,0 +1,79 @@
+TEST-CASE-1: HasVat / WithoutVat
+
+========================================
+ПРАВИЛА В GetRoamingJSON
+========================================
+
+hasVat (на уровне документа):
+  - false: у всех продуктов ставка НДС "Без НДС". Поле withoutVat внутри продуктов не появляется.
+  - true: хотя бы у одного продукта выбрана ставка (0%, 6%, 12%). Внутри каждого продукта появляется поле withoutVat.
+
+withoutVat (на уровне продукта, только если hasVat: true):
+  - false: у продукта "Без НДС", так как ставки нет.
+  - true: у продукта выбрана ставка 0%, 6% или 12%, так как ставка есть.
+
+Примечание: название withoutVat противоположно значению (true означает, что НДС есть). Стоит уточнить у разработчиков.
+
+
+========================================
+СЦЕНАРИЙ 1: документ из Soliq Servis через Patch-синхронизацию
+========================================
+
+Предусловие:
+  Документ создан в Soliq Servis (обычная Счет-фактура), ставка НДС у всех продуктов: "Без НДС".
+  https://new.soliqservis.uz/factura/docs/deleted/pdf/facturapdf/6ad84e35c2532d93ef40dd90?editFirst=1&isRead=0&isReadAgent=1&
+
+Шаги:
+  1. Забрать документ через SyncRoamingDocument, метод вернет uid нашей системы:
+     https://testapi.faktura.uz/Api/Patch/SyncRoamingDocument/6ad84e35c2532d93ef40dd90?inn=305395454&contractorType=0&modelType=0
+  2. Открыть документ в UI test.Faktura.uz:
+     https://test.faktura.uz/oz/Document/details/5a707cbf4a364de398d61e600ca97ceb
+  3. Проверить JSON через GetRoamingJson:
+     https://testapi.faktura.uz/Api/Patch/GetRoamingJson?uid=5a707cbf4a364de398d61e600ca97ceb
+  4. Открыть документ в UI app.Faktura.uz (prod):
+     https://app.faktura.uz/ru/document/details/6bc3f31be18e4ec7ab1b3bd9df762168
+  5. Проверить JSON на prod:
+     https://api.faktura.uz/Api/Patch/GetRoamingJson?uid=6bc3f31be18e4ec7ab1b3bd9df762168
+
+Результат:
+  Soliq Servis (UI)      : Без НДС
+  dev Faktura (UI)       : Без НДС
+  prod Faktura (UI)      : 0
+  API (GetRoamingJson)   : hasVat: false, withoutVat внутри продуктов нет
+
+Расхождение:
+  На prod в UI показывается 0, хотя в Soliq Servis и dev стоит "Без НДС".
+  API при этом возвращает hasVat: false (ставки нет).
+  Возможный баг отображения на prod.
+
+
+========================================
+СЦЕНАРИЙ 2: документ создан в Faktura (без подписи)
+========================================
+
+Предусловие:
+  Создан документ с двумя продуктами:
+    1) Продукт 1: ставка НДС "Без НДС"
+    2) Продукт 2: ставка НДС "0%"
+
+Шаги:
+  1. Открыть документ в UI.
+  2. Вызвать GetRoamingJSON.
+
+Ожидаемый результат:
+  UI:
+    Без НДС отображается как "Без НДС", 0% отображается как "0%".
+  API (GetRoamingJSON):
+    hasVat: true (у второго продукта есть ставка 0%)
+    Продукт 1: withoutVat: false (Без НДС)
+    Продукт 2: withoutVat: true (есть ставка 0%)
+
+
+========================================
+ИТОГОВАЯ ТАБЛИЦА ОЖИДАЕМЫХ РЕЗУЛЬТАТОВ
+========================================
+
+Продукты в документе             | hasVat | withoutVat
+---------------------------------|--------|------------------------------------------------
+Все "Без НДС"                    | false  | не выводится
+Хотя бы один с 0% / 6% / 12%     | true   | "Без НДС" -> false, "со ставкой" -> true

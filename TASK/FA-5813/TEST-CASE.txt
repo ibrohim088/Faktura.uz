@@ -1,0 +1,39 @@
+TEST-CASE-1
+
+soliq bizga agar har bitta mahsulot ichida QQS yoq bolsa yani "Без НДС" boladigan bolsa bitta umumiy qilib hasvat false qilib bervoradi har bitta mahsulot uchun withouvat bermaydi jonatmaydi agar soliq dan QQS yoq bolib keladigan bolsa without vat true boladi agar QQS bor bolsa unda false boladi va hasvat true bolib turadi chunki mahsulotlar orasida qaysidr bitta mahsulotda QQS boladi
+agar biz ozimizda document yaratsak QQS yoq bolsa yani "Без НДС" boladigan bolsa unda biz GetRoamingJSON da har bitta mahsulot uchun withouvat beramiz va hasvat ni QQS ga qarab ozgartiramiz agar QQS yoq bolsa unda false agar QQS bor bolsa unda true
+
+HasVat: true - если значение true то внутри какогото продукта в поле ставка НДС стоит какойто протцент ставки НДС может быть (0%, 6%, 12%) и после внутри каждого продукта появится новое значение подназваним "WithoutVat" | false - для обшего продукта если у каждого продукта поля ставка НДС "Без НДС" то для всего работает это значение и этоже обозначает что ставка было выброна как Без ндс
+
+если поля HasVat - false то это поля не появится так как HasVat это обшая значение отвечает (har bitta mahsulot ichida QQS bor agar shu QQS yoq bolsa "Без НДС" bolsa bu umumiy aga ishlidi barchasi uchun bitta false boladi agar bitta mahsulot da QQS joyida "0%, 6%, 12%" turgan bolsa unda usha mahsulot uchun WthoutVat digan yangi joy qoshiladi JSON dan kegin JSON da HasVat digan joyi true boladi WithoutVat esa true boladi QQS bor bolgani uchun yoq bolsa false boladi)
+WithoutVat: - для каждого документа внутри будет выходить если поля "HasVat: true", поля WithoutVat для кажого документа работает отдельно если у конкретного продукто поля "НДС будет выбран как Без НДС то его значение будет false - так как у него нету НДС" если у конкретного продукта поля НДС будет как (0%,6%,12% - то его поля будет как true так как унего есть ставка ндс)
+
+Soliq servis:
+    Создал внутри Soliq Servis Документ обычные Счет-фактура: НДС ставка поставил Без НДС
+    https://new.soliqservis.uz/factura/docs/deleted/pdf/facturapdf/6ad84e35c2532d93ef40dd90?editFirst=1&isRead=0&isReadAgent=1&
+
+test.Faktura.uz:
+    используя этот метод я зобрал документ от другого оператора (Soliq Servis), метод вернул мне uid для нашего системы:
+        https://testapi.faktura.uz/Api/Patch/SyncRoamingDocument/6ad84e35c2532d93ef40dd90?inn=305395454&contractorType=0&modelType=0
+    
+    UI поля НДС ставка стоит как Без НДС:
+        https://test.faktura.uz/oz/Document/details/5a707cbf4a364de398d61e600ca97ceb
+
+    используя этот метод зобрал документ которые был создан у другого оператора (soliq servis) забрал от soliq servis uid документа потом поставил в Patch этап синхранизатцы вернул мне документ uid которые используется унас после этого а открыл этот документ через UI посматрел что в поле НДС сумма стоит "Без НДС" как и в soliq servis там тоже стоит "Без НДС"
+        https://testapi.faktura.uz/Api/Patch/GetRoamingJson?uid=5a707cbf4a364de398d61e600ca97ceb
+
+    app.Faktura.uz:
+        UI покажет что в поляе НДС ставка стоить будет 0 в JSON GetRoamingJSON в поле hasVat: false - это означает что в soliq servis было создана как Без НДС но в UI показывает что ставка НДС 0%
+        https://app.faktura.uz/ru/document/details/6bc3f31be18e4ec7ab1b3bd9df762168
+
+        https://api.faktura.uz/Api/Patch/GetRoamingJson?uid=6bc3f31be18e4ec7ab1b3bd9df762168
+
+
+унас без подписа провели поля создал документ где
+1) Продукт поля ставка НДС : "Без НДС"
+2) Продукт поля ставки НДС : "0%"
+
+когда сделал GetRoamingJSON
+hasVat: true - для обшего 
+1) внутри первого продукта поля withoutvat: true так как унего ставка НДС "Без НДС"
+2) внутри второго продукта поля withoutvat: false так как унего ставка НДС "0%"

@@ -1,0 +1,212 @@
+soliq servis dan dogovor hujjat ochiladi
+
+302378936 -------> 305395454 - filial
+302378936 -------> 305395454 - oddiy (main ga)
+
+=========================================================================================================================================================================================
+ДОГОВОР
+=========================================================================================================================================================================================
+
+patch qilib olganda prod da "отправить на подписание" qilgandan birinchisi da "соглосовал" ikkinchisida "отказ" kegin "проверить" qilib korish kerak soliq servis da qanday bolgani 
+patch qilib olganda dev da "отправить на подписание" qilgandan birinchisi da "соглосовал" ikkinchisida "отказ" kegin "проверить" qilib korish kerak soliq servis da qanday bolgani
+
+	soliq servis dan dogovor hujjat ochiladi:
+		302378936 -------> 305395454 - filial
+		302378936 -------> 305395454 - oddiy (main ga)
+
+        302378936 -------> 305395454 - filial 
+        SOLIQ SERVIS UID: 6ada038aeaf66c93be2941f4 - prod - status ожыдает ответ, dev - соглосовал
+            PROD --- patch qilib olganda prod da "отправить на подписание" qilgandan birinchisi da "соглосовал" - https://app.faktura.uz/ru/document/details/5622a9194dd04562ae5af5eb43817ac1 - Статус в my.soliq.uz: Ожидает подписи партнера
+                {
+                    "success": true,
+                    "message": "Uptodate",
+                    "uniqueId": "5622a9194dd04562ae5af5eb43817ac1",
+                    "otpravitelInn": "302378936",
+                    "otpravitelStatus": "Опубликован",
+                    "poluchatelInn": "305395454",
+                    "poluchatelStatus": "Опубликован",
+                    "roamingStatus": "Подтверждён"
+                }
+
+            DEV --- patch qilib olganda dev da "отправить на подписание" qilgandan birinchisi da "соглосовал" - https://test.faktura.uz/oz/document/details/5d19ad9c319f4663b98573756f5420c4
+                {
+                    "success": true,
+                    "message": "Uptodate",
+                    "uniqueId": "5d19ad9c319f4663b98573756f5420c4",
+                    "otpravitelInn": "302378936",
+                    "otpravitelStatus": "Опубликован",
+                    "poluchatelInn": "305395454",
+                    "poluchatelStatus": "Опубликован",
+                    "roamingStatus": "Подтверждён"
+                }
+            
+            SOLIQ SERVIS UID - 6ada277aeaf66c93be2954a1 - ishlamadi status update bolmayabdi, sinxranizatsa konopkaga boskanda hatolik qaytarvoti
+            "302378936 (natija) -> 305395454 (robots) filiyal ga jonatdim kegin anu "Отправить на подписания" qildim kegin usha qabul qilib oluvchi ga kirdim uni ichida otkaz qildim kegin anu status ozgarmayabdi test daham prod daham birhil bop turibdi history korinvoti lekin status ozgarmadi brauzer refresh qib kordim sinxranizatsa knopkaniyam bosib kegin yana refresh qib kegin yana usha tekshirishni bosdim status ozgarmadi otkaz qilindi dib chiqmadi"
+                PROD - соглосование vaqtida "отказ" kegin "проверить" qilib korish kerak soliq servis da qanday bolgani - https://app.faktura.uz/ru/document/details/e72a7faf3ce1465ebce494f0e5da1962
+                    {
+                        "success": false,
+                        "message": "Failed",
+                        "uniqueId": "e72a7faf3ce1465ebce494f0e5da1962",
+                        "otpravitelInn": "302378936",
+                        "otpravitelStatus": "Ожидается ответ контрагента",
+                        "poluchatelInn": "305395454",
+                        "poluchatelStatus": "Требуется подпись",  
+                        "roamingStatus": "Ожидает подписи партнера"
+                    }
+
+                DEV - соглосование vaqtida "отказ" kegin "проверить" qilib korish kerak soliq servis da qanday bolgani - https://test.faktura.uz/oz/document/details/aa3fef367394429aaa8ddd87efa6b8a7
+                    {
+                        "success": false,
+                        "message": "Failed",
+                        "uniqueId": "aa3fef367394429aaa8ddd87efa6b8a7",
+                        "otpravitelInn": "302378936",
+                        "otpravitelStatus": "Ожидается ответ контрагента",
+                        "poluchatelInn": "305395454",
+                        "poluchatelStatus": "Требуется подпись",
+                        "roamingStatus": "Ожидает подписи партнера"
+                    }
+
+
+    SOLIQ SERVIS UID - 6ada1d50eaf66c93be2951ef: - prod - status ожыдает ответ, dev - соглосовал
+        302378936 -------> 305395454 - oddiy (main ga)
+            patch qilib olganda prod da "отправить на подписание" qilgandan birinchisi da "соглосовал" - https://app.faktura.uz/ru/document/details/f83c3bfb1ba54c82af70dd9f08af5589 - Статус в my.soliq.uz: Ожидает подписи партнера
+                {
+                    "success": false,
+                    "message": "Failed",
+                    "uniqueId": "f83c3bfb1ba54c82af70dd9f08af5589",
+                    "otpravitelInn": "302378936",
+                    "otpravitelStatus": "Ожидается ответ контрагента",
+                    "poluchatelInn": "305395454",
+                    "poluchatelStatus": "Требуется подпись",
+                    "roamingStatus": "Ожидает подписи партнера"
+                }
+            
+            patch qilib olganda dev da "отправить на подписание" qilgandan birinchisi da "соглосовал" - https://test.faktura.uz/oz/document/details/330837918b894a8fb6f57eeeea98dbe8 - Статус в my.soliq.uz: Tasdiqlangan 
+                {
+                    "success": false,
+                    "message": "Failed",
+                    "uniqueId": "330837918b894a8fb6f57eeeea98dbe8",
+                    "otpravitelInn": "302378936",
+                    "otpravitelStatus": "Ожидается ответ контрагента",
+                    "poluchatelInn": "305395454",
+                    "poluchatelStatus": "Требуется подпись",
+                    "roamingStatus": "Ожидает подписи партнера"
+                }
+
+            PROD - соглосование vaqtida "отказ" kegin "проверить" qilib korish kerak soliq servis da qanday bolgani - 
+            DEV - соглосование vaqtida "отказ" kegin "проверить" qilib korish kerak soliq servis da qanday bolgani -
+
+
+ishlamayotgan joylar:
+
+Soliq servis da uid: 6ada277aeaf66c93be2954a1 hujjat yaratilindi dogovor filiyal bilan
+302378936 ----> 305395454 filiyal (00001)
+Natija -------> Robots filiyal (00001)
+
+PROD:
+    request: https://api.faktura.uz/Api/Patch/SyncRoamingDocument/6ada277aeaf66c93be2954a1?inn=305395454&contractorType=1&modelType=5&branchCode=00001
+    response: { "success": false, "message": "Failed", "uniqueId": "e72a7faf3ce1465ebce494f0e5da1962", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Подписание не подписан", "roamingStatus": "Ожидает подписи партнера" }
+
+DEV:
+    request: https://testapi.faktura.uz/Api/Patch/SyncRoamingDocument/6ada277aeaf66c93be2954a1?inn=305395454&contractorType=1&modelType=5&branchCode=00001
+    response: { "success": false, "message": "Failed", "uniqueId": "aa3fef367394429aaa8ddd87efa6b8a7", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+
+
+Prod dagi holati: prod uid ni olib (e72a7faf3ce1465ebce494f0e5da1962) hujjatni ochgandan kegin (https://app.faktura.uz/ru/document/details/e72a7faf3ce1465ebce494f0e5da1962) shu url boyicha ochamiz kegin esa hujjatni details page da ichida "Отправить на подпись" qilib kerak odam tanlab jonatamiz misol uchun "Umar Hasanov" kegin shu odam dan login qilib kirish kerak boladi account ga login qilish uchun (login: 998909143118 pass: 123456) kirib bu yerda URL boyicha hujjatni details page ni ochib kegin esa ong tomonda ikkita button boladi birinchisi "Подписать" ikkinchisi "Отказать" bizga "Отказ" qilishimiz kerak shuning uchun shuni tanlaymiz kegin esa pasda History da korsak "Отказано в подписи" digan boladi kegin esa jonatuvchiga kiramiz yani "IBROHIM ZOKIRJONOV" (login: 998770886505 pass: 123456) ga u yerda web brauzer yangilab olamiz kegin esa "Статус в my.soliq.uz: Проверить" shu ni bosamiz azgina kutamiz javob esa bizga "Kontragent imzosini kutmoqda" dib keladi kegin yana tekshirish uchun harakat qilib koramiz bu safar endi web brauzerni yangilaymiz kegin "Синхронизация" button ni bosamiz kegin kutamiz va bizga javob shu keladi "Ошибка: Пожалуста обратитесть в службу поддержку", "Синхранизация" jarayoni ishlamadi kegin bundan kegin pasda status ni tekshirib kormoqchi boldim button ni bosgandan kegin javob shu boldi "Ожидает подписи партнера" bundan kegin barchasini "Отменить и Удалить" qilib kormoqchi boldim javob shu boladi "Системная ошибка. Пожалуйста, обратитесь в службу поддержки Faktura.uz. Ошибки: notes" bu jarayon ham ishlamadi
+Dev dagi holat: prod dagi holat bilan birhil bundayam "Синхранизатцыя" button bosgandan kegin hatolik chiqarvoti huddi prod dagi daka "Ошибка: Пожалуста обратитесть в службу поддержку", kegin status ni tekshirib kormoqchi bolganimda "Статус в my.soliq.uz: Ожидает подписи партнера" shunday korsatmoqda kegin butunlay "Отменить и удалить" qilib kormoqchi boldim "Системная ошибка. Пожалуйста, обратитесь в службу поддержки Faktura.uz. Ошибки: notes" shunday bolib chiqdi.
+
+Oxiri soliq servis oziga kirib "Удалить" qilib yubordim.
+shundan kegin yana prod bilan dev ga kirib kordim kegin u yer da "Синхронизация" bosdim javob shu boldi "Синхронизация прошла успешно" shundan kegin tori ishlashni boshladi status larda "Отменен и удален" bolib turibdi.
+https://app.faktura.uz/ru/document/details/e72a7faf3ce1465ebce494f0e5da1962
+https://test.faktura.uz/oz/document/details/aa3fef367394429aaa8ddd87efa6b8a7
+
+
+
+
+
+=========================================================================================================================================================================================
+СЧЕТ-ФАКТУРА 
+=========================================================================================================================================================================================
+
+302378936 -------> 305395454 - filial - 6adb00c1647fe684c3a62255, 6adb0b19647fe684c3a62b4d 
+302378936 -------> 305395454 - oddiy (main ga) 6adb27e8647fe684c3a63905, 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+302378936 -------> 305395454 - filial
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    soliq servis uid - 6adb00c1647fe684c3a62255:
+        PROD: не смог подписать документ
+            1) "отправить на подписания - соглосовал"
+            request: https://api.faktura.uz/Api/Patch/SyncRoamingDocument/6adb00c1647fe684c3a62255?inn=305395454&contractorType=1&modelType=0&branchCode=00001
+            response: { "success": true, "message": "Created", "uniqueId": "47986a32875b4b208c9bcf52b06b36fb", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+
+            description:
+                https://app.faktura.uz/ru/document/details/47986a32875b4b208c9bcf52b06b36fb - после отправки в этап подписание статус поменялся не поменялся выщло ошибка синхранизантцыя кнопка не рабоатет
+
+
+    soliq servis uid - 6adb0b19647fe684c3a62b4d
+        PROD - отменить после этого отменить и удалить:
+            2) "отправить на подписания - отменить после отменить и удалить"
+            request: https://api.faktura.uz/Api/Patch/SyncRoamingDocument/6adb0b19647fe684c3a62b4d?inn=305395454&contractorType=1&modelType=0&branchCode=00001
+            response: { "success": true, "message": "Uptodate", "uniqueId": "337dc194b42b4be59891d78f01a0ef7b", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+        description:
+            https://app.faktura.uz/ru/document/details/337dc194b42b4be59891d78f01a0ef7b - Отказано в подписи работает в историю документа пишется коментария и статус но Отменить и Удалить кнопка не работает вместо него выходить "Системная ошибка. Пожалуйста, обратитесь в службу поддержки Faktura.uz. Ошибки: notes"
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    soliq servis uid - 6adb00c1647fe684c3a62255
+        DEV: смог подписать документ
+            1) "отправить на подписания - соглосовал"
+            request: https://testapi.faktura.uz/Api/Patch/SyncRoamingDocument/6adb00c1647fe684c3a62255?inn=305395454&contractorType=1&modelType=0&branchCode=00001
+            response: { "success": true, "message": "Created", "uniqueId": "7bf726bb36ff4436ad6a6577788ede36", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+            
+        description:
+            https://test.faktura.uz/oz/document/details/7bf726bb36ff4436ad6a6577788ede36 - после отправки в этап подписание статус поменялся на подписан
+        
+
+    soliq servis uid - 6adb0b19647fe684c3a62b4d
+        DEV - отменить после этого отменить и удалить:
+            2) "отправить на подписания - отменить после отменить и удалить"
+            request: https://testapi.faktura.uz/Api/Patch/SyncRoamingDocument/6adb0b19647fe684c3a62b4d?inn=305395454&contractorType=1&modelType=0&branchCode=00001
+            response: { "success": true, "message": "Uptodate", "uniqueId": "0ac9f2cfc92848c386acf32f9a8d72eb", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+
+        description:
+            https://test.faktura.uz/oz/document/details/0ac9f2cfc92848c386acf32f9a8d72eb - Отказано в подписи работает в историю документа пишется коментария и статус но Отменить и Удалить кнопка не работает вместо него выходить "Системная ошибка. Пожалуйста, обратитесь в службу поддержки Faktura.uz. Ошибки: notes"
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+302378936 -------> 305395454 - main без филиала 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    soliq servis uid - 6adb27e8647fe684c3a63905:
+        PROD: не смог подписать документ
+            1) "отправить на подписания - соглосовал"
+            request: https://app.faktura.uz/Api/Patch/SyncRoamingDocument/6adb27e8647fe684c3a63905?inn=305395454&contractorType=1&modelType=0
+            response: { "success": true, "message": "Uptodate", "uniqueId": "2497f0efddda4602b4872eca2d251610", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+            description:
+
+    soliq servis uid - :
+        PROD - отменить после этого отменить и удалить:
+            2) "отправить на подписания - отменить после отменить и удалить"
+            description: рабоатет когда прописать коментарии если не передовать коментарии то выйдет "ошибка notes"
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    soliq servis uid - 6adb27e8647fe684c3a63905:
+        DEV: смог подписать документ
+            1) "отправить на подписания - соглосовал"
+            description: этап подписание работает как и преждни 
+
+    soliq servis uid - :
+        DEV - отменить после этого отменить и удалить:
+            2) "отправить на подписания - отменить после отменить и удалить"
+            request: https://testapi.faktura.uz/Api/Patch/SyncRoamingDocument/6adb27e8647fe684c3a63905?inn=305395454&contractorType=1&modelType=0
+            response: { "success": true, "message": "Created", "uniqueId": "096b77285fcf491a83684df794790c1e", "otpravitelInn": "302378936", "otpravitelStatus": "Ожидается ответ контрагента", "poluchatelInn": "305395454", "poluchatelStatus": "Требуется подпись", "roamingStatus": "Ожидает подписи партнера" }
+            description: Этап подписание внутри было отмененя хорошо каментарии прописаны если не прописать тоже пройдет но когда надо будет сделат отменить и удалить то получется ошибка то что поля "notes" пусто и надо зополнить его надо сделать решение сделать поля коментарии обизательным и если она пусто то она не должна сработать
+
+
+=============================================================================================================================================================
+BLOCK УТОЧНЕНИЕ - ТУТ РАЗРАБОТЧИК ПОДСКАЗАЛ, сома ощибка тоже говорит что надо зополнить поля notes --> каментарии, сам Разработчик знает про эти ошибки
+=============================================================================================================================================================
+для того чтобы этой ошибки (Системная ошибка. Пожалуйста, обратитесь в службу поддержки Faktura.uz. Ошибки: notes) не выходила при этапе Отмены и Удалени документа надо написать Коментарии, если поля коментари идет пусто то этап Отмены и Удалении не сработает
+кнопка синхранизатса не работает иногда когда именно не знаю но в network приходит -1 и внутри сообшение всплываюшего написона "Ошибка: Пожалуста обратитесть в службу поддержку" так 
+=============================================================================================================================================================

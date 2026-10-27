@@ -1,0 +1,137 @@
+{
+    "HybridInvoiceId": "6ad761c24d87d28a84ba7a7e",
+    "HybridInvoiceType": 0,
+    "OldHybridInvoiceDoc": null,
+    "HybridInvoiceDoc": {
+        "No": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС",
+        "Date": "2026-10-20"
+    },
+    "ContractDoc": {
+        "No": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС",
+        "Date": "2026-10-20"
+    },
+    "Seller": {
+        "TinOrPinfl": "305395454",
+        "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+        "BranchCode": null,
+        "BranchName": null,
+        "AccountNumber": "20208000300858439001",
+        "BankMfo": "00973",
+        "Address": "ГОРОД ТАШКЕНТ, ЯШНАБАДСКИЙ РАЙОН, Мажнунтол, 5  , ",
+        "Director": "Zamir Usanov",
+        "Accountant": "Zamir Usanov",
+        "VatRegCode": null,
+        "VatRegStatus": null,
+        "TaxpayerType": 30
+    },
+    "Buyer": {
+        "TinOrPinfl": "302378936",
+        "Name": "\"NATIJA SARI KONSALTING\" MCHJ",
+        "BranchCode": null,
+        "BranchName": null,
+        "AccountNumber": "20208000605001023001",
+        "BankMfo": "00421",
+        "Address": "AFROSIYOB KO`CHASI 12-A UY  ",
+        "Director": "MURODOV FARRUX SHARIPOVICH",
+        "Accountant": "MURODOV FARRUX SHARIPOVICH",
+        "VatRegCode": null,
+        "VatRegStatus": null,
+        "TaxpayerType": 30
+    },
+    "FreightForwarder": null,
+    "Carrier": {
+        "TinOrPinfl": "305395454",
+        "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+        "BranchCode": null,
+        "BranchName": null
+    },
+    "Client": null,
+    "Payer": null,
+    "ResponsibleToGoods": {
+        "TinOrPinfl": "305395454",
+        "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ"
+    },
+    "ItemReleased": {
+        "Pinfl": "30307932640029",
+        "FullName": "RASULOV NURMUROD RAVSHAN O‘G‘LI"
+    },
+    "Empowerment": null,
+    "HasMedicalEquipment": false,
+    "HasCommittent": false,
+    "HasTaxRelief": false,
+    "HasMarking": false,
+    "HasExcise": false,
+    "HasBarcode": true,
+    "TotalDistance": 1.0,
+    "TotalDeliveryCost": 1.0,
+    "TotalWeightBrutto": 1.0,
+    "TotalWeightNetto": 1.0,
+    "TransportType": 1,
+    "Roadway": {
+        "OtherCarOwners": [
+            {
+                "TinOrPinfl": "30307932640029",
+                "Name": "RASULOV NURMUROD RAVSHAN O‘G‘LI"
+            }
+        ],
+        "Driver": {
+            "Pinfl": "30307932640029",
+            "FullName": "RASULOV NURMUROD RAVSHAN O‘G‘LI"
+        },
+        "Truck": {
+            "RegNo": "70 G 759 DB",
+            "Model": "CHERY EQ7 ELECTRICAL"
+        },
+        "Trailer": null,
+        "Carriages": [],
+        "ProductGroups": [
+            {
+                "LoadingPoint": {
+                    "RegionId": 26,
+                    "RegionName": "город Ташкент",
+                    "DistrictCode": 7,
+                    "DistrictName": "Сергелийский район",
+                    "Address": "3 tor ko'cha"
+                },
+                "UnloadingPoint": {
+                    "RegionId": 26,
+                    "RegionName": "город Ташкент",
+                    "DistrictCode": 11,
+                    "DistrictName": "Бектемирский район",
+                    "Address": "Namuna MFY, Sayxun shoh ko'chasi, 2b-uy"
+                },
+                "ProductInfo": {
+                    "TotalDeliverySum": 1.0,
+                    "TotalVatSum": 0.0,
+                    "TotalDeliverySumWithVat": 1.0,
+                    "Products": [
+                        {
+                            "OrdNo": 1,
+                            "Committent": null,
+                            "TaxRelief": null,
+                            "Medical": null,
+                            "Marks": null,
+                            "Excise": null,
+                            "ExchangeInfo": null,
+                            "Name": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС-ОПИСАНИЕ ТОВАРА",
+                            "CatalogCode": "09800001009000000",
+                            "CatalogName": "Программные продукты",
+                            "PackageCode": "1500242",
+                            "PackageName": "шт.",
+                            "Barcode": "4700298112121",
+                            "Amount": 1.0,
+                            "Price": 1.0,
+                            "DeliverySum": 1.0,
+                            "Vat": null,
+                            "DeliverySumWithVat": 1.0,
+                            "Origin": 1
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "Airway": null,
+    "Railway": null,
+    "Shipway": null
+}

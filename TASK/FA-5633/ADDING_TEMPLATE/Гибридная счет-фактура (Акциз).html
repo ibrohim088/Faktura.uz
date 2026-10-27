@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>ГИБРИДНАЯ СЧЕТ-ФАКТУРА (АКЦИЗ)</title>
+    <style type="text/css">
+        /*----------------Invoice classes-------------------*/
+
+        p {
+            font-size: 12px;
+        }
+
+        .tb-numbers {
+            width: 600px;
+        }
+
+        .tb-numbers td {
+            padding: 4px 10px;
+        }
+
+        .tb-numbers label {
+            display: inline-block;
+            padding: 4px 0px 0px;
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        .tb-numbers input {
+            width: 100px;
+        }
+
+        .company-info {
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        .company-info td {
+            padding: 5px 2px;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        .approver-info {
+            width: 100%;
+            margin: 20px auto;
+            text-align: center
+        }
+
+        .approver-info .director {
+            font-weight: bold;
+        }
+
+        .approver-info .title {
+            font-weight: bold;
+            font-size: 18px;
+            padding-bottom: 20px;
+        }
+
+        .approver-info .signature {
+            font-size: 11px;
+            padding-top: 40px;
+        }
+
+        .actDate {
+            float: right
+        }
+
+        .actDescription {
+            width: 100%;
+            padding-top: 30px
+        }
+
+        .act-info p {
+            font-weight: bold;
+        }
+
+        .half-width {
+            width: 50%;
+        }
+
+        .buyer-box table {
+            width: 100%;
+        }
+
+        .buyer-box .tb-info td {
+            padding: 2px 5px;
+        }
+        .buyer-box .tb-info tr{
+            display: flex;
+        }
+        .buyer-box .tb-info td.lbl {
+            text-align: left;
+            font-weight: bold;
+        }
+		.lgota-info table {
+			width: 100%;
+            border-collapse: collapse;
+			border: none;
+			font-size: 11px;
+			margin-top: 5px;
+		}
+		.total-info table {
+			width: 100%;
+            border-collapse: collapse;
+			border: none;
+			font-size: 12px;
+			margin-top: 20px;
+			text-align: center;
+		}
+        .tb-invoice {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tb-invoice td {
+            padding: 2px 4px;
+            border: 1px solid #ccc;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .tb-invoice td input {
+            border: 0px;
+            text-align: center;
+        }
+
+        .tb-invoice .head td {
+            background: #f3f3f3;
+            font-weight: bold;
+        }
+
+        .deleteRow {
+            color: Red;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tb-act {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            clear: both;
+            margin: 20px 0px 10px 0px;
+        }
+
+        .tb-act td {
+            padding: 2px 4px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .tb-act td input {
+            border: 0px;
+            text-align: center;
+        }
+
+        .tb-act .head td {
+            background: #f3f3f3;
+        }
+
+        .tb-act td .deleteActRow {
+            color: Red;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .description {
+            font-size: 12px;
+            text-align: justify;
+            text-indent: 1.5em;
+            white-space: pre-wrap;
+        }
+
+        .tb-total {
+            width: 405px;
+            margin: 30px 0px 20px auto;
+        }
+
+        .tb-total td {
+            padding: 2px 5px;
+            font-size: 12px;
+        }
+
+        .tb-total td.lbl {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .tb-total td.val {
+            border: 1px solid #ccc;
+            min-width: 50px;
+        }
+
+        .tb-total td input {
+            padding: 1px;
+            font-size: 11px;
+        }
+
+        .act-link-addrow-container {
+            margin-bottom: 30px;
+        }
+
+        .link-addrow,
+        .act-link-addrow {
+            text-decoration: none !important;
+            border-bottom: 1px dashed #777;
+            font-size: 13px;
+        }
+
+        .btn-box {
+            margin: 10px 0px;
+        }
+
+        .btn-box a {
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .podpis-box {
+            clear: both;
+            display: inline-block;
+            font-size: 11px;
+            margin: 20px auto 30px;
+            width: 100%;
+        }
+
+        .podpis-box .box1 {
+            float: left;
+            width: 48%;
+        }
+
+        /*SIGNATURES PLACE BEGIN*/
+
+        .signatures-box {
+            clear: both;
+            display: inline-block;
+            font-size: 11px;
+            margin: 20px auto 30px;
+            width: 100%;
+        }
+
+        .signatures-box .box1 {
+            float: left;
+            width: 35%;
+        }
+
+        .signatures-box .box2 {
+            float: right;
+            width: 35%;
+        }
+
+        .signatures-box .box1 table,
+        .signatures-box .box2 table {
+            width: 100%;
+        }
+
+        .signatures-box table td {
+            padding: 3px;
+            text-align: center;
+        }
+
+        /*SIGNATURES PLACE END*/
+
+        .podpis-box .box2 {
+            float: right;
+            width: 48%;
+        }
+
+        .podpis-box .box1 table,
+        .podpis-box .box2 table {
+            width: 100%;
+        }
+
+        .podpis-box table td {
+            padding: 3px;
+            text-align: center;
+        }
+
+        .special-line {
+            border-bottom: 1px solid #000;
+            display: block;
+            line-height: 22px !important;
+            text-align: center;
+        }
+
+        .note {
+            font-size: 11px !important;
+        }
+
+        .l {
+            text-align: left !important;
+        }
+
+        .r {
+            text-align: right !important;
+        }
+
+        .c {
+            text-align: center !important;
+        }
+
+
+        .doc-type {
+            border: 1px solid gray;
+            padding: 12px;
+            font-size: 11px;
+            float: left;
+        }
+
+        .doc-qrcode {
+            margin: 0px;
+            position: absolute;
+            right: 0px;
+        }
+
+        .single-side-type-text {
+            text-align: center;
+            padding: 12px;
+            border: 1px solid gray;
+            width: 234px;
+            margin: auto;
+        }
+
+        .single-side-import-text {
+            text-align: center;
+            padding: 12px;
+            border: 1px solid gray;
+            width: 234px;
+            margin: auto;
+        }
+
+        .doc-footer {
+            width: 100%;
+            height: 38px;
+            /* position: absolute; */
+            bottom: 0px;
+        }
+
+        .footer-logo {
+            float: left;
+            width: 40px;
+        }
+
+        .footer-logo img {
+            height: 35px;
+        }
+
+        .footer-desc {
+            font-size: 11px;
+            color: #333;
+            padding: 5px;
+        }
+
+        .doc-stamp {
+            width: 430px;
+            border: 1px solid #5577e6;
+            color: #5577e6;
+            font-size: 12px;
+            padding: 8px;
+            position: absolute;
+            top: 55px;
+            left: 1px;
+        }
+
+        .doc-stamp-title {
+            text-align: center;
+        }
+
+        .doc-stamp-row {
+            padding-top: 4px;
+            clear: both;
+        }
+
+        .doc-stamp-col {
+            width: 50%;
+            float: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .b {
+            font-weight: bold;
+        }
+
+        .m-10 {
+            margin-left: 10px;
+        }
+
+        .checkbox-font {
+            font-size: 16px;
+        }
+
+        .table1 tr td {
+            border-width: 0
+        }
+
+        .table1 {
+            border: 1px solid #ccc;
+            background-color: rgb(227 227 227);
+        }
+    </style>
+</head>
+
+<body style="font-size:100%; padding:0px; margin:0px; font-family:Tahoma,Arial,sans-serif;position:relative;">
+<div class="invoice">
+    <div class="form-horizontal" method="post" enctype="multipart/form-data">
+        
+
+        {{if isSign}}
+        <div>
+            <p style="font-size: 10px;  border-bottom: 1px solid grey; padding-bottom: 2px;"><b>Faktura.uz ID</b>: {{documentUid}} <br> <b>Rouming ID</b>: {{documentRoamingUid}}</p>
+        </div>
+        <div class="doc-qrcode">
+            <img id="doc-qrcode-img" src="{{qrcodeImagePath}}" />
+        </div>
+        {{end}}
+
+        <div class="doc-type">
+            <b><span id="doc-type-text"> {{ if hybridInvoiceType == 2 }} Дополнительный {{ else if hybridInvoiceType == 4}} Исправленный {{else}} Стандартный {{ end }}</span></b>
+            {{ if hybridInvoiceType == 4 || hybridInvoiceType == 2 }}
+            <span class="additional-or-correct">
+            <span>к ТТН {{ oldHybridInvoiceDoc.no }} от {{ oldHybridInvoiceDoc.date }}</span>
+            <div id="correct-id">
+                <b>ID</b>: {{ oldHybridInvoiceDoc.hybridInvoiceId }}
+            </div>
+        </span>
+            {{ end }}
+        </div>
+
+        <div style="clear: both;">
+            <p style="text-align:center; margin:55px 5px 5px; font-size:16px;">
+                <b style="margin-top: 5px;">ГИБРИДНАЯ СЧЕТ-ФАКТУРА (АКЦИЗ)</b>
+            </p>
+        </div>
+
+        <div>
+            <p style="text-align:center; font-size:12px; ">
+                к договору {{contractDoc.no}} от {{contractDoc.date}}<br> №: {{hybridInvoiceDoc.no}} от
+                {{hybridInvoiceDoc.date}}
+            </p>
+        </div>
+
+
+        <div class="c" style="font-size:12px">         
+            {{if transportType == 0}}
+            <p>
+                <b>Госномер автомобиля:</b> {{truck.regNo}} <b class="m-10">Модель:</b> {{truck.model}}
+            </p>
+            <p>
+                <b>Сводная на всю смену</b> <span class="b checkbox-font">{{if isShiftOverall }} ☑ {{else}} ☐
+                        {{end}}</span> <b>Количество отправлений:</b> {{ departuresCount }}
+            </p>
+            <p>
+            <p><span class="b checkbox-font">{{if trailerType == 1}} ☑ {{else}} ☐ {{end}}</span> <b>Прицеп</b> <span
+                    class="b checkbox-font">{{if trailerType == 2}} ☑ {{else}} ☐ {{end}}</span><b>Полуприцеп:</b>
+                <b>госномер:</b> {{trailer.ro}} <b>модель:</b> {{trailer.model}}
+            </p>
+            {{else if transportType == 1}}
+            {{for carriage in carriages}}
+            <p>
+                <b>Номер вагона:</b> {{carriage.regNo}} <b class="m-10">Тип вагона:</b> {{carriage.model}}
+            </p>
+            {{end}}
+            <p>
+            {{end}}
+
+        </div>
+
+        <table class="company-info">
+            <tr>
+                <td class="seller-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info buyer-block-title">
+
+                            <tr>
+                                <td class="lbl">Поставщик:</td>
+                                <td class="data">{{seller.name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Адрес:</td>
+                                <td class="data">{{seller.address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">ИНН:</td>
+                                <td class="data">{{seller.tinOrPinfl}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Регистрационный номер НДС:</td>
+                                <td class="data">{{seller.vatRegCode}} </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Расчетный счет:</td>
+                                <td class="data">{{seller.accountNumber}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Банк МФО:</td>
+                                <td class="data">{{seller.bankMfo}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td class="buyer-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info buyer-block-title">
+
+                            <tr>
+                                <td class="lbl">Покупатель:</td>
+                                <td class="data">{{buyer.name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Адрес:</td>
+                                <td class="data">{{buyer.address}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">ИНН:</td>
+                                <td class="data">{{buyer.tinOrPinfl}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Регистрационный номер НДС:</td>
+                                <td class="data">{{buyer.vatRegCode}} </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Расчетный счет:</td>
+                                <td class="data">{{buyer.accountNumber}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Банк МФО:</td>
+                                <td class="data">{{buyer.bankMfo}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+         
+        
+        {{-    
+            func getProductGroups
+                if transportType == 1
+                    ret roadway.productGroups
+                else if transportType == 3
+                    ret railway.productGroups
+                end
+                ret []
+            end
+        -}}
+
+        {{for productGroup in getProductGroups}}
+		
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+            <table class="company-info">            
+            <tr>
+                <td class="seller-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info">
+                            <tr>
+                                {{if transportType == 1 }}
+                                <td class="lbl"><b> Адрес погрузки груза :</b></td>
+                                <td>{{productGroup.loadingPoint.regionName}}, {{productGroup.loadingPoint.districtName}}, {{productGroup.loadingPoint.address}}</td>
+                                {{else if transportType == 3 }}	
+                                <td class="lbl"><b> Станция погрузки :</b></td>
+                                <td>{{productGroup.loadingPoint.stationName}}</td>
+                                {{else}}
+                                <td></td>
+                                <td></td>
+                                {{end}}
+                            </tr>
+							{{ if transportType == 3 }}
+							<tr>
+								<td class="lbl">Номер вагона:</td>
+								<td>{{productGroup.wagonDoc.number}}</td>
+							</tr>
+							{{ end }}                          
+                        </table>
+                    </div>
+                </td>
+                <td class="buyer-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info">
+                            <tr>
+                                {{if transportType == 1 }}
+                                <td class="lbl"><b>Адрес доставки:</b></td>
+                                <td>{{productGroup.unloadingPoint.regionName}}, {{productGroup.unloadingPoint.districtName}}, {{productGroup.unloadingPoint.address}}</td>
+                                {{else if transportType == 3 }}
+                                <td class="lbl"><b> Станция разгрузки :</b></td>
+                                <td>{{productGroup.unloadingPoint.stationName}}</td>
+                                {{else}}
+                                <td></td>
+                                <td></td>
+                                {{end}}
+                            </tr>                           
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            
+            </table>
+            <div style="clear: both;">
+                <p style="text-align:center; margin:55px 5px 5px; font-size:16px;">
+                    <b style="margin-top: 5px;">Информация о грузе </b>
+                </p>        
+            </div>
+			<table class="tb-invoice">
+            <tr class="head">
+                <td rowspan="2">П/п</td>
+                {{ if hasCommittent }}
+                <td rowspan="2">ИНН/ПИНФЛ комитента</td>
+                <td rowspan="2">Наименование комитента</td>
+                {{ end }}
+                <td rowspan="2">Наименование товаров(услуг)</td>
+                <td rowspan="2">ИКПУ код товаров (услуг)</td>
+                <td rowspan="2">Штрих-код товара (услуги)</td>
+                <td rowspan="2">Единица измерения</td>
+                <td rowspan="2">Кол-во</td>
+                <td rowspan="2">Цена</td>
+                <td rowspan="2">Стоимость</td>
+                <td colspan="2">Акцизный налог{{ if exciseCalculateType == 1 }} (фиксированная ставка){{ else }} (адвалорная ставка){{ end }}</td>
+                <td rowspan="2">Стоимость поставки</td>
+                <td colspan="2">НДС</td>
+                <td rowspan="2">Стоимость поставок с учётом НДС</td>
+                <td rowspan="2">Происхождение товара</td>
+            </tr>
+            <tr class="head">
+                <td>ставка{{ if exciseCalculateType != 1 }}, %{{ end }}</td>
+                <td>сумма</td>
+                <td>ставка</td>
+                <td>сумма</td>
+            </tr>
+            <tr class="data-row">
+                {{ if hasCommittent; columnCount = 17; else; columnCount = 15; end }}
+                {{ for columnNumber in 1..columnCount }}<td>{{ columnNumber }}</td>{{ end }}
+            </tr>
+
+            {{ totalExciseSum = 0 }}
+            {{for product in productGroup.productInfo.products}}
+            {{ totalExciseSum = totalExciseSum + ((product.taxAmount ?? 0) | string.to_double) }}
+            <tr class="data-row">
+                <td>{{for.index + 1}}</td>
+                {{ if hasCommittent }}
+                <td>{{ product.committentTinOrPinfl }}</td>
+                <td>{{ product.committentName }}</td>
+                {{ end }}
+                <td class="l" style="white-space: pre-wrap;">{{product.title}}</td>
+                <td class="l">{{product.catalog.code}} - {{product.catalog.name}}</td>
+                <td>{{product.barcode}}</td>
+                <td>{{product.measurement}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.pricePerItem}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.taxRate}}</td>
+                <td>{{product.taxAmount}}</td>
+                <td>{{product.deliveryCost}}</td>
+                <td>{{product.vatRateDisplay}}</td>
+                <td>{{product.vatAmountDisplay}}</td>
+                <td>{{product.deliveryCostWithTaxes}}</td>
+                <td>{{product.originName}}</td>
+            </tr>
+            {{end}}
+
+            <tr>
+                {{ if hasCommittent }} <td colspan="10"> {{ else }} <td colspan="8"> {{ end }}
+                <div class="total" style="text-align:right;"><b>Итого:</b></div>
+            </td>
+				<td></td>
+				<td>{{ totalExciseSum | math.format "0.00" }}</td>
+                <td>{{productGroup.productInfo.totalDeliverySum}}</td>
+				<td></td>
+				<td>{{productGroup.productInfo.totalVatSum}}</td>
+				<td>{{productGroup.productInfo.totalDeliverySumWithVat}}</td>
+				<td></td>
+            </tr>
+        </table>
+        <div class="lgota-info" id="lgota-info">
+            <table class="" width="100%">
+                {{ for lgota in productGroup.productInfo.lgotaDetails}}                
+                <tr class="data-row">
+                    <td>
+                        <strong>* ID льготы: </strong> {{ lgota.lgotaId}};
+                        <strong> название льготы: </strong> {{ lgota.lgotaName }};
+                        <strong> льготный оборот: </strong> {{ lgota.deliveryCost }} сум;
+                        <strong> сумма льготы: </strong> {{ lgota.lgotaVatSum }} сум
+                    </td>
+                </tr> 
+				{{ end }}               
+            </table>
+        </div>
+        </div>
+        {{ end }}  
+
+        <div class="c" style="font-size:12px;">
+            <span>Вид транспорта:</span>
+            {{if transportType == 1 }}
+            <span><b>☑ Автомобильный транспорт ☐ Железнодорожный ☐ Авиа перевозка ☐ Водный путь</b></span>
+            {{else if transportType == 3}}
+            <span><b>☐Автомобильный транспорт ☑ Железнодорожный ☐ Авиа перевозка ☐ Водный путь</b></span>
+            {{else if transportType == 2}}
+            <span><b>☐Автомобильный транспорт ☐ Железнодорожный ☑ Авиа перевозка  ☐ Водный путь</b></span>
+            {{else}}
+            <span><b>☐Автомобильный транспорт ☐ Железнодорожный ☐ Авиа перевозка ☑ Водный путь </b></span>
+            {{end}}
+        </div>
+
+
+        {{ if transportType == 1}}
+        <table class="company-info">
+            <tr>
+                <td class="seller-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info">
+							<tr>
+                                <td class="lbl">Грузоотправитель:</td>
+                                <td>{{carrier.name}}</td>
+                            </tr>
+							<tr>
+                                <td class="lbl">(ИНН/ПИНФЛ):</td>
+                                <td>{{carrier.tinOrPinfl}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Водитель:</td>
+                                <td>{{roadway.driver.fullName}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">(ПИНФЛ):</td>
+                                <td>{{roadway.driver.pinfl}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Экспедитор:</td>
+                                <td class="data">
+									{{freightForwarder.name}} {{ if (freightForwarder.branchName | object.default false) }}<span>({{freightForwarder.branchCode}} - {{freightForwarder.branchName}})</span> {{ end }}
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="lbl">(ИНН/ПИНФЛ):</td>
+                                <td>{{freightForwarder.tinOrPinfl}}</td>
+                            </tr>
+							<tr>
+                                <td class="lbl">Клиент:</td>
+                                <td class="data">{{client.name}} {{ if (client.branchName | object.default false) }}<span>({{client.branchCode}} - {{client.branchName}})</span> {{ end }}
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="lbl">Заказчик:</td>
+                                <td class="data">{{payer.name}} {{ if (payer.branchName | object.default false) }}<span>({{payer.branchCode}} - {{payer.branchName}})</span> {{ end }}
+                                </td>
+                            </tr>
+							
+                            
+                        </table>
+                    </div>
+                </td>
+                <td class="buyer-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info">     
+							<tr>
+                                <td class="lbl">Государственный номер автомобиля:</td>
+                                <td>{{roadway.truck.regNo}}</td>
+                            </tr>
+							<tr>
+                                <td class="lbl">Модель автомобиля:</td>
+                                <td>{{roadway.truck.model}}</td>
+                            </tr>						
+                            <tr>
+                                <td class="lbl">Государственный номер полуприцепа</td>
+                                <td>{{roadway.trailer.regNo}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl"> Модель полуприцепа:</td>
+                                <td>{{roadway.trailer.model}}</td>
+                            </tr>
+                            {{for carriageItem in roadway.carriages}}
+                            <tr>
+                                <td class="lbl">Государственный номер прицепа</td>
+                                <td>{{carriageItem.regNo}}</td>
+                            </tr>
+                            <tr>
+                                <td class="lbl"> Модель прицепа:</td>
+                                <td>{{carriageItem.model}}</td>
+                            </tr>
+                            {{end}}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        {{ else if transportType == 3 }}
+        <table class="company-info">
+            <tr>
+                <td class="seller-default half-width">
+                    <div class="buyer-box">
+                        <table class="tb-info">
+                              <tr>
+                                <td class="lbl">Направление поезда:</td>
+                                <td>{{railway.trainDirection}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+
+                <td class="buyer-default half-width">
+                    <div class="buyer-box">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+        {{ end }}
+
+        <hr>
+		        
+		<div class="total-info" >
+        <table>
+            <tr>
+                <td><b> Общее расстояние:</b> {{ totalDistance }}</td>
+                <td><b> Стоимость доставки:</b> {{ deliveryCost }}</td>
+                <td><b> Общая стоимость доставки:</b> {{totalDeliveryCost }}</td>
+            </tr>
+			<tr>
+				<td><b> Общий вес (брутто):</b> {{ totalWeightBrutto }}</td>
+				<td><b> Общий вес (нетто):</b> {{ totalWeightNetto}}</td>
+			</tr>
+        </table>
+		</div>
+
+        <div class="clear h100">&nbsp;</div>
+    </form>
+
+</div>
+
+{{if isSign}}
+<div id="doc-footer" class="doc-footer">
+    <div class="footer-logo">
+        <img src="https://app.faktura.uz/content/img/logo2.png" />
+    </div>
+    <div class="footer-desc">
+        <span>Передан через Faktura.uz</span> <span id="doc-sentdate">{{documentSentDateTime}}</span><br />
+        <span>Документ ID:</span> <span id="doc-uid">{{documentUid}}</span>
+    </div>
+</div>
+{{end}}
+
+{{if isBothCompanySigned}}
+<div class="doc-stamp">
+    <div class="doc-stamp-title">Документ подписан и передан через<br /> оператора ЭДО FAKTURA.UZ</div>
+    <div class="doc-stamp-body">
+        <div class="doc-stamp-row">
+            <div class="doc-stamp-col">
+                <b>Подписи отправителя:</b><br />
+                <span>{{ownerName}}</span>
+            </div>
+            <div class="doc-stamp-col">
+                <b>№ сертификата:</b>
+                <span>{{ownerSignature}}</span><br />
+                <b>Дата отправки</b>
+                <span>{{ownerSignedTime}}</span>
+            </div>
+        </div>
+        <div class="doc-stamp-row">
+            <div class="doc-stamp-col">
+                <b>Подписи получателя:</b><br />
+                <span>{{contractorName}}</span>
+            </div>
+            <div class="doc-stamp-col">
+                <b>№ сертификата:</b><br />
+                <span>{{contractorSignature}}</span><br />
+                <b>Дата отправки</b>
+                <span>{{contractorSignedTime}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{{end}}
+</body>
+
+</html>

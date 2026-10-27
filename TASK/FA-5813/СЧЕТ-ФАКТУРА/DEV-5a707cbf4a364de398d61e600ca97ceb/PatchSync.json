@@ -1,0 +1,20 @@
+{
+    "request": {
+        "url": "{{test.faktura.uz}}/Api/Patch/SyncRoamingDocument/6ad84e35c2532d93ef40dd90?inn=305395454&contractorType=0&modelType=0",
+        "method": "GET -- Patch/SyncRoamingDocument",
+        "uid": "6ad84e35c2532d93ef40dd90",
+        "inn": "305395454",
+        "contractorType": 0,
+        "modelType": 0
+    },
+    "response": {
+        "success": true,
+        "message": "Uptodate",
+        "uniqueId": "5a707cbf4a364de398d61e600ca97ceb",
+        "otpravitelInn": "305395454",
+        "otpravitelStatus": "Удален",
+        "poluchatelInn": "302378936",
+        "poluchatelStatus": "Удален",
+        "roamingStatus": "Отменено"
+    }
+}

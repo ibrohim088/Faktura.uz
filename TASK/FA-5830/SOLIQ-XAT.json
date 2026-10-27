@@ -1,0 +1,42 @@
+{
+  "LetterId": "string",
+  "LetterDoc": {
+    "No": "string",
+    "Date": "string"
+  },
+  "Sender": {
+    "TinOrPinfl": "string",
+    "Name": "string",
+    "Address": "string",
+    "BranchCode": "string",
+    "BranchName": "string",
+    "Head": {
+      "Pinfl": "string",
+      "FullName": "string",
+      "Position": "string"
+    },
+    "Email": "string",
+    "Website": "string",
+    "BankId": "string",
+    "BankAccount": "string",
+    "Phones": ["string"],
+    "LogoBase64": "string"
+  },
+  "Recipient": {
+    "TinOrPinfl": "string",
+    "Name": "string",
+    "Address": "string",
+    "BranchCode": "string",
+    "BranchName": "string"
+  },
+  "HtmlContent": "string",
+  "Attachments": [
+    {
+      "Filename": "string",
+      "ContentBase64": "string",
+      "MimeType": "string",
+      "Size": 0,
+      "Description": "string"
+    }
+  ]
+}

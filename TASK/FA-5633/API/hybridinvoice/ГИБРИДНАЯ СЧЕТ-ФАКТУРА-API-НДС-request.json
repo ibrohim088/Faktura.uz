@@ -1,0 +1,129 @@
+{
+    "hybrid_invoices": [
+        {
+            "head": {
+                "file_name": "universal-hybrid_invoices-305395454_302378936_2026-10-20_FU_1.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "UzRVB",
+                        "address": {
+                            "street": "Toshkent sh., Sh.Rashidov sh/k, 4"
+                        },
+                        "phone": "(71) 238-68-37",
+                        "bank_details": {
+                            "account_number": "20208000300858439001",
+                            "bank_name": "O`zR Markaziy banki  Toshkent sh.Bosh boshqarmasi HKM",
+                            "bank_code": "00973"
+                        },
+                        "company_vat_code": "326030018138"
+                    },
+                    "approver_and_signers": {
+                        "signer_director": {
+                            "last_name": "Усманов",
+                            "first_name": "Рашид",
+                            "middle_name": "Рустамович"
+                        },
+                        "signer_accountant": {
+                            "last_name": "Якубова",
+                            "first_name": "Саида",
+                            "middle_name": "Анваржоновна"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "302378936"
+                    }
+                }
+            },
+            "document": {
+                "invoice_date": "20.10.2026",
+                "invoice_number": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС",
+                "contract_date": "20.10.2026",
+                "contract_number": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС",
+                "delivery_type": 2,
+                "delivery_cost": "1",
+                "total_distance": "1",
+                "total_delivery_cost": "1",
+                "column_subtotal_weight_brutto": "1",
+                "column_subtotal_weight_netto": "1",
+                "consignor": {
+                    "inn_or_pinfl": "305395454",
+                    "name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ"
+                },
+                "consignee": {
+                    "inn_or_pinfl": "302378936",
+                    "name": "\"NATIJA SARI KONSALTING\" MCHJ"
+                },
+                "carrier": {
+                    "inn_or_pinfl": "305395454",
+                    "name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ"
+                },
+                "transport_type": "1",
+                "roadway": {
+                    "other_car_owners": [
+                        {
+                            "inn_or_pinfl": "30307932640029"
+                        }
+                    ],
+                    "truck": {
+                        "reg_number": "70 G 759 DB",
+                        "model": "CHERY EQ7 ELECTRICAL"
+                    },
+                    "product_groups": [
+                        {
+                            "loading_point": {
+                                "district_code": 1,
+                                "district_name": "Мирабадский район",
+                                "address": "3 tor ko'cha",
+                                "region_id": 6,
+                                "region_name": "город Ташкент"
+                            },
+                            "unloading_point": {
+                                "district_code": 5,
+                                "district_name": "Алмазарский район",
+                                "address": "Namuna MFY, Sayxun shoh ko'chasi, 2b-uy",
+                                "region_id": 26,
+                                "region_name": "город Ташкент"
+                            },
+                            "product_info": {
+                                "total_delivery_sum": "1",
+                                "total_vat_sum": "1",
+                                "total_delivery_sum_with_vat": "1",
+                                "products": [
+                                    {
+                                        "number": 1,
+                                        "title": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС-ОПИСАНИЕ ТОВАРА",
+                                        "measurement_unit": "штука",
+                                        "measurement_unit_code": "1500242",
+                                        "quantity": "1",
+                                        "barcode": "4700298112121",
+                                        "price_per_item": "1",
+                                        "excise": {
+                                            "excise_rate": 0.0,
+                                            "excise_value": 0.0
+                                        },
+                                        "delivery_cost": "1",
+                                        "vat": {
+                                            "vat_rate": "Без НДС",
+                                            "vat_value": "Без НДС"
+                                        },
+                                        "subtotal_with_taxes": "1",
+                                        "origin": 1,
+                                        "catalog": {
+                                            "code": "09800001009000000",
+                                            "name": "Программные продукты"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "LetterId": "6adf53ee4d87d371a8569f9e",
+    "LetterDoc": {
+        "No": "fa-5830",
+        "Date": "2026-10-26"
+    },
+    "Sender": {
+        "TinOrPinfl": "305395454",
+        "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+        "Address": "ГОРОД ТАШКЕНТ, ЯШНАБАДСКИЙ РАЙОН, Мажнунтол, 5  , ",
+        "BranchCode": "1",
+        "BranchName": "Test_Filial",
+        "Head": {
+            "Pinfl": "50809016640016",
+            "FullName": "HASANOV UMAR ALISHER O‘G‘LI",
+            "Position": "QA"
+        },
+        "Email": "info@faktura.uz",
+        "Website": "faktura.uz",
+        "BankId": "00973",
+        "BankAccount": null,
+        "LogoBase64": "",
+        "Phones": [
+            "(+998 77) 088-65-05",
+            "+998 (77) 088-65-05",
+            "+998770886505",
+            "+998 77 088-65-05"
+        ]
+    },
+    "Recipient": {
+        "TinOrPinfl": "302378936",
+        "Name": "\"NATIJA SARI KONSALTING\" MCHJ",
+        "Address": "AFROSIYOB KO`CHASI 12-A UY  ",
+        "BranchCode": null,
+        "BranchName": null
+    },
+    "HtmlContent": "TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE TEST CASE",
+    "Attachments": null
+}

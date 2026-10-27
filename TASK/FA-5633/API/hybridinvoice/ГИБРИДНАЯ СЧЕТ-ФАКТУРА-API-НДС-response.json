@@ -1,0 +1,14 @@
+{
+    "SuccessCount": 1,
+    "ErrorCount": 0,
+    "SuccessItems": [
+        {
+            "Name": "ГИБРИДНАЯ СЧЕТ-ФАКТУРА-API-НДС",
+            "UniqueId": "04188d2f373349a383a943c01646b96f",
+            "Message": null,
+            "Id": null,
+            "ResultCode": null
+        }
+    ],
+    "ErrorItems": []
+}
