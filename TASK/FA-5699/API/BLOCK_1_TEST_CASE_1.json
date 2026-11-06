@@ -1,0 +1,111 @@
+{
+    "WaybillLocalId": "6aec723e4d87d2cb701c6693",
+    "DeliveryType": 2,
+    "WaybillLocalType": 0,
+    "SingleSidedType": 0,
+    "OldWaybillDoc": null,
+    "DeliveryCost": 1000.0,
+    "TotalDistance": 10.0,
+    "TotalDeliveryCost": 10000.0,
+    "WaybillDoc": {
+        "WaybillNo": "test-waybill-api",
+        "WaybillDate": "2026-11-04"
+    },
+    "ContractDoc": {
+        "ContractNo": "2",
+        "ContractDate": "2026-11-04"
+    },
+    "Consignor": {
+        "TinOrPinfl": "",
+        "Name": "МЧЖ \"IMIR TRADE GROUP\"",
+        "BranchCode": "",
+        "BranchName": ""
+    },
+    "Consignee": {
+        "TinOrPinfl": "302372106",
+        "Name": "REKLAMA EKSPO DIZAYN MCHJ",
+        "BranchCode": "",
+        "BranchName": ""
+    },
+    "FreightForwarder": null,
+    "Carrier": {
+        "TinOrPinfl": "30307932640029",
+        "Name": "RASULOV NURMUROD RAVSHAN O‘G‘LI",
+        "BranchCode": "",
+        "BranchName": ""
+    },
+    "Client": null,
+    "Payer": null,
+    "ResponsiblePerson": {
+        "Pinfl": "50809016640016",
+        "FullName": "HASANOV UMAR ALISHER O‘G‘LI"
+    },
+    "HasCommittent": false,
+    "TransportType": 1,
+    "Roadway": {
+        "OtherCarOwners": [],
+        "Driver": {
+            "Pinfl": "30307932640029",
+            "FullName": "RASULOV NURMUROD RAVSHAN O‘G‘LI"
+        },
+        "Truck": {
+            "RegNo": "70 G 759 DB",
+            "Model": "CHERY EQ7 ELECTRICAL"
+        },
+        "Trailer": null,
+        "Carriages": [],
+        "ProductGroups": [
+            {
+                "LoadingPoint": {
+                    "DistrictCode": 1,
+                    "DistrictName": "Mirobod tumani",
+                    "Latitude": 41.310696,
+                    "Longitude": 69.280505,
+                    "MahallaId": null,
+                    "MahallaName": null,
+                    "Address": "3 tor ko'cha",
+                    "RegionId": 26,
+                    "RegionName": "Tashkent city"
+                },
+                "LoadingTrustee": null,
+                "UnloadingPoint": {
+                    "DistrictCode": 5,
+                    "DistrictName": "Shayxontoxur tumani",
+                    "Latitude": 41.310696,
+                    "Longitude": 69.280505,
+                    "MahallaId": null,
+                    "MahallaName": null,
+                    "Address": "3 tor ko'cha",
+                    "RegionId": 26,
+                    "RegionName": "Tashkent city"
+                },
+                "UnloadingTrustee": null,
+                "UnloadingEmpowerment": null,
+                "ProductInfo": {
+                    "TotalDeliverySum": 50000.0,
+                    "TotalWeightBrutto": 4000.0,
+                    "Products": [
+                        {
+                            "OrdNo": "1",
+                            "CommittentTinOrPinfl": null,
+                            "CommittentName": null,
+                            "ProductName": "Сметана",
+                            "CatalogCode": "00403999008000000",
+                            "CatalogName": "Сметана",
+                            "PackageCode": "1425548",
+                            "PackageName": "дона (упаковка)",
+                            "Amount": 5.0,
+                            "Price": 5000.0,
+                            "DeliverySum": 25000.0,
+                            "WeightBrutto": 2000.0,
+                            "WeightNetto": 1950.0
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "Airway": null,
+    "Railway": null,
+    "Shipway": null
+}

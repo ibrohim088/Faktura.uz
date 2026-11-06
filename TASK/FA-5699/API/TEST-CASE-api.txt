@@ -1,0 +1,99 @@
+ТЕСТ-КЕЙСЫ: truck.model (API создания путевого листа)
+
+ПРАВИЛО
+  model передан -> берём его (кэш и soliq не используются)
+  model пустой  -> берём из soliq (значение в БД не должно влиять)
+
+В запросе меняем только: carrier.inn_or_pinfl, truck.reg_number, truck.model
+Номер в API без пробелов (70G759DB), в БД с пробелами (70 G 759 DB).
+
+----------------------------------------------------------------
+ПЕРЕВОЗЧИК 30307932640029, номер 70G759DB  (в БД COBALT, в soliq CHERY EQ7...)
+
+1) model = ""       -> ожидаем CHERY EQ7... (из soliq). Если COBALT - FAIL
+   Результат: базе стоит model авто как "COBALT" но при передаче гос номер авто через API а поля model авто оставить как пустой то мадель после сохранение и создание в UI и GetRoamingJSON стоит модель авто как "CHERY EQ7 ELECTRICAL" модель авто пришол от soliq.servis он сам автоматически подтянул
+https://test.faktura.uz/ru/document/details/21c4b26857564625ba2e7e2edabaa473
+
+2) model = "MALIBU" -> ожидаем MALIBU
+   Результат: внутри базе данные стоит ешо тот "COBALT" но при этом теперь для внутри API поля модел написал "MALIBU" теперь в UI и GetRoamingJSON стоит именно "MALIBU"
+https://test.faktura.uz/ru/document/details/66eb9b9d79714770937f8a63c8ff62d2
+https://test.faktura.uz/ru/document/details/40f93e1475414f3fa48318b1f35becdf
+
+----------------------------------------------------------------
+ПЕРЕВОЗЧИК 201079149
+
+Меняем в БД (было -> стало):
+  01 M 017137:  GAZ330202 750 -> BMW
+  01 M 017141:  GAZ330202 750 -> ZAG 330200
+
+{
+    "regNo": "01 M 017137",
+    "model": "GAZ330202 750", ----------> BMW
+    "ownershipType": 1,
+    "transportType": 6
+},
+{
+    "regNo": "01 M 017141",
+    "model": "GAZ330202 750", -----------> ZAG
+    "ownershipType": 1,
+    "transportType": 6
+},
+
+
+1) Номер, который в БД изменили (01M008086), model = "" -> ожидаем модель из soliq, НЕ С КЕШ
+   Результат: если поля модель пустой то он ташит с soliq servis а не с кеш
+https://test.faktura.uz/ru/document/details/8b0daf4f2a7a4a2bb4a20d09ad8431ca
+
+2) ЕСЛИ В MODEL НАПИСАТЬ ВРУЧНУЮ ТО ОН ВАЗМЕТ ЕГО А НЕ SOLIQ.SERVIS
+
+----------------------------------------------------------------
+В КОНЦЕ: вернуть в БД нормальные модели (COBALT, BMW, ZAG 330200 - убрать).
+
+========================================================================================
+ДОПОЛНИТЕЛЬНО
+========================================================================================
+
+есть проверка для того чтобы сработал подбор номера через soliq.servis надо чтобы поля carrier и driver были одинакоми если этого не сделать то поля будет пустым
+
+"carrier": {
+    "inn_or_pinfl": "201079149",
+    "name": "\"BALTON TRADING (ASIA)\" MCHJ XK"
+},
+
+"driver": {
+    "pinfl": "201079149",
+    "name": "\"BALTON TRADING (ASIA)\" MCHJ XK"
+},
+
+внутри api при создание документа если передать гос номер авто в таком виде "70G759DB" то внутри response будет ошибка (о том что некорректные регистрационные номера)
+{
+    "SuccessCount": 0,
+    "ErrorCount": 1,
+    "SuccessItems": [],
+    "ErrorItems": [
+        {
+            "Name": "Unknown document content error",
+            "UniqueId": null,
+            "Message": " Некорректные регистрационные номера: 70G759DB",
+            "Id": null,
+            "ResultCode": null
+        }
+    ]
+}
+
+если передать гос номер авто правильно "70 G 759 DB" в этом формате то документ создастса
+
+{
+    "SuccessCount": 1,
+    "ErrorCount": 0,
+    "SuccessItems": [
+        {
+            "Name": "test-waybill-api",
+            "UniqueId": "987190cc85ff44a4a35eb2cf9e3a442e",
+            "Message": null,
+            "Id": null,
+            "ResultCode": null
+        }
+    ],
+    "ErrorItems": []
+}
