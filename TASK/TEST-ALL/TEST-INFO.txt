@@ -1,0 +1,101 @@
+"READY TO DEPLOY":
+    FA-5633: STATUS: READY TO DEPLOY
+    Гибрид счет-фактура: фарм и акциз
+
+    Отоброжение кнопки для перехода по UI ( Гибрид счет-фактура: с ндс, фарм, акциз  ):
+        DEV:
+            гибрид-счет-фактура с ндс 1: https://test.faktura.uz/ru/document/details/d71becc22d164bed857579ffc593b0ff - есть шаблон html
+                HasBarcode & Barcode поля внутри JSON: false если не передовать поля barcode(Штрих-код товара (услуги)) ; если передать тогда true в поля для Barcode пишетса штрих-код товара а в поля hasbarcode пишетса true так как в поле штрих-код есть штрих-код
+
+                проблемы которые были найдены в этапе тестирование:
+                    надо исправить надо поля для "Товара отпустителя" сделать "обизательным" так как когда при подпи он обизательные в UI надо проста добавить "*" и надо сделать проверку
+                    ПРОБЛЕМА ВАЖНА: отказ со стораные отправителя не работает правильно внутри гибрид счет-фактура а внутри счет-фактуры работает
+                        https://test.faktura.uz/ru/document/details/5b2e348e6cb54d97b0640157728250f9
+            
+            гибрид-счет-фактура фарм: https://test.faktura.uz/ru/document/details/5a27776746284b368eac69eac18212a3
+                для того чтобы внутри гибрид счет-фактура фарм сработал подпись с ЭЦП надо в JSON добавить поля "dispense_type" вданном моменте этого поля нету внутри json когда он формируется после сохранение
+                Проблема: так же тут тоже надо добавить новые поля в JSON dispanse_type он пишется через UI он после того как нажымаю на кнопку сохранить то внутри JSON этого поля нету
+
+            гибрид-счет-фактура акциз: https://test.faktura.uz/ru/document/details/0ceb5aeeae3c4993932301e5b1cc512e
+                Проблема при подписе вышло непонятное ошибка надо уточнить у програмиста:
+                    {
+                        "message": "Error converting value {null} to type \u0027System.Int32\u0027. Path \u0027Roadway.ProductGroups[0].ProductInfo.Products[0].Origin\u0027, line 1, position 2597.",
+                        "success": false,
+                        "code": 10,
+                        "isOfferSigned": true,
+                        "warningMessage": null
+                    }
+
+
+        STAGING:
+            гибрид-счет-фактура с ндс 1: https://stagingapp.faktura.uz/ru/document/details/6687364cc25944e7935701624263bc36 - есть шаблон html
+                HasBarcode & Barcode поля внутри JSON: false если не передовать поля barcode(Штрих-код товара (услуги)) ; если передать тогда true в поля для Barcode пишетса штрих-код товара а в поля hasbarcode пишетса true так как в поле штрих-код есть штрих-код                
+                не смог проверить с помашю ЭЦП нету возможнасти
+            
+            гибрид-счет-фактура фарм: https://stagingapp.faktura.uz/ru/document/details/e789104856144061928a232b5ece7cba - есть HTML preview шаблон
+                также не могу проверить с помашю ЭЦП нету возможнасти так как staging он связон с test soliq наш staging привязон кнуму для правильные работы надо чтобы test soliq работал а так максимум что возможна тут внутри могу посметреть JSON и сказать что какого поля есть или нету
+
+            гибрид-счет-фактура акциз: https://stagingapp.faktura.uz/ru/document/details/7cb4a794225347ddaa2b6aa03ae63447 - есть HTML preview шаблон
+
+        PROD:
+            гибрид-счет-фактура с ндс 1: https://app.faktura.uz/ru/document/details/b37b577dc2084bc0ad0fb887cd668c84 - есть шаблон html
+                HasBarcode & Barcode поля внутри JSON: false если не передовать поля barcode(Штрих-код товара (услуги)) ; если передать тогда true в поля для Barcode пишетса штрих-код товара а в поля hasbarcode пишетса true так как в поле штрих-код есть штрих-код
+                Проблема:
+                    поля Товара отпустителя также тут надо сделать обизательным так как при подписи с ЭЦП если поля Товара отпустителя не заполнить то подпись с ЭЦП не подпишется.
+                    ПРОБЛЕМА ВАЖНА: отказ со стораные отправителя не работает правильно внутри гибрид счет-фактура а внутри счет-фактуры работает
+                        https://app.faktura.uz/ru/document/details/b37b577dc2084bc0ad0fb887cd668c84
+            
+            гибрид-счет-фактура фарм: https://app.faktura.uz/ru/document/details/213abd0940da41c9bc12979b26df2441 - нету HTML preview шаблона
+                Проблема: так же тут тоже надо добавить новые поля в JSON dispanse_type он пишется через UI он после того как нажымаю на кнопку сохранить то внутри JSON этого поля нету
+
+            гибрид-счет-фактура акциз: https://app.faktura.uz/ru/document/create/HybridInvoiceExcise/2cc8c4b79e32461ba0131c8aae46da02 - нету HTML preview шаблона
+            При подписе вышло ошибка Тип акциза неправильно: 0 есть фото внутри SUBBUG-or-ERROR надо уточнить у разработчика
+
+
+    FA-5695: STATUS: READY TO DEPLOY
+        DEV - bor;
+        STAGING - yoq
+        PROD - yoq;
+    можна по фото посматреть что есть что нету как работает:
+    когда в поля для Перевозчик передать ПИНФЛ то внизу должен приходить спикок гос номеров которые относится к этом ПИНФЛ
+    можыте посматреть на файлы которы были вверху там тоже внутри есть поля гос номер авто
+
+    FA-5535: STATUS: READY TO DEPLOY
+        DEV - bor
+            test bolga ishlagan
+        
+        STAGING - сам excel не работает вообше вне зодачи это
+            test qilish iloji yoq chunki excel yuklagandan kegin
+        
+        PROD - yoq
+    
+    FA-5830 & FA-5605: STATUS: READY TO DEPLOY
+        DEV - dev da test dan otganda
+            есть возможнасть выбор филиала barnchCode lar bor tori ishlamoqda - https://test.faktura.uz/ru/document/details/4f3a1a28013f44238f6d56b2ad8c223f
+            есть валидатцыя номера телефона показывает ошибку если номер не соответсвует формату
+            status обновляется работает если получатлеь есть синхранизатцыя с roaming покажет статус
+            json соответствует требованию
+
+        STAGING - staging da test dan otganda - для проверки остального надо чтобы test soliq работал
+            есть возможнасть выбор филиала branchCode lar bor tori ishlamoqda - https://stagingapp.faktura.uz/ru/document/details/a84d0f943e96403c8e14e39be101401e
+            есть валидатцыя номера телефона показывает ошибку если номер не соответсвует формату
+            json соответствует требованию
+
+        PROD - зодача пока не вышла на prod нету изминени не сработа ничего все как прежде
+
+        FA-5605 Письмо ни status ozgarishiga bog'liq task dev da ishlavoti staging da test qila omlayman tushunki ЭЦП kalitlar ishlamaydi prod ga hali deploy bolmagan
+
+    FA-5191: STATUS: TESTED ON DEV
+        barchasi tori ishlamoqda
+        DEV - bor
+        STAGING - bor 
+        PROD - bor
+
+
+qolgan shu task lar faqat TESTED ON DEV YANI FAQAT DEV DA BOR QOLGAN JOYLARDA YOQ
+dev da ishlagan staging va prod hali chiqmagan:
+https://jira.faktura.uz/browse/FA-5491 - buni faqat dev da test qib berishimiz mumkin bolgan va dev da testdan otgan staging va prod ga hali chiqmagan chiqqandaham dev daka barcha test case lar bilan test qib koromimiz hatidir staging da ozida qayerlaridir ishlamasligi mumkin yokida prod da bizaga dostup yoq bolishi mumkin
+https://jira.faktura.uz/browse/FA-5846 - admin panelga bog'langan
+https://jira.faktura.uz/browse/FA-5791 - dev da ishladi staging va prod da ishlamadi
+https://jira.faktura.uz/browse/FA-5444 - staging ga chiqsa test qisa boladi prod da test qilishi iloji yoq dostub berilmidi 
+https://jira.faktura.uz/browse/FA-5695 - faqat dev da bor boshqa joyda yoq bu taskni FA-5633 VA FA-5605 bilan birga test qidim
