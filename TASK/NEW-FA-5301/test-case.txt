@@ -1,0 +1,11 @@
+Счет-фактура с ндс:
+https://test.faktura.uz/ru/document/details/a0d54e3027754b5984e88614cd5d610a
+https://test.faktura.uz/ru/document/details/23b0e66a641642f59a986e2158666aa9
+
+Счет-фактура с акциз:
+https://test.faktura.uz/ru/document/details/236bf1c406824898bb579b4793e7c83b
+https://test.faktura.uz/ru/document/details/3fda318d4c0344abb9690dfbaa62390a
+
+Счет-фактура с фарм:
+https://test.faktura.uz/ru/document/details/12b9d055586c4133ae4dbf4d41bf1c8e
+https://test.faktura.uz/ru/document/details/3ed2b202ab634896a0804fd4ff87f101
