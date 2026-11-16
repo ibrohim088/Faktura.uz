@@ -1,0 +1,95 @@
+Необходимо протестировать новое поле: было добавлено шестое поле.
+
+6. Отчет по зарегистрированным организациям
+
+1. Database проверка вывода организаци за последние год: 
+    База данных → CustomBranchTeamCity-Faktura → Таблицы → dbo.Company. 
+    Внутри таблицы находятся все организации. Выполнил запрос, который отфильтровывает несколько организаций:
+
+    SELECT TOP (1000) [ID]
+        ,[InnNumber]
+        ,[Name]
+        ,[FirstName]
+        ,[LastName]
+        ,[MiddleName]
+        ,[Email]
+        ,[OKONX]
+        ,[Country]
+        ,[City]
+        ,[District]
+        ,[Street]
+        ,[Home]
+        ,[AddressIndex]
+        ,[SpecialAccount]
+        ,[MobilePhone]
+        ,[HomePhone]
+        ,[VersionId]
+        ,[IsGeneratedNewVersion]
+        ,[OKED]
+        ,[CreatedDate]
+        ,[IsActive]
+        ,[IsNds]
+        ,[MarketCode]
+        ,[CityCode]
+        ,[DistrictCode]
+        ,[VatCode]
+        ,[VatValue]
+        ,[Address]
+        ,[IsRoamingFirst]
+        ,[IsAutoAgreement]
+        ,[Pinfl]
+        ,[IsContractedWithUzcard]
+        ,[IsReferenceWithParent]
+        ,[ContactPhoneNumber]
+    FROM [CustomBranchTeamCity-Faktura].[dbo].[Company]
+    WHERE [CreatedDate] >= '2025-11-13'
+    ORDER BY [CreatedDate] DESC
+
+    Запрос отфильтровывает несколько организаций, подходящих под это условие.
+    Ответ этого запроса вышел 15 организаций которе подходять под этот филтр, есть документ
+
+2. Проверка в UI:
+    Зашёл в Панель администратора, открыл раздел «Отчёт», затем перешёл в «Отчёт по организациям» («Админ-панель → Отчёт → Отчёт по организациям»). 
+    Внутри нашёл новый блок «6. Отчет по зарегистрированным организациям».
+
+    В этом блоке можно выбрать «Период с» и «Период по». 
+    Затем есть кнопка «Сформировать отчёт», а в правом углу находится кнопка «Скачать Excel», которая становится доступной после формирования отчёта.
+
+    После выбора периода и нажатия на кнопку «Сформировать отчёт» запускается обработка данных. 
+    Её статус отображается в правом углу, над кнопкой «Скачать Excel».
+
+    Этап запроса:
+        Период с: 13/11/2025
+        Период по: 13/11/2026
+
+        Затем нажал на кнопку «Сформировать отчёт».
+        После этого запустился этап обработки.
+        После обработки отобразилось сообщение «Нет данных». Под ним написано: «Попробуйте сформировать отчёт заново».
+
+
+
+Test-case-N
+«6. Отчет по зарегистрированным организациям» hisobotini tekshirish (so'nggi 1 yil)
+Qadamlar:
+1. CustomBranchTeamCity-Faktura bazasida dbo.Company jadvaliga quyidagi so'rovni bajarish:
+
+   SELECT TOP (1000) *
+   FROM [CustomBranchTeamCity-Faktura].[dbo].[Company]
+   WHERE [CreatedDate] >= '2025-11-13'
+   ORDER BY [CreatedDate] DESC
+
+2. Admin-panel → Отчёт → Отчёт по организациям (новый) bo'limida 6-blokni ochish.
+3. «Период с» = 13/11/2025, «Период по» = 13/11/2026 ni tanlash.
+4. «Сформировать отчёт» tugmasini bosish.
+
+Kutilgan natija:
+- DB da 13/11/2025 dan bugungi kungacha ro'yxatdan o'tgan 15 ta tashkilot chiqadi.
+- UI da hisobot shakllanadi, «Скачать Excel» orqali 3 varaqli .xlsx fayl yuklanadi.
+- Varaq «Новые организации» da ham 15 ta tashkilot bo'ladi.
+
+Natija:
+- DB: so'rov 15 ta tashkilotni qaytardi.
+- UI dev va staging da ishlamadi: qayta ishlashdan keyin «Нет данных» xabari chiqdi, ostida «Попробуйте сформировать отчёт заново».
+
+
+
