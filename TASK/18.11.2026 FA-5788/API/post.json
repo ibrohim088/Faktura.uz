@@ -1,0 +1,79 @@
+{
+    "invoices": [
+        {
+            "head": {
+                "file_name": "universal-tax-invoice_305395454_302378936_2026-11-18_FU_61718.xml",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+                        "address": {
+                            "region": "TOSHKENT sh.",
+                            "street": "Yashnabod, Majnuntol 5"
+                        },
+                        "phone": "99890 1234567",
+                        "bank_details": {
+                            "account_number": "20208000300858439001",
+                            "bank_name": "IIB",
+                            "bank_code": "00973"
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "302378936"
+                    }
+                }
+            },
+            "document": {
+                "document_number": "dev-api-test-lgota_name-1",
+                "document_date": "18.11.2026",
+                "contract_number": "dev-api-test-lgota_name-1",
+                "contract_date": "18.11.2026",
+                "currency_code": "860",
+                "items": [
+                    {
+                        "factura_type": 0,
+                        "description": "dev-api-test-lgota_name-1 desc",
+                        "volume": "1",
+                        "subtotal": "0",
+                        "item_number": "1",
+                        "measurement_unit": "шт.",
+                        "measurement_unit_code": "1514323",
+                        "unit_price": "1",
+                        "excise": {
+                            "excise_rate": 0,
+                            "excise_value": 0
+                        },
+                        "catalog": {
+                            "code": "10401999003000000",
+                            "name": "Процентные платежи по займам (кроме процентных платежей банкам)"
+                        },
+                        "vat": {
+                            "vat_rate": "",
+                            "vat_value": ""
+                        },
+                        "subtotal_with_taxes": "1",
+                        "lgota_id": "103277"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "1.00",
+                    "column_subtotal_uzs": "1.00",
+                    "column_vat_value": "1.00",
+                    "column_vat_value_uzs": "1.00",
+                    "column_subtotal_with_taxes": "1.00",
+                    "column_subtotal_with_taxes_uzs": "1.00"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "два миллиона сўм, 00 тийин",
+                    "column_subtotal_uzs_in_words": "два миллиона сўм, 00 тийин",
+                    "column_subtotal_with_taxes_in_words": "два миллиона двести сорок тысяч сўм, 00 тийин",
+                    "column_subtotal_with_taxes_uzs_in_words": "два миллиона двести сорок тысяч сўм, 00 тийин"
+                }
+            }
+        }
+    ]
+}

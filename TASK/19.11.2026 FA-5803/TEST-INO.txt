@@ -1,0 +1,67 @@
+Необходимо добавить в систему новую роль, которая будет предоставлять пользователю права на "перезагрузку и активацию тарифа организации".
+
+Проблема заключается в том, что после оплаты и активации тарифа отдельные сотрудники организации, 
+имеющие доступ к соответствующим функциям, могут повторно активировать тариф до окончания срока действия текущего тарифа.
+
+При повторной активации происходит сброс/обнуление лимитов предыдущего тарифа, 
+что приводит к некорректному расходованию оплаченного лимита организации.
+
+Необходимо реализовать:
+    1. Добавить новую роль, например:
+        «Управление тарифом организации».
+
+    2. Предоставить данной роли права на:
+        - перезагрузку тарифа;
+        - активацию тарифа;
+        - выполнение операций, которые приводят к изменению текущего активного тарифа и его лимитов.
+
+    3. Убрать возможность выполнения операций по перезагрузке и активации тарифа у пользователей, которые не имеют новой роли.
+
+    4. Проверить все места в системе, где пользователь может инициировать:
+        - повторную активацию тарифа;
+        - перезагрузку тарифа;
+        - изменение/применение оплаченного тарифа.
+
+    5. При попытке выполнить операцию без соответствующей роли необходимо отображать понятное сообщение об отсутствии прав.
+
+===================================================================================
+TEST-CASE-1 | Новое разрешение «Доступ к активации тарифа» в настройках организации
+===================================================================================
+Предусловия:
+  - Есть доступ в админ-панель.
+  - Есть организация, у которой разрешение «Доступ к активации тарифа» ещё НЕ включено.
+
+Шаги:
+    Часть 1. Проверка наличия разрешения:
+        1. Открыть настройки организации, раздел с разрешениями компании (permissions).
+        2. Найти новое поле «Доступ к активации тарифа».
+    Часть 2. Покупка тарифа без разрешения:
+        3. Убедиться, что у организации разрешение «Доступ к активации тарифа» выключено.
+        4. Войти в эту организацию.
+        5. Попробовать купить / активировать тариф для организации.
+    Часть 3. Покупка тарифа с разрешением:
+        6. В админ-панели включить для этой организации «Доступ к активации тарифа» и сохранить.
+        7. Снова войти в организацию и попробовать купить / активировать тариф.
+Результат:
+    - Часть 1: в настройках организации есть новое разрешение с названием «Доступ к активации тарифа».
+    - Часть 2: тариф не куплен и не активирован. Система показывает понятное сообщение об отсутствии доступа, без технической ошибки.
+    - Часть 3: после включения разрешения тариф покупается и активируется без ошибок.
+
+
+Abdulazim aka AI orqali hatolikni aniqlab berdila
+
+FA-5803: tested on stage. The tariff activation permission works.
+
+What was added:
+- A new permission, "Доступ к активации тарифа" (AccessToTariffActivation), in the company settings permission group.
+- TariffController.PurchaseTariff checks it on the server. A user without the permission gets errorCode = 5 and the tariff is not activated.
+- The tariff page and TariffInfoComponent get a canActivateTariff flag. Without the permission, clicking "activate" shows "У вас нет прав на активацию и перезагрузку тарифа. Обратитесь к администратору организации" and no request is sent.
+- The company owner can always activate, whatever their role.
+- Translations added for ru, uz and oz.
+
+Checked:
+- A role with the permission can activate a tariff.
+- A role without the permission sees the error message, and activation is blocked.
+- The company owner can activate without the permission.
+
+Separate stage issue, not caused by this ticket: tariff activation never finishes on stage for any company. PurchaseTariff returns success and creates a ReportCronJob (type 15), but the job is never picked up: it stays at Status = 0 with ProcessStartDateTime = NULL, and the UI keeps loading. Every purchase job on stage since Dec 2024 is stuck the same way, so the RabbitMQ queue billing.tariff.purchased isn't being consumed there. This needs a check of the RabbitMQ settings in the stage Web.config and of whether faktura.api is consuming the queue. It should be a separate task for DevOps.
