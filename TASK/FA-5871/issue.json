@@ -1,0 +1,285 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "26480",
+  "self": "http://jira.faktura.uz/rest/api/2/issue/26480",
+  "key": "FA-5871",
+  "fields": {
+    "issuetype": {
+      "self": "http://jira.faktura.uz/rest/api/2/issuetype/3",
+      "id": "3",
+      "description": "A task that needs to be done.",
+      "iconUrl": "http://jira.faktura.uz/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10318
+    },
+    "timespent": null,
+    "project": {
+      "self": "http://jira.faktura.uz/rest/api/2/project/10000",
+      "id": "10000",
+      "key": "FA",
+      "name": "Faktura.uz",
+      "projectTypeKey": "software",
+      "avatarUrls": {
+        "48x48": "http://jira.faktura.uz/secure/projectavatar?pid=10000&avatarId=12101",
+        "24x24": "http://jira.faktura.uz/secure/projectavatar?size=small&pid=10000&avatarId=12101",
+        "16x16": "http://jira.faktura.uz/secure/projectavatar?size=xsmall&pid=10000&avatarId=12101",
+        "32x32": "http://jira.faktura.uz/secure/projectavatar?size=medium&pid=10000&avatarId=12101"
+      }
+    },
+    "fixVersions": [],
+    "customfield_11001": {
+      "self": "http://jira.faktura.uz/rest/api/2/user?username=zibrohim",
+      "name": "zibrohim",
+      "key": "JIRAUSER12602",
+      "emailAddress": "ibrohimzokirjonov917@gmail.com",
+      "avatarUrls": {
+        "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER12602&avatarId=12900",
+        "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER12602&avatarId=12900",
+        "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER12602&avatarId=12900",
+        "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER12602&avatarId=12900"
+      },
+      "displayName": "IBROHIM ZOKIRJONOV",
+      "active": true,
+      "timeZone": "Asia/Tashkent"
+    },
+    "aggregatetimespent": null,
+    "resolution": null,
+    "customfield_10900": null,
+    "customfield_10901": null,
+    "customfield_10902": null,
+    "resolutiondate": null,
+    "customfield_10903": null,
+    "customfield_10904": null,
+    "workratio": -1,
+    "lastViewed": "2026-11-20T12:15:32.093+0000",
+    "watches": {
+      "self": "http://jira.faktura.uz/rest/api/2/issue/FA-5871/watchers",
+      "watchCount": 1,
+      "isWatching": false
+    },
+    "created": "2026-11-18T07:50:36.811+0000",
+    "priority": {
+      "self": "http://jira.faktura.uz/rest/api/2/priority/10100",
+      "iconUrl": "http://jira.faktura.uz/images/icons/priorities/highest.svg",
+      "name": "Highest",
+      "id": "10100"
+    },
+    "customfield_10025": null,
+    "customfield_10300": "{summaryBean=com.atlassian.jira.plugin.devstatus.rest.SummaryBean@6c5e18dd[summary={pullrequest=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@15d1f6f7[byInstanceType={gitlabselfmanaged=com.atlassian.jira.plugin.devstatus.summary.beans.ObjectByInstanceTypeBean@7a50da49[count=1,name=GitLab Self-Managed]},overall=PullRequestOverallBean{stateCount=1, state='MERGED', details=PullRequestOverallDetails{openCount=0, mergedCount=1, declinedCount=0}}], build=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@565e44d1[byInstanceType={},overall=com.atlassian.jira.plugin.devstatus.summary.beans.BuildOverallBean@2aa05ec1[failedBuildCount=0,successfulBuildCount=0,unknownBuildCount=0,count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>]], review=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@4ad87c6f[byInstanceType={},overall=com.atlassian.jira.plugin.devstatus.summary.beans.ReviewsOverallBean@150aed5d[dueDate=<null>,overDue=false,state=<null>,stateCount=0,count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>]], deployment-environment=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@31d64be1[byInstanceType={},overall=com.atlassian.jira.plugin.devstatus.summary.beans.DeploymentOverallBean@19a84d4c[showProjects=false,successfulCount=0,topEnvironments=[],count=0,lastUpdated=<null>,lastUpdatedTimestamp=<null>]], repository=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@101a7112[byInstanceType={gitlabselfmanaged=com.atlassian.jira.plugin.devstatus.summary.beans.ObjectByInstanceTypeBean@52b80649[count=2,name=GitLab Self-Managed]},overall=com.atlassian.jira.plugin.devstatus.summary.beans.CommitOverallBean@51b2c6bc[count=2,lastUpdated=2026-11-19T11:50:23.000+0500,lastUpdatedTimestamp=2026-11-19T11:50:23.000+05:00]], branch=com.atlassian.jira.plugin.devstatus.rest.SummaryItemBean@a2b33eb[byInstanceType={gitlabselfmanaged=com.atlassian.jira.plugin.devstatus.summary.beans.ObjectByInstanceTypeBean@49fa515d[count=1,name=GitLab Self-Managed]},overall=com.atlassian.jira.plugin.devstatus.summary.beans.BranchOverallBean@5be28c65[count=1,lastUpdated=<null>,lastUpdatedTimestamp=<null>]]},configErrors=[],errors=[]], devSummaryJson={\"cachedValue\":{\"errors\":[],\"configErrors\":[],\"summary\":{\"pullrequest\":{\"overall\":{\"count\":1,\"lastUpdated\":\"2026-11-19T11:50:25.000+0500\",\"stateCount\":1,\"state\":\"MERGED\",\"details\":{\"openCount\":0,\"mergedCount\":1,\"declinedCount\":0,\"total\":1},\"open\":false},\"byInstanceType\":{\"gitlabselfmanaged\":{\"count\":1,\"name\":\"GitLab Self-Managed\"}}},\"build\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"failedBuildCount\":0,\"successfulBuildCount\":0,\"unknownBuildCount\":0},\"byInstanceType\":{}},\"review\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"stateCount\":0,\"state\":null,\"dueDate\":null,\"overDue\":false,\"completed\":false},\"byInstanceType\":{}},\"deployment-environment\":{\"overall\":{\"count\":0,\"lastUpdated\":null,\"topEnvironments\":[],\"showProjects\":false,\"successfulCount\":0},\"byInstanceType\":{}},\"repository\":{\"overall\":{\"count\":2,\"lastUpdated\":\"2026-11-19T11:50:23.000+0500\"},\"byInstanceType\":{\"gitlabselfmanaged\":{\"count\":2,\"name\":\"GitLab Self-Managed\"}}},\"branch\":{\"overall\":{\"count\":1,\"lastUpdated\":null},\"byInstanceType\":{\"gitlabselfmanaged\":{\"count\":1,\"name\":\"GitLab Self-Managed\"}}}}},\"isStale\":true}}",
+    "labels": [
+      "#CallCenter"
+    ],
+    "timeestimate": null,
+    "aggregatetimeoriginalestimate": null,
+    "versions": [],
+    "issuelinks": [],
+    "assignee": {
+      "self": "http://jira.faktura.uz/rest/api/2/user?username=x.xudayqulov",
+      "name": "x.xudayqulov",
+      "key": "JIRAUSER12107",
+      "emailAddress": "xudaykulov123@gmail.com",
+      "avatarUrls": {
+        "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER12107&avatarId=12502",
+        "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER12107&avatarId=12502",
+        "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER12107&avatarId=12502",
+        "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER12107&avatarId=12502"
+      },
+      "displayName": "Xamidullo Xudaykulov",
+      "active": true,
+      "timeZone": "Asia/Tashkent"
+    },
+    "updated": "2026-11-19T13:42:41.239+0000",
+    "status": {
+      "self": "http://jira.faktura.uz/rest/api/2/status/10600",
+      "description": "",
+      "iconUrl": "http://jira.faktura.uz/",
+      "name": "ON DEV TESTING",
+      "id": "10600",
+      "statusCategory": {
+        "self": "http://jira.faktura.uz/rest/api/2/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "inprogress",
+        "name": "In Progress"
+      }
+    },
+    "components": [],
+    "timeoriginalestimate": null,
+    "description": "Для документов типа «Договор» (роуминг) preview отправителя и получателя сейчас строится без учёта кода филиала в подписываемом JSON.\n\nНекоторые договоры от других операторов роуминга приходят с наименованием филиала, но без кода филиала. Налоговая проверяет наличие кода филиала и при его отсутствии показывает договор без наименования филиала. У нас такие договоры отображаются с наименованием филиала, то есть иначе, чем в налоговой.\n\nh2. Необходимо реализовать\n\nh3. Логика отображения preview для договора (роуминг)\n * Для документа типа «Договор» (роуминг) при построении preview отправителя и получателя проверять в подписываемом JSON наличие кода филиала по каждой из сторон.\n * Если код филиала есть, показывать наименование филиала, как сейчас.\n * Если кода филиала нет, не показывать наименование филиала, даже если оно передано в подписываемом JSON.\n * Проверять отправителя и получателя отдельно, независимо друг от друга.\n\nh3. Область изменений\n * Изменения касаются только документов типа «Договор» (роуминг).\n * Отображение остальных типов документов не меняется.\n * Подписываемый JSON не меняется. Меняется только отображение в preview.\n\nh2. Ожидаемый результат\n\nPreview отправителя и получателя для договоров из роуминга совпадает с тем, как налоговая отображает данные о филиале: наименование филиала показывается только вместе с кодом филиала в подписываемом JSON.\n\nh2. Критерии приёмки\n # Для договора (роуминг), где в подписываемом JSON есть и код, и наименование филиала отправителя, в preview отправителя показывается наименование филиала.\n # Для договора (роуминг), где в подписываемом JSON есть наименование филиала отправителя, но нет кода филиала, в preview отправителя наименование филиала не показывается.\n # Пункты 1 и 2 так же выполняются для получателя.\n # Отправитель и получатель проверяются независимо: если код филиала есть только у одной стороны, наименование филиала показывается только у этой стороны.\n # Отображение preview для других типов документов не изменилось.\n # Подписываемый JSON договора не изменяется.\n",
+    "customfield_10011": "0|i018zw:",
+    "customfield_11101": null,
+    "timetracking": {},
+    "archiveddate": null,
+    "customfield_10600": null,
+    "customfield_10006": null,
+    "customfield_10007": null,
+    "attachment": [
+      {
+        "self": "http://jira.faktura.uz/rest/api/2/attachment/24191",
+        "id": "24191",
+        "filename": "Faktura диги документ.pdf",
+        "author": {
+          "self": "http://jira.faktura.uz/rest/api/2/user?username=ravshan",
+          "name": "ravshan",
+          "key": "JIRAUSER11505",
+          "emailAddress": "qwertyr7676@gmail.com",
+          "avatarUrls": {
+            "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER11505&avatarId=12203",
+            "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER11505&avatarId=12203",
+            "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER11505&avatarId=12203",
+            "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER11505&avatarId=12203"
+          },
+          "displayName": "Ravshan Eshtemirov",
+          "active": true,
+          "timeZone": "Asia/Tashkent"
+        },
+        "created": "2026-11-18T07:52:49.982+0000",
+        "size": 45215,
+        "mimeType": "application/pdf",
+        "content": "http://jira.faktura.uz/secure/attachment/24191/Faktura+%D0%B4%D0%B8%D0%B3%D0%B8+%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.pdf"
+      },
+      {
+        "self": "http://jira.faktura.uz/rest/api/2/attachment/24188",
+        "id": "24188",
+        "filename": "screenshot-1.png",
+        "author": {
+          "self": "http://jira.faktura.uz/rest/api/2/user?username=ravshan",
+          "name": "ravshan",
+          "key": "JIRAUSER11505",
+          "emailAddress": "qwertyr7676@gmail.com",
+          "avatarUrls": {
+            "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER11505&avatarId=12203",
+            "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER11505&avatarId=12203",
+            "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER11505&avatarId=12203",
+            "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER11505&avatarId=12203"
+          },
+          "displayName": "Ravshan Eshtemirov",
+          "active": true,
+          "timeZone": "Asia/Tashkent"
+        },
+        "created": "2026-11-18T07:51:25.657+0000",
+        "size": 48012,
+        "mimeType": "image/png",
+        "content": "http://jira.faktura.uz/secure/attachment/24188/screenshot-1.png",
+        "thumbnail": "http://jira.faktura.uz/secure/thumbnail/24188/_thumb_24188.png"
+      },
+      {
+        "self": "http://jira.faktura.uz/rest/api/2/attachment/24189",
+        "id": "24189",
+        "filename": "screenshot-2.png",
+        "author": {
+          "self": "http://jira.faktura.uz/rest/api/2/user?username=ravshan",
+          "name": "ravshan",
+          "key": "JIRAUSER11505",
+          "emailAddress": "qwertyr7676@gmail.com",
+          "avatarUrls": {
+            "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER11505&avatarId=12203",
+            "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER11505&avatarId=12203",
+            "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER11505&avatarId=12203",
+            "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER11505&avatarId=12203"
+          },
+          "displayName": "Ravshan Eshtemirov",
+          "active": true,
+          "timeZone": "Asia/Tashkent"
+        },
+        "created": "2026-11-18T07:51:52.926+0000",
+        "size": 269014,
+        "mimeType": "image/png",
+        "content": "http://jira.faktura.uz/secure/attachment/24189/screenshot-2.png",
+        "thumbnail": "http://jira.faktura.uz/secure/thumbnail/24189/_thumb_24189.png"
+      },
+      {
+        "self": "http://jira.faktura.uz/rest/api/2/attachment/24190",
+        "id": "24190",
+        "filename": "screenshot-3.png",
+        "author": {
+          "self": "http://jira.faktura.uz/rest/api/2/user?username=ravshan",
+          "name": "ravshan",
+          "key": "JIRAUSER11505",
+          "emailAddress": "qwertyr7676@gmail.com",
+          "avatarUrls": {
+            "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER11505&avatarId=12203",
+            "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER11505&avatarId=12203",
+            "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER11505&avatarId=12203",
+            "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER11505&avatarId=12203"
+          },
+          "displayName": "Ravshan Eshtemirov",
+          "active": true,
+          "timeZone": "Asia/Tashkent"
+        },
+        "created": "2026-11-18T07:52:43.618+0000",
+        "size": 161518,
+        "mimeType": "image/png",
+        "content": "http://jira.faktura.uz/secure/attachment/24190/screenshot-3.png",
+        "thumbnail": "http://jira.faktura.uz/secure/thumbnail/24190/_thumb_24190.png"
+      }
+    ],
+    "customfield_10801": null,
+    "aggregatetimeestimate": null,
+    "summary": "Учитывать код филиала в preview отправителя и получателя для договора (роуминг)",
+    "creator": {
+      "self": "http://jira.faktura.uz/rest/api/2/user?username=ravshan",
+      "name": "ravshan",
+      "key": "JIRAUSER11505",
+      "emailAddress": "qwertyr7676@gmail.com",
+      "avatarUrls": {
+        "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER11505&avatarId=12203",
+        "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER11505&avatarId=12203",
+        "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER11505&avatarId=12203",
+        "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER11505&avatarId=12203"
+      },
+      "displayName": "Ravshan Eshtemirov",
+      "active": true,
+      "timeZone": "Asia/Tashkent"
+    },
+    "subtasks": [],
+    "reporter": {
+      "self": "http://jira.faktura.uz/rest/api/2/user?username=ravshan",
+      "name": "ravshan",
+      "key": "JIRAUSER11505",
+      "emailAddress": "qwertyr7676@gmail.com",
+      "avatarUrls": {
+        "48x48": "http://jira.faktura.uz/secure/useravatar?ownerId=JIRAUSER11505&avatarId=12203",
+        "24x24": "http://jira.faktura.uz/secure/useravatar?size=small&ownerId=JIRAUSER11505&avatarId=12203",
+        "16x16": "http://jira.faktura.uz/secure/useravatar?size=xsmall&ownerId=JIRAUSER11505&avatarId=12203",
+        "32x32": "http://jira.faktura.uz/secure/useravatar?size=medium&ownerId=JIRAUSER11505&avatarId=12203"
+      },
+      "displayName": "Ravshan Eshtemirov",
+      "active": true,
+      "timeZone": "Asia/Tashkent"
+    },
+    "aggregateprogress": {
+      "progress": 0,
+      "total": 0
+    },
+    "customfield_10002": null,
+    "customfield_10003": null,
+    "customfield_10004": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+      "progress": 0,
+      "total": 0
+    },
+    "comment": {
+      "comments": [],
+      "maxResults": 1000,
+      "total": 0,
+      "startAt": 0
+    },
+    "votes": {
+      "self": "http://jira.faktura.uz/rest/api/2/issue/FA-5871/votes",
+      "votes": 0,
+      "hasVoted": false
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 0,
+      "worklogs": []
+    },
+    "archivedby": null
+  },
+  "renderedFields": null
+}

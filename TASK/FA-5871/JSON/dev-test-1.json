@@ -1,0 +1,70 @@
+{
+    "ContractId": "6aff10504d87d301b8bdbf37",
+    "HasVat": false,
+    "ContractDoc": {
+        "ContractName": "dev-test-1",
+        "ContractExpireDate": "2026-11-19",
+        "ContractPlace": "dev-test-1",
+        "ContractNo": "dev-test-1",
+        "ContractDate": "2026-11-19"
+    },
+    "Owner": {
+        "Tin": "305395454",
+        "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+        "Address": "ГОРОД ТАШКЕНТ, ЯШНАБАДСКИЙ РАЙОН, Мажнунтол, 5  , ",
+        "WorkPhone": "",
+        "Mobile": null,
+        "Fax": "",
+        "Oked": "32400",
+        "Account": "20208000300858439001",
+        "BankId": "00973",
+        "FizTin": "30107810910066",
+        "Fio": "MURODOV FARRUX SHARIPOVICH",
+        "BranchCode": "1",
+        "BranchName": "Test_Filial"
+    },
+    "Clients": [
+        {
+            "Tin": "302378936",
+            "Name": "\"NATIJA SARI KONSALTING\" MCHJ",
+            "Address": "AFROSIYOB KO`CHASI 12-A UY  ",
+            "WorkPhone": "",
+            "Mobile": null,
+            "Fax": "",
+            "Oked": "62010",
+            "Account": "20208000605001023001",
+            "BankId": "00421",
+            "FizTin": "30107810910066",
+            "Fio": "MURODOV FARRUX SHARIPOVICH",
+            "BranchCode": "",
+            "BranchName": ""
+        }
+    ],
+    "Products": [
+        {
+            "CatalogCode": "09800001009000000",
+            "CatalogName": "Программные продукты",
+            "BarCode": "",
+            "Summa": 1.0,
+            "DeliverySum": 1.0,
+            "VatRate": 0.0,
+            "VatSum": 0.0,
+            "DeliverySumWithVat": 1.0,
+            "WithoutVat": true,
+            "OrdNo": "1",
+            "Name": "dev-test-1",
+            "MeasureId": null,
+            "PackageCode": "1500242",
+            "PackageName": "шт.",
+            "Count": 1.0
+        }
+    ],
+    "Parts": [
+        {
+            "OrdNo": "1",
+            "Title": "Подробное описание товара(услуг):",
+            "Body": "dev-test-1"
+        }
+    ],
+    "OwnerInn": "305395454"
+}

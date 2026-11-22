@@ -1,4 +1,7 @@
 *.mp4
 *.mov
-*.env
+.env
 .env*
+
+.agents/config/
+.agents/mcp/
