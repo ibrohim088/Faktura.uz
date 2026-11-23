@@ -1,0 +1,70 @@
+{
+    "ContractId": "6b0435284d87d28aa8235a64",
+    "HasVat": false,
+    "ContractDoc": {
+        "ContractName": "dev-ui-test-2",
+        "ContractExpireDate": "2026-11-23",
+        "ContractPlace": "dev-ui-test-2",
+        "ContractNo": "dev-ui-test-2",
+        "ContractDate": "2026-11-23"
+    },
+    "Owner": {
+        "Tin": "302378936",
+        "Name": "\"NATIJA SARI KONSALTING\" MCHJ",
+        "Address": "AFROSIYOB KO`CHASI 12-A UY  ",
+        "WorkPhone": "",
+        "Mobile": null,
+        "Fax": "",
+        "Oked": "62010",
+        "Account": "20208000605001023001",
+        "BankId": "00421",
+        "FizTin": "30107810910066",
+        "Fio": "MURODOV FARRUX SHARIPOVICH",
+        "BranchCode": "",
+        "BranchName": ""
+    },
+    "Clients": [
+        {
+            "Tin": "305395454",
+            "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+            "Address": "Мажнунтол, 5  ",
+            "WorkPhone": "",
+            "Mobile": null,
+            "Fax": "",
+            "Oked": "32400",
+            "Account": "20208000300858439001",
+            "BankId": "00973",
+            "FizTin": "30107810910066",
+            "Fio": "MURODOV FARRUX SHARIPOVICH",
+            "BranchCode": "",
+            "BranchName": ""
+        }
+    ],
+    "Products": [
+        {
+            "CatalogCode": "09800001009000000",
+            "CatalogName": "Программные продукты",
+            "BarCode": "",
+            "Summa": 1.0,
+            "DeliverySum": 1.0,
+            "VatRate": 0.0,
+            "VatSum": 0.0,
+            "DeliverySumWithVat": 1.0,
+            "WithoutVat": true,
+            "OrdNo": "1",
+            "Name": "dev-ui-test-2",
+            "MeasureId": null,
+            "PackageCode": "1500242",
+            "PackageName": "шт.",
+            "Count": 1.0
+        }
+    ],
+    "Parts": [
+        {
+            "OrdNo": "1",
+            "Title": "Подробное описание товара(услуг):",
+            "Body": "dev-ui-test-2"
+        }
+    ],
+    "OwnerInn": "302378936"
+}

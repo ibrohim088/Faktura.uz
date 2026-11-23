@@ -29,21 +29,23 @@ Preview отправителя и получателя для договоров
 5. Отображение preview для других типов документов не изменилось.
 6. Подписываемый JSON договора не изменяется.
 
+создал несколько документов с UI
+Сторона отправителя с UI и API, выбрал филиал получатель нет филиала
+в preview у строны отправителя есть филиал название только это внутри getroamingjson есть название филиала и его код
+не смог подписать документ вышло ошибка отом что такое код филиала не указон этому инн 305395454
 
-UI, API, Reestr - надо проверить и надо уточнить у разработчика
+TC-01 | Отправитель: есть код и наименование филиала
+  Предусловие: у отправителя в подписываемом JSON заполнены код и наименование филиала
+  Ожидаемый результат: в preview отправителя показано наименование филиала
+  Результат-создание документа через UI: выбрал филиал после этого посматрел на его preview там отображался название филиал а его код нет, после этого посматрел на его getroamingjson внутри него есть branchCode: 1 и "BranchName": "Test_Filial"  
+  ui-url: https://test.faktura.uz/ru/document/details/423aa348f5874a7583388b7ff4d5abc5 - выбрал branch после в getroamingjson показал branchCode и branchName, никак не удалось подписать документ изза того что выходит ошибка про "для инн 305395454 не существует филиала с кодам 1"
 
-Основная проверка:
-    Договор (роуминг) ГНК
-
-Регрессия:
-    Счет-фактура с НДС
-    Счет-фактура с фарм
-    Счет-фактура с акциз
-    Акт и акциз
-    Акт и счет-фактура
-    Акт и счет-фактура с фарм
-    Доверенность
-    ТТН
-    Гибрид счет-фактура с НДС
-    Гибрид счет-фактура с фарм
-    Гибрид счет-фактура с акциз
+  Результат-создание документа через API:
+  have_branch_code_and_name
+  https://test.faktura.uz/ru/document/details/1dff0067e5744ddcbd45f638c4ddb6dc - есть branch_code и branch_name - внутри getroamingjson показывает branch_code и branch_name 
+  not_have_branch_code_but_have_name
+  https://test.faktura.uz/ru/document/details/fc8de4efd2a54964b79ba64612e0bea3 - нуте branch_code но есть branch_name - внутри getroamingjson не показывает branch_code и не branch_name
+  not_have_branch_code_and_name
+  https://test.faktura.uz/ru/document/details/e187e6edd170489a8d054c0b905b513e - нуте branch_code и branch_name - внутри getroamingjson не показывает branch_code и не branch_name
+  have_branch_code_but_not_have_name
+  https://test.faktura.uz/ru/document/details/964d5e705f214e76928e971d58ef312a - есть branch_code но нету branch_name - есть только branchCode

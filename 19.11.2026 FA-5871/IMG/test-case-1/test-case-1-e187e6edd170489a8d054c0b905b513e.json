@@ -1,0 +1,70 @@
+{
+    "ContractId": "6b042ca54d87d2a8748547db",
+    "HasVat": false,
+    "ContractDoc": {
+        "ContractName": "Договор аренды",
+        "ContractExpireDate": "2026-11-23",
+        "ContractPlace": "Toshkent sh.",
+        "ContractNo": "D-456",
+        "ContractDate": "2026-11-23"
+    },
+    "Owner": {
+        "Tin": "305395454",
+        "Name": "\"INTERACTIVE ROBOT SOLUTIONS\" MCHJ",
+        "Address": "Toshkent sh., Xalqobod, 8, ",
+        "WorkPhone": "",
+        "Mobile": null,
+        "Fax": null,
+        "Oked": "70100",
+        "Account": "",
+        "BankId": "01033",
+        "FizTin": "32005760170087",
+        "Fio": "AKMALJON OMONOV",
+        "BranchCode": "",
+        "BranchName": ""
+    },
+    "Clients": [
+        {
+            "Tin": "302563857",
+            "Name": "\"SPACE ONLINE GENESIS\" MCHJ",
+            "Address": "Taxtapul MFY, Turkqo‘rg‘on ko'chasi, 6 tor ko'chasi, 31-uy  ",
+            "WorkPhone": null,
+            "Mobile": "",
+            "Fax": null,
+            "Oked": "62010",
+            "Account": "20208000900214706001",
+            "BankId": "01067",
+            "FizTin": "31105710190091",
+            "Fio": "FAYZULLAYEV SHUXRAT NASIBULLAYEVICH",
+            "BranchCode": "",
+            "BranchName": ""
+        }
+    ],
+    "Products": [
+        {
+            "CatalogCode": "09800001009000000",
+            "CatalogName": "Программные продукты",
+            "BarCode": "",
+            "Summa": 1.0,
+            "DeliverySum": 1.0,
+            "VatRate": 0.0,
+            "VatSum": 0.0,
+            "DeliverySumWithVat": 1.0,
+            "WithoutVat": true,
+            "OrdNo": "1",
+            "Name": "RTK xizmati",
+            "MeasureId": null,
+            "PackageCode": "1500242",
+            "PackageName": "шт.",
+            "Count": 1.0
+        }
+    ],
+    "Parts": [
+        {
+            "OrdNo": "1",
+            "Title": "Shartnomaning asoslari, bahosi va to‘lov shartlari",
+            "Body": "1.1.Shartnoma «Bajaruvchi»ning topshirig‘iga binoan «Bajaruvchi» tomonidan quyidagi ishlarni bajarilishini belgilaydi: Gyeodeziya ishlari: Doimiy ishlab turuvchi GNSS stansiyalaridan foydalanish.\r\n\r\n1.2.«Bajaruvchi»ush bu shartnoma imzolangandan so‘ng, shartnoma umumiy qiymatining 30 foizini oldindan, qolgan qismini esa ishni bajarish dalolatnomasi va belgilangan tartibda tugatilgan ishlarini qabul qilib olish hujjatlarini rasmiylashtirish mobayni da to‘lov ishlari amalga oshiriladi.\r\n\r\n1.3.Shartnomada belgilangan ishning qiymati markaz direktori tomonidan tasdiqlangan “Doimiy ishlab turuvchi GNSS stansiyalardan foydalanish bo‘yicha vaqtinchalik tariflari”dan aniqlanadi.\r\n\r\n1.4.Shartnomaning amal qilish muddati 31 dekabr 2022 yil.\r\n\r\n1.5. Ushbu shartnoma bo‘yicha bajariladigan ishlarning qiymati"
+        }
+    ],
+    "OwnerInn": "305395454"
+}
