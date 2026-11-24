@@ -1,0 +1,108 @@
+{
+    "contracts": [
+        {
+            "head": {
+                "file_name": "contract-roaming_305395454_302563857_2024-09-13FU_000002.json",
+                "program_version": "1.0.0",
+                "format_version": "1.0.0",
+                "sender": {
+                    "sender_info": {
+                        "INN": "305395454",
+                        "company_name": "Respublika aerogeodeziya ma rkazi",
+                        "fiz_inn": "441546729",
+                        "fiz_name": "AKMALJON OMONOV",
+                        "OKED": "70100",
+                        "company_vat_code": "326030013822",
+                        "address": {
+                            "street": "Toshkent sh., Xalqobod, 8"
+                        },
+                        "branch_code": "",
+                        "branch_name": "Test_Filial",
+                        "bank_details": {
+                            " account_number": "20210000900126118001",
+                            "bank_name": "AKB «Kapital bank» Chorsu filiali",
+                            "bank_code": "01033",
+                            "activity_code": ""
+                        }
+                    },
+                    "approver_and_signers": {
+                        "approver": {
+                            "position": "Plan bo`lim",
+                            "last_name": "ALIMATOVA",
+                            "firs t_name": "MAXMUDA",
+                            "middle_name": ""
+                        },
+                        "signer_director": {
+                            "position": "Direktor",
+                            "last_name": "OMONOV",
+                            "first_name": "AKMALJON",
+                            "middle_name": ""
+                        }
+                    }
+                },
+                "receiver": {
+                    "receiver_info": {
+                        "INN": "302563857"
+                    }
+                }
+            },
+            "document": {
+                "document_version": "1.0",
+                "contract_number": "D-456",
+                "contract_name": "Договор аренды",
+                "contract_date": "23.11.2026",
+                "contract_expire_date": "23.11.2026",
+                "contract_place": "Toshkent sh.",
+                "clients": [
+                    {
+                        "company_inn": "302563857"
+                    }
+                ],
+                "parts": [
+                    {
+                        "item_number": "1",
+                        "title": "Shartnomaning asoslari, bahosi va to‘lov shartlari",
+                        "body": "1.1.Shartnoma «Bajaruvchi»ning topshirig‘iga binoan «Bajaruvchi» tomonidan quyidagi ishlarni bajarilishini belgilaydi: Gyeodeziya ishlari: Doimiy ishlab turuvchi GNSS stansiyalaridan foydalanish.\r\n\r\n1.2.«Bajaruvchi»ush bu shartnoma imzolangandan so‘ng, shartnoma umumiy qiymatining 30 foizini oldindan, qolgan qismini esa ishni bajarish dalolatnomasi va belgilangan tartibda tugatilgan ishlarini qabul qilib olish hujjatlarini rasmiylashtirish mobayni da to‘lov ishlari amalga oshiriladi.\r\n\r\n1.3.Shartnomada belgilangan ishning qiymati markaz direktori tomonidan tasdiqlangan “Doimiy ishlab turuvchi GNSS stansiyalardan foydalanish bo‘yicha vaqtinchalik tariflari”dan aniqlanadi.\r\n\r\n1.4.Shartnomaning amal qilish muddati 31 dekabr 2022 yil.\r\n\r\n1.5. Ushbu shartnoma bo‘yicha bajariladigan ishlarning qiymati"
+                    }
+                ],
+                "services": [
+                    {
+                        "item_number": "1",
+                        "description": "RTK xizmati",
+                        "measurement_unit": "шт.",
+                        "measurement_unit_code": "1500242",
+                        "volume": "1",
+                        "catalog": {
+                            "code": "09800001009000000",
+                            "name": "Программные продукты"
+                        },
+                        "unit_price": "1",
+                        "delivery_cost": "1",
+                        "vat": {
+                            "vat_rate": "",
+                            "vat_value": ""
+                        },
+                        "subtotal_with_vat": "1",
+                        "subtotal_with_taxes": "1"
+                    }
+                ],
+                "column_summary_values": {
+                    "column_subtotal": "1",
+                    "column_subtotal_uzs": "1",
+                    "column_subtotal_with_taxes": "1",
+                    "column_subtotal_with_taxes_uzs": "1",
+                    "column_vat_value": "1",
+                    "column_vat_value_uzs": "1",
+                    "column_subtotal_with_taxes_total": "1",
+                    "column_subtotal_with_taxes_total_uzs": "1"
+                },
+                "column_summary_values_in_words": {
+                    "column_subtotal_in_words": "bir million b esh yuz bir ming ikki yuz oltmush ",
+                    "column_subtotal_uzs_in_words": "bir million besh yuz bir ming ikki yuz oltmush ",
+                    "column_subtotal_with_taxes_in_words": "bir million yetti yuz yigirma olti ming to`rt yuz qirq to`qqiz ",
+                    "colum n_subtotal_with_taxes_uzs_in_words": "bir million yetti yuz yigirma olti ming to`rt yuz qirq to`qqiz "
+                }
+            }
+        }
+    ]
+}
